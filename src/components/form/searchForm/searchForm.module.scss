@@ -1,0 +1,21 @@
+@use '@styles/variables' as *;
+
+.searchFormContainer {
+  width: 100%;
+
+  &__desktop {
+    display: block;
+
+    @media screen and (max-width: $breakpoint-lg) {
+      display: none;
+    }
+  }
+
+  &__mobile {
+    display: none;
+
+    @media screen and (max-width: $breakpoint-lg) {
+      display: block;
+    }
+  }
+}
