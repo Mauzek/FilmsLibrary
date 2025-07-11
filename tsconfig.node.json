@@ -13,19 +13,6 @@
     "moduleDetection": "force",
     "noEmit": true,
 
-    /* Path mapping */
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"],
-      "@components/*": ["./src/components/*"],
-      "@hooks/*": ["./src/hooks/*"],
-      "@store/*": ["./src/store/*"],
-      "@utils/*": ["./src/utils/*"],
-      "@types/*": ["./src/types/*"],
-      "@styles/*": ["./src/styles/*"],
-      "@api/*": ["./src/api/*"],
-      "@assets/*": ["./src/assets/*"]
-    },
 
     /* Linting */
     "strict": true,
