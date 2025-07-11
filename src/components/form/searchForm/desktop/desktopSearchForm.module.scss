@@ -1,0 +1,72 @@
+@use '@styles/variables' as *;
+
+.searchForm {
+    display: flex;
+    width: 100%;
+    position: relative;
+    background: $bg-input;
+    border-radius: $border-radius-lg;
+    transition: all $transition-normal;
+    overflow: hidden;
+
+    &:hover {
+        background-color: $bg-input--hover;
+
+        .searchForm__input {
+            background-color: $bg-input--hover;
+        }
+
+        .searchForm__button {
+            background-color: $bg-input--hover;
+        }
+    }
+
+    &__input {
+        flex: 1;
+        padding: $spacing-sm 0;
+        font-family: $font-primary;
+        font-size: $font-size-base;
+        font-weight: $font-weight-medium;
+        transition: all $transition-normal;
+        background-color: inherit;
+        border: none;
+        outline: none;
+        color: $input-text-primary;
+
+        &::placeholder {
+            color: $input-text-secondary;
+        }
+    }
+
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: $spacing-sm;
+        color: $input-text-secondary;
+    }
+
+    &__button {
+        padding: $spacing-sm;
+        background-color: inherit;
+        border: none;
+        color: $input-text-secondary;
+        cursor: pointer;
+        transition: all $transition-normal;
+        font-size: $font-size-base;
+        min-width: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform: translateX(50px);
+
+        &:hover {
+            background-color: $bg-input;
+            color: $input-text-primary;
+        }
+
+        &--visible {
+            transform: translateX(0);
+        }
+    }
+}
