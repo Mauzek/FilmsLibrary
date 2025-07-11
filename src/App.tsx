@@ -1,5 +1,5 @@
-import "./App.css";
-import { Layout } from "./components";
+import "./App.scss";
+import { Layout } from "@/components";
 import { Route, Routes } from "react-router-dom";
 import {
   FavouritePage,
