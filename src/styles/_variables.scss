@@ -1,0 +1,89 @@
+// ===== ЦВЕТА =====
+
+// Основные цвета 
+$primary-color: #2787f5;           // Основной синий 
+$primary-dark: #1976d2;            // Темно-синий для ховера
+$primary-light: #447BBA;           // Светло-синий для акцентов
+
+$bg-primary: #141414;              // Основной темный фон
+$bg-secondary: #222222;            // Вторичный фон
+$bg-card: #2a2a2a;                 // Фон карточек
+$bg-primay--hover: #1d1d1d;        // Фон при наведении
+$bg-secondary--hover: #2b2b2b;     // Фон при наведении
+$bg-secondary--active: #333333;    // Фон при фокусе
+$bg-input: #424242;                // Фон полей ввода
+$bg-input--hover: #4a4a4a;         // Фон при наведении
+
+$text-primary: #ffffff;            // Основной текст
+$text-secondary: #e1e3e6;          // Вторичный текст 
+$text-muted: #76828d;              // Приглушенный текст
+$text-accent: #2787f5;             // Акцентный текст
+
+$input-text-primary: #ffffff;      // Основной текст  
+$input-text-secondary: #939393;    // Вторичный текст 
+
+// Вторичный текст 
+$border-color-light: #dadce0;
+$shadow-light: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+
+// Акцентные цвета
+$accent-blue: #2787f5;             // Синий для ссылок
+$accent-green: #4bb34b;            // Зеленый для успеха
+$accent-orange: #ff6d00;           // Оранжевый для предупреждений
+$accent-red: #e64646;              // Красный для ошибок
+
+$gradient-primary: linear-gradient(135deg, #2787f5 0%, #1976d2 100%);
+$gradient-secondary: linear-gradient(135deg, #ff6d00 0%, #f57c00 100%);
+
+$font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+$font-heading: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+$font-size-xs: 0.75rem;           // 12px
+$font-size-sm: 0.875rem;          // 14px
+$font-size-base: 1rem;            // 16px
+$font-size-lg: 1.125rem;          // 18px
+$font-size-xl: 1.25rem;           // 20px
+$font-size-2xl: 1.5rem;           // 24px
+$font-size-3xl: 1.875rem;         // 30px
+$font-size-4xl: 2.25rem;          // 36px
+
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+$spacing-xs: 0.25rem;             // 4px
+$spacing-sm: 0.5rem;              // 8px
+$spacing-md: 1rem;                // 16px
+$spacing-lg: 1.5rem;              // 24px
+$spacing-xl: 2rem;                // 32px
+$spacing-2xl: 3rem;               // 48px
+
+$border-radius-sm: 0.25rem;       // 4px
+$border-radius-md: 0.5rem;        // 8px
+$border-radius-lg: 0.75rem;       // 12px
+$border-radius-xl: 1rem;          // 16px
+
+$transition-fast: 0.15s ease-in-out;
+$transition-normal: 0.3s ease-in-out;
+$transition-slow: 0.5s ease-in-out;
+
+$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+$shadow-md: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+$shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+
+$breakpoint-xs: 480px;
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+$breakpoint-2xl: 1536px;
+
+$z-dropdown: 1000;
+$z-header: 1010;
+$z-modal: 1050;
+$z-tooltip: 1070;
+
+$header-height: 64px;
+$container-max-width: 1440px;
