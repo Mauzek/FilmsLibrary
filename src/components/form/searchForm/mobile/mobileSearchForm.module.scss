@@ -1,0 +1,140 @@
+@use '@styles/variables' as *;
+
+.searchFormMobile {
+    position: relative;
+
+    &__trigger {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        padding: $spacing-sm;
+        background: $bg-input;
+        border: none;
+        border-radius: $border-radius-lg;
+        color: $input-text-secondary;
+        cursor: pointer;
+        transition: all $transition-normal;
+
+        &:hover:not(.searchFormMobile__trigger--active) {
+            background-color: $bg-input--hover;
+            color: $input-text-primary;
+        }
+
+        &--active {
+            background-color: $primary-color;
+            color: white;
+        }
+    }
+
+    &__dropdown {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: $bg-primary;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all $transition-normal;
+        z-index: 1000;
+        box-shadow: $shadow-lg;
+
+        &--open {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+            animation: slideDown $transition-normal ease-out;
+        }
+    }
+
+    &__form {
+        padding: $spacing-md;
+
+        @media screen and (max-width: $breakpoint-sm) {
+            padding: $spacing-sm;
+        }
+    }
+
+    &__inputWrapper {
+        display: flex;
+        align-items: center;
+        background: $bg-input;
+        border-radius: $border-radius-lg;
+        padding: $spacing-xs;
+        gap: $spacing-xs;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: $spacing-sm;
+        color: $input-text-secondary;
+        flex-shrink: 0;
+    }
+
+    &__input {
+        flex: 1;
+        padding: $spacing-sm;
+        font-family: $font-primary;
+        font-size: 16px; // Важно для iOS
+        font-weight: $font-weight-medium;
+        background: transparent;
+        border: none;
+        outline: none;
+        color: $input-text-primary;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+
+        &::placeholder {
+            color: $input-text-secondary;
+        }
+    }
+
+    &__close {
+        padding: $spacing-sm;
+        background-color: inherit;
+        border: none;
+        color: $input-text-secondary;
+        cursor: pointer;
+        transition: all $transition-normal;
+        font-size: $font-size-base;
+        min-width: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+            background-color: rgba($input-text-secondary, 0.1);
+            color: $input-text-primary;
+        }
+    }
+
+    &__overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba($bg-primary, 0.8);
+        backdrop-filter: blur(4px);
+        z-index: 999;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
