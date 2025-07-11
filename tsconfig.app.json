@@ -28,6 +28,7 @@
       "@api/*": ["./src/api/*"],
       "@assets/*": ["./src/assets/*"],
       "@config/*": ["./src/config/*"],
+      "@pages/*": ["./src/pages/*"],
     },
 
     /* Linting */

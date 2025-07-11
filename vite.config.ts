@@ -16,6 +16,7 @@ export default defineConfig({
       '@api': path.resolve(__dirname, './src/api'),
       '@assets': path.resolve(__dirname, './src/assets'),
       '@config': path.resolve(__dirname, './src/config'),
+      '@pages': path.resolve(__dirname, './src/pages'),
     },
   },
 })
