@@ -88,10 +88,6 @@ button {
   background-color: $primary-color;
   color: $text-primary;
 
-  &:hover {
-    background-color: $primary-dark;
-  }
-
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
@@ -109,17 +105,17 @@ select {
   background-color: $bg-input;
   color: $input-text-primary;
   transition: all $transition-fast;
-  
+
   &::placeholder {
     color: $input-text-secondary;
   }
-  
+
   &:focus {
     outline: none;
   }
 }
 
-img{
+img {
   -webkit-user-drag: none;
 }
 

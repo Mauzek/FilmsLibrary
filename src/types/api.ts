@@ -1,21 +1,13 @@
-import type{ FilterValue, PaginationParams, SortParams, MovieType } from "./common";
+import type{ FilterValue, PaginationParams, SortParams } from "./common";
 
-export interface ApiFilters
-  extends Record<string, FilterValue>,
-    PaginationParams,
-    SortParams {
+export interface ApiFilters {
+  'genres.name'?: string[]; 
+  'countries.name'?: string[]; 
+  'rating.kp'?: string;
+  year?: string;
+  page?: number;
+  limit?: number;
   query?: string;
-  year?: string | number;
-  "rating.kp"?: string;
-  "rating.imdb"?: string;
-  "votes.kp"?: string;
-  "votes.imdb"?: string;
-  genres?: string[];
-  countries?: string[];
-  type?: MovieType;
-  status?: string;
-  ageRating?: string;
-  movieLength?: string;
 }
 
 export interface PersonFilters

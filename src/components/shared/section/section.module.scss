@@ -1,6 +1,8 @@
 @use '@/styles/variables' as *;
 
-.page {
+.section {
+    display: flex;
+    flex-direction: column;
 
     &__header {
         display: flex;
@@ -15,7 +17,7 @@
 
         @media (max-width: $breakpoint-md) {
             padding: $spacing-sm $spacing-md;
-                        padding-left: $spacing-lg;
+            padding-left: $spacing-lg;
         }
 
     }

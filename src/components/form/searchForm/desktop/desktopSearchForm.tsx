@@ -7,6 +7,10 @@ export const DesktopSearchForm = () => {
   const { query, handleSubmit, handleClear, handleQueryChange } =
     useSearchForm();
   const inputRef = useRef<HTMLInputElement>(null);
+  
+  const onSubmit = (e: React.FormEvent) => {
+     handleSubmit(e);
+  };
 
   const onClear = (e: React.FormEvent) => {
     e.preventDefault();
@@ -15,7 +19,7 @@ export const DesktopSearchForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.searchForm}>
+    <form onSubmit={onSubmit} className={styles.searchForm}>
       <span className={styles.searchForm__icon}>
         <Icon24Search />
       </span>

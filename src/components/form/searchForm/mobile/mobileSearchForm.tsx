@@ -4,7 +4,7 @@ import { useSearchForm } from "@/hooks";
 import styles from "./MobileSearchForm.module.scss";
 
 export const MobileSearchForm = () => {
-  const { query, handleSubmit, handleClear, handleQueryChange } = useSearchForm();
+  const { query, handleSubmit, handleQueryChange } = useSearchForm();
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -14,7 +14,6 @@ export const MobileSearchForm = () => {
 
   const handleClose = () => {
     setIsExpanded(false);
-    handleClear();
   };
 
   const onSubmit = (e: React.FormEvent) => {

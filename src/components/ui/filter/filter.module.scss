@@ -1,0 +1,233 @@
+@use '@/styles/variables' as *;
+
+.filter {
+    position: relative;
+    display: inline-block;
+
+    &__trigger {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: $spacing-lg;
+        padding: $spacing-sm $spacing-md;
+        background-color: #292929;
+        border: 1px solid #555555;
+        border-radius: $border-radius-md;
+        color: $input-text-primary;
+        font-size: $font-size-sm;
+        cursor: pointer;
+        transition: all $transition-fast;
+        max-width: 180px;
+        width: 180px;
+        white-space: nowrap;
+
+        &:hover {
+            background-color: $bg-input--hover;
+            border-color: $primary-color;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        &:focus {
+            outline: none;
+            border-color: $primary-color;
+            box-shadow: 0 0 0 3px rgba(39, 135, 245, 0.2);
+        }
+
+        &_active {
+            background-color: $bg-input--hover;
+            border-color: $primary-color;
+            box-shadow: 0 0 0 2px rgba(39, 135, 245, 0.2);
+            color: $text-primary;
+        }
+    }
+
+    &__triggerText {
+        flex: 1;
+        text-align: left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-weight: 500;
+    }
+
+    &__arrow {
+        flex-shrink: 0;
+        transition: transform $transition-fast;
+        color: currentColor;
+        transform: rotate(-90deg);;
+
+        &--open {
+            transform: rotate(90deg);         
+        }
+    }
+
+    &__dropdown {
+        position: fixed;
+        top: auto;
+        margin-top: $spacing-sm;
+        bottom: auto;
+        left: 0;
+        right: auto;
+        z-index: $z-dropdown;
+        background-color: $bg-card;
+        border: 1px solid $bg-secondary;
+        border-radius: $border-radius-md;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        min-width: 200px;
+        max-height: 300px;
+        overflow: hidden;
+        animation: dropdownFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+
+
+    }
+
+    &__search {
+        padding: $spacing-sm;
+        border-bottom: 1px solid $bg-secondary;
+        background-color: rgba(255, 255, 255, 0.02);
+    }
+
+    &__searchInput {
+        width: 100%;
+        padding: $spacing-xs $spacing-sm;
+        background-color: $bg-secondary;
+        border: 1px solid transparent;
+        border-radius: $border-radius-sm;
+        color: $text-primary;
+        font-size: $font-size-xs;
+        transition: all $transition-fast;
+
+        &:focus {
+            outline: none;
+            border-color: $primary-color;
+            background-color: $bg-input--hover;
+        }
+
+        &::placeholder {
+            color: $text-secondary;
+        }
+    }
+
+    &__list {
+        max-height: 250px;
+        overflow-y: auto;
+        padding: $spacing-xs;
+
+        &::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: $primary-color;
+            border-radius: $border-radius-sm;
+
+            &:hover {
+                background: lighten($primary-color, 10%);
+            }
+        }
+
+        scrollbar-width: thin;
+        scrollbar-color: $primary-color transparent;
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        gap: $spacing-sm;
+        cursor: pointer;
+        padding: $spacing-sm;
+        border-radius: $border-radius-sm;
+        transition: all $transition-fast;
+        position: relative;
+
+        &:hover {
+            background-color: $bg-secondary--hover;
+            transform: translateX(2px);
+        }
+
+        &:active {
+            transform: translateX(0);
+        }
+
+        ::first-letter {
+            text-transform: uppercase;
+        }
+    }
+
+    &__checkbox,
+    &__radio {
+        width: 16px;
+        height: 16px;
+        accent-color: $primary-color;
+        cursor: pointer;
+        transition: transform $transition-fast;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+
+        &:checked {
+            transform: scale(1.05);
+        }
+    }
+
+    &__label {
+        font-size: $font-size-sm;
+        color: $text-secondary;
+        user-select: none;
+        cursor: pointer;
+        transition: color $transition-fast;
+        line-height: 1.4;
+
+        .filter__item:hover & {
+            color: $text-primary;
+        }
+    }
+
+    &__noResults {
+        padding: $spacing-md;
+        text-align: center;
+        color: $text-secondary;
+        font-size: $font-size-sm;
+        font-style: italic;
+    }
+}
+
+@keyframes dropdownFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-12px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (max-width: $breakpoint-sm) {
+    .filter {
+        &__dropdown {
+            animation: dropdownSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+    }
+}
+
+@keyframes dropdownSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+

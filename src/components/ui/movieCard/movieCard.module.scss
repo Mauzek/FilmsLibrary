@@ -1,0 +1,108 @@
+@use '@/styles/variables' as *;
+
+.movieCard {
+    display: flex;
+    flex-direction: column;
+    border-radius: $border-radius-lg;
+    overflow: hidden;
+    background: $bg-primary;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    height: 100%;
+
+    &:hover {   
+        .movieCard__poster {
+            transform: scale(1.05);
+        }
+
+        .movieCard__posterWrapper {
+            border-color: $accent-blue;
+        }
+    }
+
+    &__link{
+        border-radius: inherit;
+    }
+
+    &__posterWrapper {
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        border-radius: inherit;
+        border: 2px solid transparent;
+        transition: all $transition-fast;
+    }
+
+    &__poster {
+        width: 100%;
+        aspect-ratio: 1 / 1.5;
+        object-fit: cover;
+        display: block;
+        transition: transform $transition-fast;
+    }
+
+    &__rating {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        padding: 4px 8px;
+        border-radius: $border-radius-sm;
+        font-size: 12px;
+        font-weight: 600;
+        color: white;
+        backdrop-filter: blur(4px);
+
+        &--high {
+            background-color: $accent-green;
+        }
+
+        &--medium {
+            background-color: $accent-orange;
+        }
+
+        &--low {
+            background-color: $accent-red;
+        }
+
+        &--none {
+            background-color: $bg-secondary;
+            color: $text-secondary;
+        }
+    }
+
+    &__info {
+        padding: 12px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        text-align: left;
+    }
+
+    &__title {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.3;
+        color: $text-primary;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+
+        &:hover {
+            text-decoration: underline;
+        }
+
+    }
+
+    &__details {
+        font-size: 12px;
+        color: $text-secondary;
+        line-height: 1.2;
+
+        span {
+            margin-right: 4px;
+        }
+    }
+}

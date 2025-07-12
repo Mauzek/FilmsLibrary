@@ -36,10 +36,6 @@
         transition: all $transition-normal;
         padding: $spacing-sm;
         border-radius: $border-radius-lg;
-
-        @media (max-width: $breakpoint-md) {
-            flex: 1;
-        }
     }
 
     &__logoImage {

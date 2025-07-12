@@ -1,4 +1,4 @@
-import type { ApiFilters, ApiResponse, Movie, Person, FilterOption } from "@/types";
+import type { ApiFilters, ApiResponse, Movie, Person } from "@/types";
 import { apiClient } from "./config";
 import type { AxiosResponse } from "axios";
 
@@ -8,14 +8,24 @@ export const buildQuery = (filters: ApiFilters = {}): string => {
   Object.entries(filters).forEach(([key, value]) => {
     if (value !== undefined && value !== null && value !== "") {
       if (Array.isArray(value)) {
-        value.forEach((item) => params.append(key, item.toString()));
+        value.forEach((item) => {
+          if (item) {
+            params.append(key, item.toString());
+          }
+        });
       } else {
         params.append(key, value.toString());
       }
     }
   });
 
-  return params.toString();
+  let queryString = params.toString();
+  
+  queryString = decodeURIComponent(queryString);
+  
+  console.log('Built query string:', queryString); 
+  
+  return queryString;
 };
 
 export const api = {
@@ -58,24 +68,5 @@ export const api = {
   ): Promise<AxiosResponse<Person>> => {
     return apiClient.get(`/person/${id}`);
   },
-
-  getPosibleValues: async (
-    field: string
-  ): Promise<AxiosResponse<FilterOption[]>> => {
-    return apiClient.get(`/movie/possible-values-by-field?field=${field}`);
-  }
 };
 
-export const presets: Record<string, ApiFilters> = {
-  popular: { "rating.kp": "7-10", sortField: ["rating.kp"], sortType: "-1" },
-  recent: {
-    year: new Date().getFullYear(),
-    sortField: ["year"],
-    sortType: "-1",
-  },
-  movies: { type: "movie" },
-  series: { type: "tv-series" },
-  cartoons: { type: "cartoon" },
-  animated_series: { type: "animated-series" },
-  anime: { type: "anime" },
-};
