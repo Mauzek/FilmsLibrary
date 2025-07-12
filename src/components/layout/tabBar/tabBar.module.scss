@@ -1,0 +1,70 @@
+@use '@/styles/variables' as *;
+
+.tabBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: $bg-card;
+  z-index: $z-header;
+  display: none;
+  box-shadow: $shadow-sm;
+
+  @media (max-width: $breakpoint-md) {
+    display: block;
+  }
+
+  &__nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 100%;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-sm $spacing-md;
+    text-decoration: none;
+    color: $text-muted;
+    transition: color $transition-fast;
+    min-width: 0;
+    flex: 1;
+    border-radius: $border-radius-sm;
+
+    &:hover {
+      color: $text-primary;
+    }
+
+    &--active {
+      color: $text-primary;
+    }
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__text {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-regular;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    font-family: $font-primary;
+  }
+}
+
+body {
+  @media (max-width: $breakpoint-md) {
+    padding-bottom: 70px;
+  }
+}
