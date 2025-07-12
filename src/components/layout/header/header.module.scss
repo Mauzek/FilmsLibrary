@@ -60,26 +60,7 @@
         }
 
         @media (max-width: $breakpoint-md) {
-            position: fixed;
-            top: $header-height;
-            left: 0;
-            right: 0;
-            background: $bg-primary;
-            border-top: 1px solid rgba($primary-color, 0.2);
-            transform: translateY(-100%);
-            opacity: 0;
-            visibility: hidden;
-            transition: all $transition-normal;
-            z-index: $z-dropdown;
-            box-shadow: $shadow-lg;
-        }
-
-        &--open {
-            @media (max-width: $breakpoint-md) {
-                transform: translateY(0);
-                opacity: 1;
-                visibility: visible;
-            }
+            display: none;
         }
     }
 
@@ -91,11 +72,8 @@
         gap: $spacing-md;
 
         @media (max-width: $breakpoint-md) {
-            flex-direction: column;
-            padding: $spacing-lg;
-            gap: 0;
+            display: none;
         }
-
     }
 
     &__navItem {

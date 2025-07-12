@@ -1,7 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { SearchForm } from "@/components";
 import styles from "./header.module.scss";
-import { useState } from "react";
 import { images } from "@/assets";
 import {
   Icon28HomeOutline,
@@ -29,14 +28,9 @@ const tabs = [
 
 export const Header = () => {
   const location = useLocation();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
 
   const isActiveLink = (path: string) => {
     return location.pathname === path;
-  };
-
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   return (
@@ -51,9 +45,7 @@ export const Header = () => {
         </Link>
 
         <nav
-          className={`${styles.header__nav} ${
-            isMobileMenuOpen ? styles["header__nav--open"] : ""
-          }`}
+          className={styles.header__nav}
         >
           <ul className={styles.header__navList}>
             {tabs.map((tab) => (
@@ -64,12 +56,7 @@ export const Header = () => {
                     isActiveLink(tab.path)
                       ? styles["header__navLink--active"]
                       : ""
-                  }`}
-                  onClick={
-                    isMobileMenuOpen
-                      ? () => setIsMobileMenuOpen(false)
-                      : undefined
-                  }
+                  }`}                 
                 >
                   {tab.icon} {tab.text}
                 </Link>
@@ -81,26 +68,7 @@ export const Header = () => {
         <div className={styles.header__search}>
           <SearchForm />
         </div>
-
-        <button
-          className={`${styles.header__burger} ${
-            isMobileMenuOpen ? styles["header__burger--active"] : ""
-          }`}
-          onClick={toggleMobileMenu}
-          aria-label="Меню"
-        >
-          <span className={styles.header__burgerLine}></span>
-          <span className={styles.header__burgerLine}></span>
-          <span className={styles.header__burgerLine}></span>
-        </button>
       </div>
-
-      {isMobileMenuOpen && (
-        <div
-          className={styles.header__overlay}
-          onClick={() => setIsMobileMenuOpen(false)}
-        />
-      )}
     </header>
   );
 };
