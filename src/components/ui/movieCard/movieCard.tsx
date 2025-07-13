@@ -38,6 +38,9 @@ export const MovieCard = memo(({ movie }: MovieCardProps) => {
           <img
             className={styles.movieCard__poster}
             src={movieData.poster || images.noPoster}
+            onError={(e) => {
+              e.currentTarget.src = images.noPoster;
+            }}
             alt={movieData.name}
             loading="lazy"
           />
