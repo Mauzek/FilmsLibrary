@@ -24,11 +24,10 @@ export const useSearchForm = () => {
 
       filtersStore.clearActiveFilters();
       navigate(`/movies/search?query=${encodeURIComponent(query.trim())}`);
-      moviesStore.searchMovies(query.trim(), {});
 
       return true;
     },
-    [query, navigate, filtersStore, moviesStore]
+    [query, navigate, filtersStore]
   );
 
   const handleClear = useCallback(() => {

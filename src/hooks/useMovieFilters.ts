@@ -79,7 +79,7 @@ export const useMovieFilters = () => {
 
   const clearFilters = useCallback(() => {
     filtersStore.clearActiveFilters();
-
+    moviesStore.loadMovies();
     const currentParams = new URLSearchParams(searchParams);
     const query = currentParams.get("query");
 
