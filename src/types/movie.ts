@@ -24,6 +24,7 @@ export interface Movie {
   };
   movieLength?: number;
   genres: Genre[];
+  videos?: Videos;
   countries: Country[];
   poster?: {
     url?: string;
@@ -49,12 +50,23 @@ export interface Country {
 export interface Person {
   id: number;
   name?: string;
+  photo?: string;
   enName?: string;
   description?: string;
   profession?: string;
   enProfession?: string;
 }
 
+export interface Videos{
+  trailers?: Trailer[];
+}
+
+export interface Trailer{
+  url: string;
+  name: string;
+  site: string;
+  type: string;
+}
 export interface ReleaseYear {
   start?: number;
   end?: number;
