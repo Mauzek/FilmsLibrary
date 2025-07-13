@@ -1,0 +1,22 @@
+@use '@/styles/variables' as *;
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    $bg-secondary 25%,
+    lighten($bg-secondary, 5%) 50%,
+    $bg-secondary 75%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  display: block;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
