@@ -5,7 +5,7 @@ import type { GridProps } from './types';
 export const Grid: React.FC<GridProps> = ({ 
   children, 
   columns = 5, 
-  gap = 40,
+  gap = 30,
 }) => {
   const gridStyle = {
     '--grid-columns': columns,
