@@ -1,9 +1,10 @@
+import { memo } from "react";
 import styles from "./movieCard.module.scss";
 import type { MovieCardProps } from "./types";
 import { images } from "@/assets";
 import { Link } from "react-router-dom";
 
-export const MovieCard = ({ movie }: MovieCardProps) => {
+export const MovieCard = memo(({ movie }: MovieCardProps) => {
   const movieData = {
     name: movie.name || movie.alternativeName || "Без названия",
     poster: movie.poster?.previewUrl || movie.poster?.url,
@@ -55,11 +56,11 @@ export const MovieCard = ({ movie }: MovieCardProps) => {
         </Link>
 
         <div className={styles.movieCard__details}>
-          {movieData.year && <span>{movieData.year} /</span>}
-          {movieData.genre && <span> {movieData.genre} /</span>}
-          {movieData.country && <span> {movieData.country}</span>}
+          {movieData.year && <span>{movieData.year}</span>}
+          {movieData.genre && <span>{movieData.genre}</span>}
+          {movieData.country && <span>{movieData.country}</span>}
         </div>
       </div>
     </article>
   );
-};
+});
