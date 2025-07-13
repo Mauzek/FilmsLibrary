@@ -4,4 +4,5 @@ export interface MoviesGridProps {
     movies: Movie[];
     columns?: number;
     gap?: number;
+    loading?: boolean;
 }
