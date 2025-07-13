@@ -20,8 +20,10 @@ export class MoviesStore {
   }
 
   loadMovies = async (filters: ApiFilters = {}) => {
-    this.setLoading(true);
-    this.setError(null);
+    runInAction(()=> {
+      this.setLoading(true);
+      this.setError(null);
+    })
 
     try {
       const response = await api.getMovies({
@@ -90,8 +92,10 @@ export class MoviesStore {
       return;
     }
 
-    this.setLoading(true);
-    this.setError(null);
+    runInAction(() => {
+      this.reset();
+      this.setLoading(true);
+    });
 
     try {
       const response = await api.searchMovies(query, {
@@ -170,7 +174,7 @@ export class MoviesStore {
   }
 
   get isFirstLoad() {
-    return this.loading && this.movies.length === 0;
+    return this.movies.length === 0;
   }
 
   get isLoadingMore() {
