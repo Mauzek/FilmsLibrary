@@ -5,4 +5,5 @@ export interface MoviesGridProps {
     columns?: number;
     gap?: number;
     loading?: boolean;
+    isLoadingMore?: boolean;
 }
