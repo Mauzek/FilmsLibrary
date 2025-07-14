@@ -180,7 +180,7 @@ src/
 Создайте файл `.env.local`:
 
 ```env
-VITE_API_BASE_URL=https://api.kinopoisk.dev
+VITE_API_URL=https://api.kinopoisk.dev/v1.4
 VITE_API_TOKEN=your_api_token_here
 ```
 
