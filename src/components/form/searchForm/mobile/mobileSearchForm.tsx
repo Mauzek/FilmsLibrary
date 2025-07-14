@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Icon24Search, Icon24CancelOutline } from "@vkontakte/icons";
 import { useSearchForm } from "@/hooks";
-import styles from "./MobileSearchForm.module.scss";
+import styles from "./mobileSearchForm.module.scss";
 
 export const MobileSearchForm = () => {
   const { query, handleSubmit, handleQueryChange } = useSearchForm();

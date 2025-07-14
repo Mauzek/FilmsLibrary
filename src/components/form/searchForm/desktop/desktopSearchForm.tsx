@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { Icon24Search, Icon24CancelOutline } from "@vkontakte/icons";
 import { useSearchForm } from "@/hooks";
-import styles from "./DesktopSearchForm.module.scss";
+import styles from "./desktopSearchForm.module.scss";
 
 export const DesktopSearchForm = () => {
   const { query, handleSubmit, handleClear, handleQueryChange } =
