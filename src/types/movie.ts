@@ -13,12 +13,7 @@ export interface Movie {
   description?: string;
   shortDescription?: string;
   status?: string;
-  rating: {
-    kp?: number;
-    imdb?: number;
-    filmCritics?: number;
-    russianFilmCritics?: number;
-  };
+  rating: Rating;
   votes: {
     kp?: number;
     imdb?: number;
@@ -30,18 +25,13 @@ export interface Movie {
   genres: Genre[];
   videos?: Videos;
   countries: Country[];
-  poster?: {
-    url?: string;
-    previewUrl?: string;
-  };
-  backdrop?: {
-    url?: string;
-    previewUrl?: string;
-  };
+  poster?: Poster
+  backdrop?: Poster
   persons?: Person[];
   ageRating?: number;
   releaseYears?: ReleaseYear[];
-  similarMovies?: SimilarMovie[];
+  similarMovies?: CollectionMovie[];
+  sequelsAndPrequels?: CollectionMovie[];
 }
 
 export interface Genre {
@@ -78,17 +68,24 @@ export interface ReleaseYear {
   end?: number;
 }
 
-export interface SimilarMovie {
+export interface CollectionMovie {
   id: number;
   name?: string;
   alternativeName?: string;
   type: MovieType;
-  rating: {
-    kp: number;
-  };
-  poster: {
-    url: string;
-    previewUrl: string;
-  };
+  rating: Rating;
+  poster: Poster;
   year: number;
+}
+
+export interface Rating {
+  kp?: number;
+  imdb?: number;
+  filmCritics?: number;
+  russianFilmCritics?: number;
+}
+
+export interface Poster {
+  url?: string;
+  previewUrl?: string;
 }
