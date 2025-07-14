@@ -1,6 +1,5 @@
-import { MoviesGrid, Section } from "@/components";
-import styles from "./search.module.scss";
-import { Icon24Search } from "@vkontakte/icons";
+import { EmptyState, MoviesGrid, Section } from "@/components";
+import { Icon24Search, Icon24SadFaceOutline } from "@vkontakte/icons";
 import { useMoviesStore } from "@/store";
 import { useEffect } from "react";
 import { useInfiniteScroll } from "@/hooks";
@@ -27,6 +26,24 @@ export const SearchPage = observer(() => {
 
   const navigate = useNavigate();
   const query = searchParams.get("query");
+
+  useEffect(() => {
+    const title = query
+      ? `Поиск: "${query}" - VK FilmsLib`
+      : "Поиск фильмов - VK FilmsLib";
+    document.title = title;
+
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute(
+        "content",
+        query
+          ? `Результаты поиска фильмов по запросу "${query}"`
+          : "Поиск фильмов в библиотеке VK FilmsLib"
+      );
+    }
+  }, [query]);
+
   useEffect(() => {
     if (query && query.trim()) {
       searchMovies(query.trim());
@@ -36,17 +53,26 @@ export const SearchPage = observer(() => {
   }, [searchParams, searchMovies, navigate, query]);
 
   return (
-    <section className={styles.page}>
+    <main
+      role="main"
+      aria-label={
+        query ? `Результаты поиска для "${query}"` : "Страница поиска фильмов"
+      }
+    >
       <Section
         title={query ? `Поиск: "${query}"` : "Поиск фильмов"}
         icon={<Icon24Search />}
       >
-        <MoviesGrid
-          movies={movies}
-          loading={loading}
-          isLoadingMore={isLoadingMore}
-        />
+        {movies.length > 0 ? (
+          <MoviesGrid movies={movies} loading={loading} />
+        ) : (
+          <EmptyState
+            title="Ничего не найдено"
+            description="Возможно вы ввели неправильное название, попробуйте изменить запрос и повторить поиск"
+            icon={<Icon24SadFaceOutline />}
+          />
+        )}
       </Section>
-    </section>
+    </main>
   );
 });
