@@ -1,7 +1,7 @@
-import type { Movie } from "@/types";
+import type { Movie, SimilarMovie } from "@/types";
 
 export interface MoviesGridProps {
-    movies: Movie[];
+    movies: Movie[] | SimilarMovie[];
     columns?: number;
     gap?: number;
     loading?: boolean;
