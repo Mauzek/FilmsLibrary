@@ -1,21 +1,45 @@
 import styles from "./movieDetails.module.scss";
-import type { MovieDetailsProps } from "./types";
-import { Backdrop, Poster, Info, Rating } from "./components";
+import { useMemo } from "react";
+import {
+  Backdrop,
+  Poster,
+  Info,
+  Rating,
+  Collection,
+  Player,
+} from "./components";
 import { MovieDetailsSkeleton } from "./movieDetailsSkeleton";
 import { Section, MoviesGrid } from "@/components";
 import { Icon24StarsOutline } from "@vkontakte/icons";
-import { Player } from "./components/player";
+import type { MovieDetailsProps } from "./types";
+import type { CollectionMovie } from "@/types";
 
 export const MovieDetails = ({ movie, loading = false }: MovieDetailsProps) => {
-  if (loading) {
-    return <MovieDetailsSkeleton />;
-  }
-
   const backdropUrl = movie.backdrop?.url
     ? movie.backdrop?.url.replace(/\/orig$/, "/1920x1080")
     : movie.poster?.url;
 
   const title = movie.name || movie.alternativeName || movie.enName;
+
+  const сurrentCollection = useMemo(() => {
+    if (!movie.sequelsAndPrequels) return [];
+
+    const currentMovie: CollectionMovie = {
+      id: movie.id,
+      name: movie.name,
+      alternativeName: movie.alternativeName,
+      rating: movie.rating,
+      type: movie.type,
+      year: movie.year!,
+      poster: movie.poster!,
+    };
+
+    return [currentMovie, ...movie.sequelsAndPrequels];
+  }, [movie]);
+
+  if (loading) {
+    return <MovieDetailsSkeleton />;
+  }
 
   return (
     <div className={styles.movieDetails}>
@@ -37,7 +61,13 @@ export const MovieDetails = ({ movie, loading = false }: MovieDetailsProps) => {
           </div>
           <Info movie={movie} />
         </section>
-        <Player kinopoiskId={movie.id} />
+        {movie.sequelsAndPrequels && movie.sequelsAndPrequels?.length > 0 && (
+          <Collection
+            title="Сиквелы и приквелы"
+            collection={сurrentCollection}
+          />
+        )}
+        <Player />
         {movie.similarMovies && movie.similarMovies.length > 0 && (
           <Section title="Похожие фильмы" icon={<Icon24StarsOutline />}>
             <MoviesGrid movies={movie.similarMovies} />
