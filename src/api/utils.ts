@@ -23,8 +23,6 @@ export const buildQuery = (filters: ApiFilters = {}): string => {
   
   queryString = decodeURIComponent(queryString);
   
-  console.log('Built query string:', queryString); 
-  
   return queryString;
 };
 

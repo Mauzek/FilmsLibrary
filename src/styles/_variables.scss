@@ -33,6 +33,8 @@ $accent-green: #4bb34b;            // Зеленый для успеха
 $accent-orange: #ff6d00;           // Оранжевый для предупреждений
 $accent-red: #e64646;              // Красный для ошибок
 
+$backdrop-filter-light: blur(4px);
+$backdrop-gradient: linear-gradient(to bottom, rgba(20, 20, 20, 0.6) 0%, rgba(20, 20, 20, 1) 100%);
 $gradient-primary: linear-gradient(135deg, #2787f5 0%, #1976d2 100%);
 $gradient-secondary: linear-gradient(135deg, #ff6d00 0%, #f57c00 100%);
 
