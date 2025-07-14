@@ -9,7 +9,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
     <>
       <ScrollToTop/>
       <Header />
-      <main>{children}</main>
+      {children}
       <TabBar/>
       <Footer />
     </>
