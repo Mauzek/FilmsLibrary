@@ -14,7 +14,6 @@ export const useMovieFilters = () => {
   useEffect(() => {
     const query = searchParams.get("query");
     if (query && query.trim()) {
-      console.log("🎯 Query found, skipping filter request");
       return;
     }
 
