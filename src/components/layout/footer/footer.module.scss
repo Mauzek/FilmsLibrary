@@ -1,0 +1,189 @@
+@use '@/styles/variables' as *;
+
+.footer {
+  background: $bg-secondary;
+  margin-top: $spacing-2xl;
+  color: $text-secondary;
+
+  @media screen and (min-width: $container-max-width) {
+    border-radius: $border-radius-lg $border-radius-lg 0 0;
+  }
+
+  &__container {
+    max-width: $container-max-width;
+    padding: $spacing-lg;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: $spacing-2xl;
+    margin-bottom: $spacing-md;
+    align-items: center;
+  }
+
+  &__brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    &Logo {
+      display: inline-block;
+      text-decoration: none;
+      transition: opacity $transition-fast;
+    }
+
+    &Description {
+      color: $text-muted;
+      line-height: 1.7;
+      font-size: $font-size-base;
+      text-align: left;
+      margin: 0 $spacing-md;
+    }
+  }
+
+  &__logo {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 8px rgba($primary-color, 0.3));
+    transition: all $transition-normal;
+
+    &:hover {
+      filter: drop-shadow(0 0 12px rgba($primary-color, 0.5));
+    }
+  }
+
+  &__contacts {
+    &Title {
+      color: $text-primary;
+      font-size: $font-size-lg;
+      font-weight: $font-weight-semibold;
+    }
+  }
+
+  &__social {
+    display: flex;
+    justify-content: center;
+    gap: $spacing-md;
+
+    &Link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      background: $bg-secondary--active;
+      border-radius: $border-radius-md;
+      color: $text-secondary;
+      text-decoration: none;
+      transition: all $transition-fast;
+
+      &:hover {
+        background: $primary-color;
+        color: $text-primary;
+      }
+    }
+
+    &Icon {
+      width: 20px !important;
+      height: 20px !important;
+      object-fit: contain;
+
+      svg {
+        width: 20px !important;
+        height: 20px !important;
+      }
+    }
+  }
+
+  &__bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: $spacing-lg;
+    text-align: center;
+  }
+
+  &__copyright {
+    color: $text-muted;
+    font-size: $font-size-sm;
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .footer {
+    padding: $spacing-lg 0 $spacing-lg;
+
+    &__container {
+      padding: 0 $spacing-md;
+    }
+
+    &__content {
+      grid-template-columns: 1fr;
+      gap: $spacing-md;
+      text-align: center;
+    }
+
+    &__brand {
+      align-items: center;
+
+      &Description {
+        text-align: center;
+        margin: 0;
+      }
+    }
+
+    &__social {
+      &Link {
+        width: 50px;
+        height: 50px;
+      }
+
+      &Icon {
+        width: 25px !important;
+        height: 25px !important;
+      }
+    }
+
+    &__logo {
+      height: 70px;
+    }
+
+    &__contacts {
+      &Info {
+        align-items: center;
+      }
+    }
+
+    &__social {
+      justify-content: center;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .footer {
+    &__container {
+      padding: 0 $spacing-sm;
+    }
+
+    &__brand {
+      &Description {
+        font-size: $font-size-sm;
+      }
+    }
+
+    &__contacts {
+      &Title {
+        font-size: $font-size-base;
+      }
+
+      &Link {
+        font-size: $font-size-xs;
+      }
+    }
+
+    &__copyright {
+      font-size: $font-size-xs;
+    }
+  }
+}
