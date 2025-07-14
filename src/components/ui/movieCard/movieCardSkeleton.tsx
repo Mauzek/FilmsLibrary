@@ -15,7 +15,7 @@ export const MovieCardSkeleton: React.FC = () => {
       </div>
       
       <div className={styles.movieCard__info}>
-        <div className={styles.movieCard__title}>
+        <div className={`${styles.movieCard__title} ${styles['movieCard__title--skeleton']}`} >
           <Skeleton width="90%" height="16px" />
           <Skeleton width="60%" height="16px" />
         </div>

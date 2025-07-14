@@ -1,18 +1,19 @@
 import { memo } from "react";
 import styles from "./movieCard.module.scss";
-import type { MovieCardProps } from "./types";
+import type { MovieCardProps, BaseMovieData } from "./types";
 import { images } from "@/assets";
 import { Link } from "react-router-dom";
 
-export const MovieCard = memo(({ movie }: MovieCardProps) => {
+export const MovieCard = memo(<T extends BaseMovieData>({ movie }: MovieCardProps<T>) => {
   const movieData = {
     name: movie.name || movie.alternativeName || "Без названия",
     poster: movie.poster?.previewUrl || movie.poster?.url,
-    rating: movie.rating?.kp,
+    rating: movie.rating?.kp || movie.rating?.imdb,
     year: movie.year,
     country: movie.countries?.[0]?.name,
     genre: movie.genres?.[0]?.name,
   };
+  const isImdbRating: boolean = movie.rating?.kp === 0 && Boolean(movie.rating?.imdb);
 
   const getRatingClass = (rating: number | undefined): string => {
     if (!rating || rating === 0) {
@@ -49,6 +50,7 @@ export const MovieCard = memo(({ movie }: MovieCardProps) => {
               movieData.rating
             )}`}
           >
+            {isImdbRating && "IMDb "}
             {formatRating(movieData.rating)}
           </span>
         </div>
