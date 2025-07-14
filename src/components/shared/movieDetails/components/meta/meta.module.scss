@@ -1,0 +1,50 @@
+@use '@/styles/variables' as *;
+
+.meta {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+    padding: $spacing-lg;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: $border-radius-lg;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    @media screen and (max-width: $breakpoint-2xs) {
+        padding: $spacing-md;
+    }
+
+    &__item {
+        display: flex;
+        text-align: left;
+        gap: $spacing-2xl;
+        text-align: left;
+
+        @media (max-width: $breakpoint-sm) {
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    }
+
+    &__label {
+        font-size: $font-size-lg;
+        color: $text-secondary;
+        font-weight: $font-weight-medium;
+        min-width: 120px;
+
+        @media (max-width: $breakpoint-sm) {
+            min-width: auto;
+        }
+    }
+
+    &__item span:not(.meta__label) {
+        font-size: $font-size-base;
+        color: $text-primary;
+        font-weight: $font-weight-regular;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+        @media (max-width: $breakpoint-sm) {
+            border: none;
+            text-align: right;
+        }
+    }
+}

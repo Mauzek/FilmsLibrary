@@ -1,0 +1,28 @@
+@use '@/styles/variables' as *;
+
+.playerWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+    width: 100%;
+    position: relative;
+    border-radius: $border-radius-lg;
+
+
+
+    &__title {
+        font-size: $font-size-2xl;
+        margin: 0;
+        text-align: left;
+        color: $text-secondary;
+        transition: color 0.3s ease, background-color 0.2s ease;
+    }
+
+    &__player {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+        border-radius: $border-radius-lg;
+        background-color: $bg-secondary;
+    }
+}

@@ -1,0 +1,106 @@
+@use '@/styles/variables' as *;
+
+.info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+    z-index: 2;
+    width: 100%;
+
+    @media (max-width: $breakpoint-lg) {
+        text-align: center;
+        gap: $spacing-md;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        text-align: left;
+    }
+
+    &__header {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-sm;
+        text-align: left;
+
+        @media (max-width: $breakpoint-lg) {
+            text-align: center;
+            align-items: center;
+        }
+
+        @media (max-width: $breakpoint-md) {
+            gap: 0;
+        }
+    }
+
+    &__title {
+        font-size: $font-size-4xl;
+        font-weight: $font-weight-bold;
+        color: $text-primary;
+        margin: 0;
+        line-height: 1.2;
+
+        @media (max-width: $breakpoint-md) {
+            font-size: $font-size-3xl;
+        }
+
+        @media (max-width: $breakpoint-sm) {
+            font-size: $font-size-2xl;
+        }
+        
+        @media (max-width: $breakpoint-2xs) {
+            font-size: $font-size-xl;
+        }
+    }
+
+    &__alternativeTitle {
+        font-size: $font-size-xl;
+        font-weight: $font-weight-medium;
+        color: $text-secondary;
+        margin: 0;
+
+        @media (max-width: $breakpoint-sm) {
+            font-size: $font-size-lg;
+        }
+        
+        @media (max-width: $breakpoint-2xs) {
+            font-size: $font-size-base;
+        }
+    }
+
+    &__enTitle {
+        font-size: $font-size-lg;
+        font-weight: $font-weight-regular;
+        color: $text-secondary-2;
+        margin: 0;
+        font-style: italic;
+
+        @media (max-width: $breakpoint-sm) {
+            font-size: $font-size-base;
+        }
+    }
+
+    &__description,
+    &__shortDescription {
+        padding: $spacing-lg;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: $border-radius-lg;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        text-align: left;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+
+        h4 {
+            font-size: $font-size-2xl;
+            font-weight: $font-weight-semibold;
+            color: $text-primary;
+            margin: 0 0 $spacing-sm 0;
+        }
+
+        p {
+            font-size: $font-size-base;
+            line-height: 1.6;
+            color: $text-secondary;
+            margin: 0;
+        }
+    }
+}

@@ -1,0 +1,61 @@
+@use '@/styles/variables' as *;
+
+.posterWrapper {
+    position: relative;
+    border-radius: 16px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    overflow: hidden;
+    width: 320px;
+    height: auto;
+
+    @media (max-width: $breakpoint-lg) {
+        width: 300px;
+        align-self: center;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        width: 250px;
+    }
+
+    @media screen and (max-width: $breakpoint-2xs) {
+        width: 200px;
+    }
+
+    &__poster {
+        width: 100%;
+        height: auto;
+        display: block;
+        aspect-ratio: 2/3;
+        object-fit: cover;
+    }
+
+    &__likeButton {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        border-radius: 50%;
+        width: fit-content;
+        padding: $spacing-sm;
+
+        &--active {
+            background-color: $accent-red;
+        }
+    }
+
+    &__link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $primary-dark;
+        color: $text-primary;
+        width: 100%;
+        height: 40px;
+
+        &:hover {
+            color: $text-primary;
+            background-color: $primary-color;
+        }
+    }
+
+}

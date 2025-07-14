@@ -1,0 +1,68 @@
+@use '@/styles/variables' as *;
+
+.movieDetails {
+    color: $text-primary;
+    overflow: hidden;
+
+    &__header {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        gap: $spacing-2xl;
+        max-width: $container-max-width;
+        align-items: flex-start;
+
+        @media screen and (max-width: $breakpoint-lg) {
+            flex-direction: column;
+            gap: $spacing-lg;
+        }
+
+        @media screen and (max-width: $breakpoint-md) {
+            gap: $spacing-lg;
+        }
+
+        @media screen and (max-width: $breakpoint-sm) {
+            gap: $spacing-md;
+        }
+
+    }
+
+    &__content {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        padding: $spacing-2xl $spacing-lg;
+        gap: $spacing-2xl;
+
+        @media screen and (max-width: $breakpoint-lg) {
+            padding: $spacing-lg;
+            gap: $spacing-lg;
+        }
+
+        @media screen and (max-width: $breakpoint-md) {
+            gap: $spacing-lg;
+        }
+
+        @media screen and (max-width: $breakpoint-sm) {
+            gap: $spacing-lg;
+            padding: $spacing-lg $spacing-md;
+        }
+
+        @media screen and (max-width: $breakpoint-2xs) {
+            padding: $spacing-md $spacing-sm;
+        }
+    }
+
+    &__leftColumn {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-lg;
+        flex-shrink: 0;
+        align-items: flex-start;
+
+        @media (max-width: $breakpoint-lg) {
+            align-items: center;
+            width: 100%;
+        }
+    }
+}
