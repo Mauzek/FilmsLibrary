@@ -4,6 +4,7 @@ export interface ApiFilters {
   'genres.name'?: string[]; 
   'countries.name'?: string[]; 
   'rating.kp'?: string;
+  'votes.kp'?: string;
   year?: string;
   page?: number;
   limit?: number;

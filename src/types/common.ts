@@ -3,6 +3,7 @@ export type SortType = "1" | "-1";
 export type MovieType =
   | "movie"
   | "tv-series"
+  | "tv-show"
   | "cartoon"
   | "anime"
   | "animated-series";

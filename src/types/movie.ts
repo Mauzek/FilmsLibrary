@@ -5,6 +5,9 @@ export interface Movie {
   name?: string;
   alternativeName?: string;
   enName?: string;
+  externalId: {
+    imdb?: string;
+  }
   type: MovieType;
   year?: number;
   description?: string;
@@ -23,6 +26,7 @@ export interface Movie {
     russianFilmCritics?: number;
   };
   movieLength?: number;
+  seriesLength?: number;
   genres: Genre[];
   videos?: Videos;
   countries: Country[];
@@ -37,6 +41,7 @@ export interface Movie {
   persons?: Person[];
   ageRating?: number;
   releaseYears?: ReleaseYear[];
+  similarMovies?: SimilarMovie[];
 }
 
 export interface Genre {
@@ -67,7 +72,23 @@ export interface Trailer{
   site: string;
   type: string;
 }
+
 export interface ReleaseYear {
   start?: number;
   end?: number;
+}
+
+export interface SimilarMovie {
+  id: number;
+  name?: string;
+  alternativeName?: string;
+  type: MovieType;
+  rating: {
+    kp: number;
+  };
+  poster: {
+    url: string;
+    previewUrl: string;
+  };
+  year: number;
 }
