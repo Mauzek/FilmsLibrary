@@ -1,5 +1,5 @@
-import { EmptyState, MoviesGrid, Section } from "@/components";
-import { Icon24Search, Icon24SadFaceOutline } from "@vkontakte/icons";
+import { ErrorState, MoviesGrid, Section } from "@/components";
+import { Icon24Search } from "@vkontakte/icons";
 import { useMoviesStore } from "@/store";
 import { useEffect } from "react";
 import { useInfiniteScroll } from "@/hooks";
@@ -15,6 +15,7 @@ export const SearchPage = observer(() => {
     hasMore,
     loadMoreMovies,
     searchMovies,
+    error,
   } = useMoviesStore();
 
   useInfiniteScroll({
@@ -63,14 +64,14 @@ export const SearchPage = observer(() => {
         title={query ? `Поиск: "${query}"` : "Поиск фильмов"}
         icon={<Icon24Search />}
       >
-        {movies.length > 0 ? (
-          <MoviesGrid movies={movies} loading={loading} />
-        ) : (
-          <EmptyState
+        {error ? (
+          <ErrorState
+            error={error}
             title="Ничего не найдено"
             description="Возможно вы ввели неправильное название, попробуйте изменить запрос и повторить поиск"
-            icon={<Icon24SadFaceOutline />}
           />
+        ) : (
+          <MoviesGrid movies={movies} loading={loading} />
         )}
       </Section>
     </main>
