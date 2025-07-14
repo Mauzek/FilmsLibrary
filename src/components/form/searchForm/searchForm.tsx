@@ -1,6 +1,6 @@
 import { DesktopSearchForm } from "./desktop";
 import { MobileSearchForm } from "./mobile";
-import styles from "./SearchForm.module.scss";
+import styles from "./searchForm.module.scss";
 
 export const SearchForm = () => {
   return (
