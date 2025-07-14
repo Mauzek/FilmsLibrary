@@ -3,7 +3,7 @@ import { observer } from "mobx-react-lite";
 import { Filter } from "@/components/ui";
 import { useMovieFilters } from "@/hooks";
 import { Icon24Filter } from "@vkontakte/icons";
-import styles from "./FilterBar.module.scss";
+import styles from "./filterBar.module.scss";
 
 export const FilterBar: React.FC = observer(() => {
   const {
