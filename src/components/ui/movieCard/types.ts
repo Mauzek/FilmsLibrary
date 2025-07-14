@@ -1,6 +1,6 @@
-import type { Movie, SimilarMovie } from "@/types";
+import type { Movie, CollectionMovie } from "@/types";
 
-export interface MovieCardProps<T = Movie | SimilarMovie> {
+export interface MovieCardProps<T = Movie | CollectionMovie> {
     movie: T;
 }
 
