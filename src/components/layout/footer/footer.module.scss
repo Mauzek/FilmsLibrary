@@ -1,17 +1,23 @@
 @use '@/styles/variables' as *;
 
 .footer {
-  background: $bg-secondary;
-  margin-top: $spacing-2xl;
+
+  margin-top: auto;
   color: $text-secondary;
+  padding-top: $spacing-2xl;
 
   @media screen and (min-width: $container-max-width) {
     border-radius: $border-radius-lg $border-radius-lg 0 0;
   }
 
   &__container {
+    background: $bg-secondary;
     max-width: $container-max-width;
     padding: $spacing-lg;
+
+    @media screen and (min-width: $container-max-width) {
+      border-radius: $border-radius-lg $border-radius-lg 0 0;
+    }
   }
 
   &__content {
@@ -99,7 +105,7 @@
 
   &__bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.08);
-    padding-top: $spacing-lg;
+    padding-top: $spacing-lg ;
     text-align: center;
   }
 
@@ -111,10 +117,10 @@
 
 @media (max-width: $breakpoint-md) {
   .footer {
-    padding: $spacing-lg 0 $spacing-lg;
+    padding: $spacing-lg 0 0;
 
     &__container {
-      padding: 0 $spacing-md;
+      padding: $spacing-md;
     }
 
     &__content {
@@ -157,13 +163,17 @@
     &__social {
       justify-content: center;
     }
+
+    &__bottom {
+      padding-bottom: $spacing-sm;
+    }
   }
 }
 
 @media (max-width: $breakpoint-sm) {
   .footer {
     &__container {
-      padding: 0 $spacing-sm;
+      padding: $spacing-sm;
     }
 
     &__brand {
@@ -184,6 +194,10 @@
 
     &__copyright {
       font-size: $font-size-xs;
+    }
+
+    &__bottom {
+      padding-bottom: $spacing-md;
     }
   }
 }
