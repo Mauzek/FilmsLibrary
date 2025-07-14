@@ -1,0 +1,58 @@
+@use '@/styles/variables' as *;
+
+.modal {
+
+    &--small {
+        max-width: 350px;
+
+        @media screen and (max-width: $breakpoint-md) {
+            max-width: 100%;
+        }
+    }
+
+    &__content {
+        display: flex;
+        text-align: left;
+    }
+
+    &__text {
+        font-size: $font-size-base;
+        font-weight: $font-weight-regular;
+
+        span {
+            font-weight: $font-weight-bold;
+            color: $accent-blue;
+            
+        }
+    }
+
+    &__actions {
+        display: flex;
+        gap: $spacing-md;
+    }
+
+    &__button {
+        width: 100%;
+        background-color: $bg-secondary;
+
+        &:hover {
+            background-color: $bg-input--hover;
+        }
+
+        &--remove {
+            background-color: $accent-red;
+
+            &:hover {
+                background-color: $accent-red;
+            }
+        }
+
+        &--add {
+            background-color: $accent-green;
+
+            &:hover {
+                background-color: $accent-green;
+            }
+        }
+    }
+}
