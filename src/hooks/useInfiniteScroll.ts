@@ -9,7 +9,6 @@ export const useInfiniteScroll = ({
 }: UseInfiniteScrollProps) => {
   const handleScroll = useCallback(() => {
     if (loading || !hasMore) {
-      console.log("Scroll blocked:", { loading, hasMore });
       return;
     }
 
@@ -20,7 +19,6 @@ export const useInfiniteScroll = ({
     const shouldLoadMore = scrollTop + clientHeight >= scrollHeight - threshold;
 
     if (shouldLoadMore) {
-      console.log("Loading more triggered");
       onLoadMore();
     }
   }, [loading, hasMore, onLoadMore, threshold]);
