@@ -1,0 +1,87 @@
+@use '@/styles/variables' as *;
+
+.accordion {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+
+  &__header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $spacing-md;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: inherit;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    &:focus {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #fff;
+    text-align: left;
+  }
+
+  &__icon {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+    color: #ccc;
+    flex-shrink: 0;
+
+    &--open {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+
+    &--open {
+      max-height: 2000px;
+    }
+  }
+
+  &__body {
+    padding: $spacing-sm;
+  }
+}
+
+@media (max-width: 768px) {
+  .accordion {
+    &__header {
+      padding: 12px 16px;
+    }
+
+    &__title {
+      font-size: 1.1em;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .accordion {
+    &__header {
+      padding: 10px 12px;
+    }
+
+    &__title {
+      font-size: 1em;
+    }
+  }
+}
