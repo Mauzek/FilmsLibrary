@@ -1,9 +1,49 @@
-import React from 'react'
-import styles from './main.module.scss';
-export const MainPage = () => {
+import { useEffect } from "react";
+import { ErrorState, MoviesGrid, Section } from "@/components";
+import { Icon24Fire, Icon24HistoryBackwardOutline } from "@vkontakte/icons";
+import { useMoviesStore, useRecentMoviesStore } from "@/store";
+import { observer } from "mobx-react-lite";
+import styles from "./mainPage.module.scss";
+
+export const MainPage = observer(() => {
+  const { loading, popularMovies, loadPopularMovies, error } = useMoviesStore();
+  const { recent } = useRecentMoviesStore();
+
+  useEffect(() => {
+    document.title = "VK FilmsLib - Онлайн-библиотека фильмов";
+  }, []);
+
+  useEffect(() => {
+    const popularPreset = {
+      "votes.kp": "200000-1000000",
+      "rating.kp": "7-10",
+      limit: 10,
+    };
+    loadPopularMovies(popularPreset);
+  }, [loadPopularMovies]);
+
   return (
-    <section className={styles.page}>
-        <h1>Главная страница</h1>
-    </section>
-  )
-}
+    <main className={styles.page}>
+      {recent.length > 0 && (
+        <Section
+          title="Вы недавно смотрели"
+          icon={<Icon24HistoryBackwardOutline />}
+        >
+          <MoviesGrid movies={recent} gap={20} columns={7} />
+        </Section>
+      )}
+
+      <Section title="Популярные" icon={<Icon24Fire />}>
+        {error ? (
+          <ErrorState
+            error={error}
+            title="Не удалось загрузить популярные фильмы"
+            description="Попробуйте перезагрузить страницу"
+          />
+        ) : (
+          <MoviesGrid movies={popularMovies.slice(0, 10)} loading={loading} />
+        )}
+      </Section>
+    </main>
+  );
+});
