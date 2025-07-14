@@ -14,25 +14,50 @@ export class MoviesStore {
   limit = 50;
 
   filters: ApiFilters = {};
+  lastRequestId: string | null = null;
 
   constructor() {
     makeAutoObservable(this);
   }
 
+  private generateRequestId(filters: ApiFilters, page: number = 1): string {
+    return JSON.stringify({ ...filters, page });
+  }
+
   loadMovies = async (filters: ApiFilters = {}) => {
-    runInAction(()=> {
+    const requestId = this.generateRequestId(filters, 1);
+
+    if (this.lastRequestId === requestId && this.loading) {
+      return;
+    }
+
+    const filtersChanged =
+      JSON.stringify(this.filters) !== JSON.stringify(filters);
+
+    if (filtersChanged) {
+      runInAction(() => {
+        this.movies = [];
+        this.currentPage = 1;
+        this.hasMore = true;
+      });
+    }
+
+    runInAction(() => {
       this.setLoading(true);
       this.setError(null);
-    })
+      this.lastRequestId = requestId;
+    });
 
     try {
       const response = await api.getMovies({
         ...filters,
         page: 1,
-        limit: this.limit,
+        limit: filters.limit || this.limit,
       });
 
-      console.log("API Response:", response);
+      if (this.lastRequestId !== requestId) {
+        return;
+      }
 
       runInAction(() => {
         const data = response.data;
@@ -48,41 +73,17 @@ export class MoviesStore {
         }
       });
     } catch (error) {
-      console.error("Error loading movies:", error);
+      if (this.lastRequestId !== requestId) {
+        return;
+      }
+
       this.setError(
         error instanceof Error ? error.message : "Ошибка загрузки фильмов"
       );
     } finally {
-      this.setLoading(false);
-    }
-  };
-
-  loadMoreMovies = async () => {
-    if (!this.hasMore || this.loading) return;
-
-    this.setLoading(true);
-
-    try {
-      const nextPage = this.currentPage + 1;
-      const response = await api.getMovies({
-        ...this.filters,
-        page: nextPage,
-        limit: this.limit,
-      });
-
-      runInAction(() => {
-        const data = response.data;
-        this.movies = [...this.movies, ...(data?.docs || [])];
-        this.currentPage = data?.page || nextPage;
-        this.hasMore = (data?.page || nextPage) < (data?.pages || 0);
-      });
-    } catch (error) {
-      console.error("Error loading more movies:", error);
-      this.setError(
-        error instanceof Error ? error.message : "Ошибка загрузки фильмов"
-      );
-    } finally {
-      this.setLoading(false);
+      if (this.lastRequestId === requestId) {
+        this.setLoading(false);
+      }
     }
   };
 
@@ -92,9 +93,28 @@ export class MoviesStore {
       return;
     }
 
+    const searchFilters = { ...filters, query };
+    const requestId = this.generateRequestId(searchFilters, 1);
+
+    if (this.lastRequestId === requestId && this.loading) {
+      return;
+    }
+
+    const filtersChanged =
+      JSON.stringify(this.filters) !== JSON.stringify(searchFilters);
+
+    if (filtersChanged) {
+      runInAction(() => {
+        this.movies = [];
+        this.currentPage = 1;
+        this.hasMore = true;
+      });
+    }
+
     runInAction(() => {
-      this.reset();
       this.setLoading(true);
+      this.setError(null);
+      this.lastRequestId = requestId;
     });
 
     try {
@@ -104,6 +124,10 @@ export class MoviesStore {
         limit: this.limit,
       });
 
+      if (this.lastRequestId !== requestId) {
+        return;
+      }
+
       runInAction(() => {
         const data = response.data;
         this.movies = data?.docs || [];
@@ -111,54 +135,78 @@ export class MoviesStore {
         this.totalPages = data?.pages || 0;
         this.total = data?.total || 0;
         this.hasMore = (data?.page || 1) < (data?.pages || 0);
-        this.filters = { ...filters, query };
+        this.filters = searchFilters;
       });
     } catch (error) {
+      if (this.lastRequestId !== requestId) {
+        return;
+      }
+
       console.error("Error searching movies:", error);
       this.setError(
         error instanceof Error ? error.message : "Ошибка поиска фильмов"
       );
     } finally {
-      this.setLoading(false);
+      if (this.lastRequestId === requestId) {
+        this.setLoading(false);
+      }
     }
   };
 
-  loadRandomMovie = async (filters: ApiFilters = {}) => {
+  loadMoreMovies = async () => {
+    if (!this.hasMore || this.loading) return;
+
+    const nextPage = this.currentPage + 1;
+    const requestId = this.generateRequestId(this.filters, nextPage);
+
     this.setLoading(true);
-    this.setError(null);
+    this.lastRequestId = requestId;
 
     try {
-      const response = await api.getRandomMovie(filters);
+      const response = await api.getMovies({
+        ...this.filters,
+        page: nextPage,
+        limit: this.limit,
+      });
+
+      if (this.lastRequestId !== requestId) {
+        return;
+      }
 
       runInAction(() => {
-        this.movies = response.data ? [response.data] : [];
-        this.currentPage = 1;
-        this.totalPages = 1;
-        this.total = 1;
-        this.hasMore = false;
-        this.filters = filters;
+        const data = response.data;
+        this.movies = [...this.movies, ...(data?.docs || [])];
+        this.currentPage = data?.page || nextPage;
+        this.hasMore = (data?.page || nextPage) < (data?.pages || 0);
       });
     } catch (error) {
-      console.error("Error loading random movie:", error);
+      if (this.lastRequestId !== requestId) {
+        return;
+      }
+
+      console.error("Error loading more movies:", error);
       this.setError(
-        error instanceof Error
-          ? error.message
-          : "Ошибка загрузки случайного фильма"
+        error instanceof Error ? error.message : "Ошибка загрузки фильмов"
       );
     } finally {
-      this.setLoading(false);
+      if (this.lastRequestId === requestId) {
+        this.setLoading(false);
+      }
     }
   };
 
   reset = () => {
-    this.movies = [];
-    this.currentPage = 1;
-    this.totalPages = 0;
-    this.total = 0;
-    this.hasMore = true;
-    this.filters = {};
-    this.error = null;
-    this.loading = false;
+    runInAction(() => {
+      this.movies = [];
+      this.currentPage = 1;
+      this.totalPages = 0;
+      this.total = 0;
+      this.hasMore = true;
+      this.filters = {};
+      this.error = null;
+      this.loading = false;
+      this.lastRequestId = null;
+    });
   };
 
   private setLoading = (loading: boolean) => {
