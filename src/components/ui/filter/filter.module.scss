@@ -47,6 +47,10 @@
         overflow: hidden;
         text-overflow: ellipsis;
         font-weight: 500;
+
+        &::first-letter {
+            text-transform: uppercase;
+        }
     }
 
     &__arrow {
