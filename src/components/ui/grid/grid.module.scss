@@ -18,15 +18,9 @@
   @media (max-width: $breakpoint-md) {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-
-  @media (max-width: $breakpoint-sm) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
   
   @media (max-width: $breakpoint-xs) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  @media (max-width: $breakpoint-2xs) {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-  }
+
 }
