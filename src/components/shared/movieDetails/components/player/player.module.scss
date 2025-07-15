@@ -33,4 +33,10 @@
             height: 5em !important;
         }
     }
+
+    &__error {
+        color: $text-primary;
+        background-color: $accent-red;
+        border: 1px solid #fff;
+    }
 }

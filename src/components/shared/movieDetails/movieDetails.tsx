@@ -67,7 +67,7 @@ export const MovieDetails = ({ movie, loading = false }: MovieDetailsProps) => {
             collection={сurrentCollection}
           />
         )}
-        <Player />
+        <Player kinopoiskId={movie.id} />
         {movie.similarMovies && movie.similarMovies.length > 0 && (
           <Section title="Похожие фильмы" icon={<Icon24StarsOutline />}>
             <MoviesGrid movies={movie.similarMovies} />
