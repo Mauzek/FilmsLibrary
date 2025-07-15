@@ -15,3 +15,12 @@ export interface ApiResponse {
   result: boolean;
   data: PlayerData[];
 }
+
+export interface PlayerCollectionData {
+  source: string;
+  iframeUrl: string;
+}
+
+export interface PlayersCollectionData extends PlayerCollectionData {
+  success: boolean;
+}

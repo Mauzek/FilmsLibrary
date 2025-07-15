@@ -8,6 +8,10 @@
     position: relative;
     border-radius: $border-radius-lg;
 
+    &__header {
+        display: flex;
+        justify-content: space-between;
+    }
 
     &__title {
         font-size: $font-size-2xl;
