@@ -6,7 +6,7 @@
   &__desktop {
     display: block;
 
-    @media screen and (max-width: $breakpoint-lg) {
+    @media screen and (max-width: $breakpoint-xl) {
       display: none;
     }
   }
@@ -14,7 +14,7 @@
   &__mobile {
     display: none;
 
-    @media screen and (max-width: $breakpoint-lg) {
+    @media screen and (max-width: $breakpoint-xl) {
       display: block;
     }
   }

@@ -10,7 +10,7 @@
   display: none;
   box-shadow: $shadow-sm;
 
-  @media (max-width: $breakpoint-md) {
+  @media (max-width: $breakpoint-lmd) {
     display: block;
   }
 
