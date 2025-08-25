@@ -15,9 +15,8 @@ export const MainPage = observer(() => {
 
   useEffect(() => {
     const popularPreset = {
-      "votes.kp": "200000-1000000",
-      "rating.kp": "7-10",
       limit: 10,
+      "lists": "top10-hd"
     };
     loadPopularMovies(popularPreset);
   }, [loadPopularMovies]);
