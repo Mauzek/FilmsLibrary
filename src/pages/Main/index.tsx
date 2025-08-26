@@ -40,7 +40,7 @@ export const MainPage = observer(() => {
             description="Попробуйте перезагрузить страницу"
           />
         ) : (
-          <MoviesGrid movies={popularMovies.slice(0, 10)} loading={loading} />
+          <MoviesGrid movies={popularMovies} loading={loading} />
         )}
       </Section>
     </main>
