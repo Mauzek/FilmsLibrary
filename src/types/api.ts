@@ -9,6 +9,7 @@ export interface ApiFilters {
   page?: number;
   limit?: number;
   query?: string;
+  lists?: string;
 }
 
 export interface PersonFilters
