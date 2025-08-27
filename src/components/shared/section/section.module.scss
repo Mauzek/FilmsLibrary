@@ -26,16 +26,17 @@
         display: flex;
         align-items: center;
         gap: $spacing-sm;
-        margin: 0 0 $spacing-lg 0;
         font-size: $font-size-3xl;
         font-weight: $font-weight-bold;
         color: $text-primary;
         margin: 0;
+        min-width: 0;
 
         svg {
             color: $primary-color;
             height: 32px !important;
             width: 32px !important;
+            flex-shrink: 0;
         }
 
         @media (max-width: $breakpoint-sm) {
@@ -43,4 +44,27 @@
             gap: $spacing-sm;
         }
     }
+
+    &__titleText {
+    // Делаем текст обрезаемым
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0; // Позволяет элементу сжиматься
+    
+    // Размеры шрифта по breakpoint'ам
+    font-size: $font-size-3xl;
+
+    @media (max-width: $breakpoint-lg) {
+      font-size: $font-size-2xl;
+    }
+
+    @media (max-width: $breakpoint-md) {
+      font-size: $font-size-xl;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+      font-size: $font-size-lg;
+    }
+  }
 }
