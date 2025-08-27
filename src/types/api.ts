@@ -10,6 +10,8 @@ export interface ApiFilters {
   limit?: number;
   query?: string;
   lists?: string;
+  sortField?: string;
+  sortType?: '1' | '-1';
 }
 
 export interface PersonFilters
