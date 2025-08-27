@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   CollectionCard,
   Grid,
@@ -27,6 +27,10 @@ export const CollectionsPage = () => {
     },
     []
   );
+
+  useEffect(() => {
+    document.title ="Коллекции фильмов и сериалов на VK FilmsLib"
+  },[])
 
   return (
     <main>
