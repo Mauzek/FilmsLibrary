@@ -6,6 +6,7 @@ export const Grid: React.FC<GridProps> = ({
   children, 
   columns = 5, 
   gap = 30,
+  className = ''
 }) => {
   const gridStyle = {
     '--grid-columns': columns,
@@ -14,7 +15,7 @@ export const Grid: React.FC<GridProps> = ({
 
   return (
     <div 
-      className={styles.grid}
+      className={`${styles.grid} ${className}`}
       style={gridStyle}
     >
       {children}
