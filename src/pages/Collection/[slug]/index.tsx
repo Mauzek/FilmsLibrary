@@ -34,7 +34,13 @@ export const CollectionPage = observer(() => {
   }
 
   useEffect(() => {
-    loadMovies({ lists: slug });
+    if (slug === "popular-films" || slug === "popular-series") {
+      loadMovies({ lists: slug });
+    } else {
+      loadMovies({ lists: slug, sortField: "rating.kp", sortType: "-1" });
+    }
+
+    document.title = `${collection.name} на VK FilmsLib`
     return () => {
       reset();
     };
