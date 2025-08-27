@@ -65,4 +65,16 @@
             width: 100%;
         }
     }
+
+    &__mobileGrid {
+        @media screen and (max-width: $container-max-width) {
+            padding: 0;
+        }
+    }
+
+    &__mobileSection {
+        @media screen and (max-width: $breakpoint-md) {
+            padding: $spacing-sm $spacing-md;
+        }
+    }
 }
