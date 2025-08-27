@@ -24,12 +24,15 @@
         border-radius: $border-radius-lg;
         transition: border-color 0.2s ease-in-out;
         aspect-ratio: 1 / 1;
+        width: 100%;
+        background-color: $bg-secondary;
     }
 
     &__image {
         display: block;
         width: 100%;
         height: 100%;
+        object-fit: cover;
         transition: transform 0.2s ease-in-out;
     }
 
