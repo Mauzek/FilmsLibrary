@@ -7,6 +7,7 @@ export const MoviesGrid = ({
   gap,
   loading = false,
   isLoadingMore = false,
+  className = ''
 }: MoviesGridProps) => {
   const renderSkeletons = () => {
     return Array.from({ length: 10 }, (_, index) => (
@@ -15,7 +16,7 @@ export const MoviesGrid = ({
   };
 
   return (
-    <Grid columns={columns} gap={gap}>
+    <Grid columns={columns} gap={gap} className={className}>
       {loading && renderSkeletons()}
       {movies.map((movie) => (
         <MovieCard key={movie.id} movie={movie} />

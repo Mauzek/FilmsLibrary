@@ -6,4 +6,5 @@ export interface MoviesGridProps {
     gap?: number;
     loading?: boolean;
     isLoadingMore?: boolean;
+    className?: string;
 }
