@@ -12,5 +12,11 @@ createRoot(document.getElementById("root")!).render(
         <App />
       </StoreProvider>
     </BrowserRouter>
-  </StrictMode>
+  </StrictMode> 
 );
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js');
+  });
+}

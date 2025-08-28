@@ -15,9 +15,8 @@ export const MainPage = observer(() => {
 
   useEffect(() => {
     const popularPreset = {
-      "votes.kp": "200000-1000000",
-      "rating.kp": "7-10",
       limit: 10,
+      "lists": "top10-hd"
     };
     loadPopularMovies(popularPreset);
   }, [loadPopularMovies]);
@@ -41,7 +40,7 @@ export const MainPage = observer(() => {
             description="Попробуйте перезагрузить страницу"
           />
         ) : (
-          <MoviesGrid movies={popularMovies.slice(0, 10)} loading={loading} />
+          <MoviesGrid movies={popularMovies} loading={loading} />
         )}
       </Section>
     </main>

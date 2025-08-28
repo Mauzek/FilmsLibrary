@@ -69,8 +69,15 @@ export const MovieDetails = ({ movie, loading = false }: MovieDetailsProps) => {
         )}
         <PlayersCollection kinopoiskId={movie.id} />
         {movie.similarMovies && movie.similarMovies.length > 0 && (
-          <Section title="Похожие фильмы" icon={<Icon24StarsOutline />}>
-            <MoviesGrid movies={movie.similarMovies} />
+          <Section
+            title="Похожие фильмы"
+            icon={<Icon24StarsOutline />}
+            headerClassName={styles.movieDetails__mobileSection}
+          >
+            <MoviesGrid
+              movies={movie.similarMovies}
+              className={styles.movieDetails__mobileGrid}
+            />
           </Section>
         )}
       </div>

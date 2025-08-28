@@ -3,6 +3,7 @@ import {
   Icon28HomeOutline,
   Icon28FilmStripOutline,
   Icon28LikeOutline,
+  Icon28PlayRectangleStackOutline,
 } from "@vkontakte/icons";
 import styles from "./tabBar.module.scss";
 
@@ -16,6 +17,11 @@ const tabs = [
     path: "/movies",
     icon: <Icon28FilmStripOutline />,
     text: "Фильмы",
+  },
+    {
+    path: "/collections",
+    icon: <Icon28PlayRectangleStackOutline/>,
+    text: "Коллекции",
   },
   {
     path: "/favourite",

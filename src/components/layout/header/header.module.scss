@@ -51,10 +51,6 @@
     }
 
     &__nav {
-        @media screen and (max-width: $breakpoint-lg) {
-            flex: 1;
-        }
-
         @media (max-width: $breakpoint-md) {
             display: none;
         }
@@ -67,7 +63,7 @@
         padding: 0;
         gap: $spacing-md;
 
-        @media (max-width: $breakpoint-md) {
+        @media (max-width: $breakpoint-lmd) {
             display: none;
         }
     }
@@ -124,7 +120,7 @@
         max-width: 400px;
         margin: 0 $spacing-xl;
 
-        @media (max-width: $breakpoint-lg) {
+        @media (max-width: $breakpoint-xl) {
             flex: 0;
             max-width: 280px;
             margin: 0 $spacing-sm;
