@@ -1,0 +1,44 @@
+@use '@styles/variables' as *;
+
+.navigation {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    margin-bottom: $spacing-md;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+
+    @media (max-width: $container-max-width) {
+        padding: 0 $spacing-md;
+    }
+
+    @media (max-width: $breakpoint-lg) {
+        margin-top: $spacing-sm;
+    }
+
+    &__button {
+        flex: 0 0 auto;
+        padding: 0.5rem 1rem;
+        border: none;
+        background-color: $bg-secondary;
+        color: $text-secondary;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: background-color 0.2s, color 0.2s;
+
+        &--active {
+            background-color: $primary-dark;
+            color: $text-primary;
+
+            &:hover {
+                background-color: $primary-color;
+                color: $text-primary;
+            }
+        }
+
+        &:hover:not(&--active) {
+            background-color: $bg-secondary--hover;
+            color: $text-primary;
+        }
+    }
+}

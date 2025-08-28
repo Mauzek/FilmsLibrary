@@ -1,0 +1,211 @@
+{
+  "collections": [
+    {
+      "category": "Фильмы",
+      "name": "Популярные фильмы",
+      "slug": "popular-films",
+      "cover": {
+        "url": "https://image.openmoviedb.com/kinopoisk-images/9784475/3d089ef6-4a24-4c6a-aff7-db153e4dbb7f/orig",
+        "previewUrl": "https://image.openmoviedb.com/kinopoisk-images/9784475/3d089ef6-4a24-4c6a-aff7-db153e4dbb7f/x1000"
+      },
+      "moviesCount": 1000
+    },
+    {
+      "category": "Сериалы",
+      "name": "Популярные сериалы",
+      "slug": "popular-series",
+      "cover": {
+        "url": "https://image.openmoviedb.com/kinopoisk-images/10703959/7d1793e4-6217-4a76-89e1-c8da8d652797/orig",
+        "previewUrl": "https://image.openmoviedb.com/kinopoisk-images/10703959/7d1793e4-6217-4a76-89e1-c8da8d652797/x1000"
+      },
+      "moviesCount": 1000
+    },
+    {
+      "category": "Сериалы",
+      "name": "250 лучших сериалов",
+      "slug": "series-top250",
+      "cover": {
+        "url": "https://avatars.mds.yandex.net/get-bunker/118781/02f27f401e650b75c4d42ed9f15e999392d33615/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-bunker/118781/02f27f401e650b75c4d42ed9f15e999392d33615/x1000"
+      },
+      "moviesCount": 250
+    },
+    {
+      "category": "Фильмы",
+      "name": "250 лучших фильмов",
+      "slug": "top250",
+      "cover": {
+        "url": "https://avatars.mds.yandex.net/get-bunker/56833/3ee361778f24483f04a6819bc6d84bcfba9030e4/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-bunker/56833/3ee361778f24483f04a6819bc6d84bcfba9030e4/x1000"
+      },
+      "moviesCount": 250
+    },
+    {
+      "category": "Сериалы",
+      "name": "100 великих сериалов XXI века",
+      "slug": "100_greatest_TVseries",
+      "cover": {
+        "url": "https://avatars.mds.yandex.net/get-bunker/128809/42390deeca7c1c280f477a247083d9e8fcd6be2b/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-bunker/128809/42390deeca7c1c280f477a247083d9e8fcd6be2b/x1000"
+      },
+      "moviesCount": 100
+    },
+    {
+      "category": "Фильмы",
+      "name": "100 великих фильмов XXI века",
+      "slug": "100_greatest_movies_XXI",
+      "cover": {
+        "url": "https://avatars.mds.yandex.net/get-bunker/120922/9ef93279153c45ee182cf8c6bc819590af4c1d25/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-bunker/120922/9ef93279153c45ee182cf8c6bc819590af4c1d25/x1000"
+      },
+      "moviesCount": 101
+    },
+    {
+      "category": "Критика",
+      "name": "1001 фильм, который вы должны посмотреть за свою жизнь",
+      "slug": "best_1001",
+      "cover": {
+        "url": "https://avatars.mds.yandex.net/get-bunker/118781/71fcb316b5ff58545b0f0074328c328675091202/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-bunker/118781/71fcb316b5ff58545b0f0074328c328675091202/x1000"
+      },
+      "moviesCount": 1001
+    },
+    {
+      "category": "Онлайн-кинотеатр",
+      "name": "Топ-10 в онлайн-кинотеатре",
+      "slug": "top10-hd",
+      "cover": {
+        "url": "https://avatars.mds.yandex.net/get-bunker/118781/11afa095c91056ad786576769a15060266d5e72e/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-bunker/118781/11afa095c91056ad786576769a15060266d5e72e/x1000"
+      },
+      "moviesCount": 10
+    },
+    {
+      "category": "Сериалы",
+      "name": "Шедевры HBO",
+      "slug": "hbo_best",
+      "cover": {
+        "url": "https://image.openmoviedb.com/kinopoisk-images/10768063/a7de5bb6-38b1-45b7-a9fe-6439c95fdc2f/orig",
+        "previewUrl": "https://image.openmoviedb.com/kinopoisk-images/10768063/a7de5bb6-38b1-45b7-a9fe-6439c95fdc2f/x1000"
+      },
+      "moviesCount": 30
+    },
+    {
+      "category": "Онлайн-кинотеатр",
+      "name": "Блокбастеры",
+      "slug": "hd-blockbusters",
+      "cover": {
+        "url": "https://avatars.mds.yandex.net/get-bunker/60661/70f9dd410ae03c6af031f03e6cf44e3778da0c20/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-bunker/60661/70f9dd410ae03c6af031f03e6cf44e3778da0c20/x1000"
+      },
+      "moviesCount": 104
+    },
+    {
+      "category": "Онлайн-кинотеатр",
+      "name": "Фильмы, которые стоит посмотреть",
+      "slug": "hd-must-see",
+      "cover": {
+        "url": "https://avatars.mds.yandex.net/get-bunker/50064/9a7c29bf643a8f27c2f95502bf604b1e2a3a8474/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-bunker/50064/9a7c29bf643a8f27c2f95502bf604b1e2a3a8474/x1000"
+      },
+      "moviesCount": 76
+    },
+    {
+      "category": "Онлайн-кинотеатр",
+      "name": "Фильмы по реальным событиям",
+      "slug": "hd-real-story",
+      "cover": {
+        "url": "https://avatars.mds.yandex.net/get-bunker/56833/a6a749766d6e63b55a50f68a6059a0e8ae704b7e/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-bunker/56833/a6a749766d6e63b55a50f68a6059a0e8ae704b7e/x1000"
+      },
+      "moviesCount": 41
+    },
+    {
+      "category": "Онлайн-кинотеатр",
+      "name": "Пересматриваем любимое",
+      "slug": "hd-revise",
+      "cover": {
+        "url": "https://avatars.mds.yandex.net/get-bunker/56833/68de79bf6f0b4b3b299688620cb87939c0962a6f/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-bunker/56833/68de79bf6f0b4b3b299688620cb87939c0962a6f/x1000"
+      },
+      "moviesCount": 98
+    },
+    {
+      "category": "Сборы",
+      "name": "Самые дорогие фильмы и сериалы",
+      "slug": "most-expensive",
+      "cover": {
+        "url": "https://avatars.mds.yandex.net/get-bunker/60661/fdfe79ba1d24b7c03a4ddded3faa9064e72917a3/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-bunker/60661/fdfe79ba1d24b7c03a4ddded3faa9064e72917a3/x1000"
+      },
+      "moviesCount": 100
+    },
+    {
+      "category": "Сборы",
+      "name": "Самые прибыльные фильмы",
+      "slug": "most-profitable",
+      "cover": {
+        "url": "https://avatars.mds.yandex.net/get-bunker/60661/cb5ba1ed99d9c411d7bc3ddb7b5d4684bdf52fbe/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-bunker/60661/cb5ba1ed99d9c411d7bc3ddb7b5d4684bdf52fbe/x1000"
+      },
+      "moviesCount": 100
+    },
+    {
+      "category": "Фильмы",
+      "name": "Рейтинг ожидаемых фильмов",
+      "slug": "planned-to-watch-films",
+      "cover": {
+        "url": "https://image.openmoviedb.com/kinopoisk-images/4486454/ac7a539a-a0df-4d0e-b524-48541466f15b/orig",
+        "previewUrl": "https://image.openmoviedb.com/kinopoisk-images/4486454/ac7a539a-a0df-4d0e-b524-48541466f15b/x1000"
+      },
+      "moviesCount": 482
+    },
+    {
+      "category": "Фильмы",
+      "name": "Лучшие фильмы для детей: список лучших детских фильмов",
+      "slug": "theme_kids_films",
+      "cover": {
+        "url": "https://avatars.mds.yandex.net/get-bunker/128809/40b60a14fdd5774d2e98097ec3aabb3238749030/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-bunker/128809/40b60a14fdd5774d2e98097ec3aabb3238749030/x1000"
+      },
+      "moviesCount": 50
+    },
+    {
+      "category": "Фильмы",
+      "name": "Фильмы про любовь и страсть: список лучших романтических фильмов ",
+      "slug": "theme_love",
+      "cover": {
+        "url": "https://avatars.mds.yandex.net/get-bunker/49769/bc0d7724803fa746db20da65a7d3ca059ba91c29/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-bunker/49769/bc0d7724803fa746db20da65a7d3ca059ba91c29/x1000"
+      },
+      "moviesCount": 70
+    },
+    {
+      "category": "Онлайн-кинотеатр",
+      "name": "Смотрим всей семьей",
+      "slug": "hd-family",
+      "cover": {
+        "url": "https://avatars.mds.yandex.net/get-bunker/56833/19df29a58c0e605bc96be22e9b1b0d0829951244/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-bunker/56833/19df29a58c0e605bc96be22e9b1b0d0829951244/x1000"
+      },
+      "moviesCount": 230
+    },
+    {
+      "category": "Онлайн-кинотеатр",
+      "name": "Время приключений",
+      "slug": "adventure_time",
+      "cover": {
+        "url": "https://avatars.mds.yandex.net/get-bunker/128809/eb0af3584cbb246d790631c91871d545e4cf51d5/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-bunker/128809/eb0af3584cbb246d790631c91871d545e4cf51d5/x1000"
+      },
+      "moviesCount": 74
+    }
+  ],
+  "categories": [
+    "Фильмы",
+    "Сериалы",
+    "Критика",
+    "Онлайн-кинотеатр",
+    "Сборы"
+  ]
+}

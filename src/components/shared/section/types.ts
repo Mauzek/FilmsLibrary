@@ -3,4 +3,6 @@ export interface SectionProps {
   title: string;
   icon: React.ReactElement;
   isFiltered?: boolean;
+  className?: string;
+  headerClassName?: string;
 }

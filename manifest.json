@@ -1,0 +1,60 @@
+{
+  "short_name": "VK FilmsLib",
+  "name": "VK FilmsLib - онлайн-библиотека фильмов.",
+  "description": "VK FilmsLib - онлайн-библиотека фильмов. Найдите и смотрите любимые фильмы в высоком качестве. Широкий выбор жанров и удобный поиск.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#141414",
+  "theme_color": "#222222",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "ru-RU",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/icons/launchericon-48-48.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "/icons/launchericon-72-72.png",
+      "type": "image/png",
+      "sizes": "72x72"
+    },
+    {
+      "src": "/icons/launchericon-96-96.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "/icons/launchericon-144-144.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "/icons/launchericon-192-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/icons/launchericon-512-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/mainPage-desktop.png",
+      "type": "image/png",
+      "sizes": "1280x720",
+      "form_factor": "wide",
+      "description": "Главная страница на большом экране"
+    },
+    {
+      "src": "/screenshots/mainPage-mobile.png",
+      "type": "image/png",
+      "sizes": "360x791",
+      "description": "Главная страница на смартфоне"
+    }
+  ]
+}
