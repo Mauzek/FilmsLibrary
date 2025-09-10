@@ -65,7 +65,7 @@ export const Footer = () => {
 
         <div className={styles.footer__bottom}>
           <div className={styles.footer__copyright}>
-            © 2025 VK FilmsLib. Все права защищены.
+            © 2025 KINORA. Все права защищены.
           </div>
         </div>
       </div>
