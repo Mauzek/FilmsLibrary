@@ -7,6 +7,7 @@ import {
   Icon28FilmStripOutline,
   Icon28LikeOutline,
   Icon28PlayRectangleStackOutline,
+  Icon28Profile
 } from "@vkontakte/icons";
 
 const tabs = [
@@ -73,6 +74,9 @@ export const Header = () => {
 
         <div className={styles.header__search}>
           <SearchForm />
+          <Link to="/profile" className={`${styles.header__profileLink} ${styles.header__navLink}`}>
+            <Icon28Profile />
+          </Link>
         </div>
       </div>
     </header>
