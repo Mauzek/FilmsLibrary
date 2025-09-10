@@ -10,7 +10,7 @@ export const MainPage = observer(() => {
   const { recent } = useRecentMoviesStore();
 
   useEffect(() => {
-    document.title = "VK FilmsLib - Онлайн-библиотека фильмов";
+    document.title = "KINORA - Онлайн-библиотека фильмов";
   }, []);
 
   useEffect(() => {

@@ -12,7 +12,7 @@ export const Footer = () => {
             <Link to="/" className={styles.footer__brandLogo}>
               <img
                 src={images.logo}
-                alt="VK FilmsLib"
+                alt="Logo KINORA"
                 className={styles.footer__logo}
               />
             </Link>

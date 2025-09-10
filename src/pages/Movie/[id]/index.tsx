@@ -23,7 +23,7 @@ export const MoviePage = observer(() => {
         recentStore.addToRecentMovies(res.data);
         document.title = `${
           res.data.name ?? res.data.alternativeName
-        } на VK FilmsLib`;
+        } на KINORA`;
         const metaDescription = document.querySelector(
           'meta[name="description"]'
         );
@@ -32,7 +32,7 @@ export const MoviePage = observer(() => {
             "content",
             movie
               ? `"${movie.description}"`
-              : "Поиск фильмов в библиотеке VK FilmsLib"
+              : "Поиск фильмов в библиотеке KINORA"
           );
         }
       } catch (err) {

@@ -7,7 +7,7 @@ export const FavouritePage = () => {
   const { favourites } = useFavouriteStore();
 
   useEffect(() => {
-    document.title = "Избранное на VK FilmsLib";
+    document.title = "Избранное на KINORA";
   }, []);
 
   return (

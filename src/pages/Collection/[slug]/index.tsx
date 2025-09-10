@@ -40,7 +40,7 @@ export const CollectionPage = observer(() => {
       loadMovies({ lists: slug, sortField: "rating.kp", sortType: "-1" });
     }
 
-    document.title = `${collection.name} на VK FilmsLib`
+    document.title = `${collection.name} на KINORA`
     return () => {
       reset();
     };

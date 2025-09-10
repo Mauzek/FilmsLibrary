@@ -29,7 +29,7 @@ export const CollectionsPage = () => {
   );
 
   useEffect(() => {
-    document.title ="Коллекции фильмов и сериалов на VK FilmsLib"
+    document.title ="Коллекции фильмов и сериалов на KINORA"
   },[])
 
   return (

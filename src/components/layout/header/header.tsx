@@ -46,7 +46,7 @@ export const Header = () => {
         <Link to="/" className={styles.header__logo}>
           <img
             src={images.logo}
-            alt="Logo VK FilmsLib"
+            alt="Logo KINORA"
             className={styles.header__logoImage}
           />
         </Link>
