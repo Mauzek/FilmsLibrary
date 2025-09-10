@@ -10,7 +10,7 @@
         width: 44px;
         height: 44px;
         padding: $spacing-sm;
-        background: $bg-input;
+        background: none;
         border: none;
         border-radius: $border-radius-lg;
         color: $input-text-secondary;
@@ -18,12 +18,15 @@
         transition: all $transition-normal;
 
         &:hover:not(.searchFormMobile__trigger--active) {
-            background-color: $bg-input--hover;
+            background-color: $bg-secondary--hover;
             color: $input-text-primary;
         }
 
-        &--active {
-            background-color: $primary-color;
+        &:active{
+            background-color: none;
+        }
+
+        &--active {         
             color: white;
         }
     }
@@ -33,27 +36,30 @@
         top: 0;
         left: 0;
         right: 0;
-        background: $bg-primary;
         transform: translateY(-100%);
         opacity: 0;
         visibility: hidden;
         transition: all $transition-normal;
-        z-index: 1000;
-        box-shadow: $shadow-lg;
+        z-index: 1000;    
 
         &--open {
-            transform: translateY(0);
+            transform: translateY(-1%);
             opacity: 1;
             visibility: visible;
             animation: slideDown $transition-normal ease-out;
         }
+
+        @media screen and (min-width: $breakpoint-lmd) {
+            background-color: $bg-secondary;
+            backdrop-filter: blur(4px);
+            padding: 0 $spacing-md;
+        }
     }
 
     &__form {
-        padding: $spacing-md;
-
-        @media screen and (max-width: $breakpoint-sm) {
-            padding: $spacing-sm;
+        padding: $spacing-sm;
+        @media screen and (min-width: $breakpoint-lmd) {
+            padding: $spacing-md 0 $spacing-sm 0;
         }
     }
 
@@ -61,10 +67,8 @@
         display: flex;
         align-items: center;
         background: $bg-input;
-        border-radius: $border-radius-lg;
-        padding: $spacing-xs;
-        gap: $spacing-xs;
-        max-width: 600px;
+        border-radius: 50px; 
+        gap: $spacing-xs;      
         margin: 0 auto;
     }
 
@@ -75,13 +79,18 @@
         padding: $spacing-sm;
         color: $input-text-secondary;
         flex-shrink: 0;
+
+        svg {
+            width: 24px !important;
+            height: 24px !important;
+        }
     }
 
     &__input {
         flex: 1;
         padding: $spacing-sm;
         font-family: $font-primary;
-        font-size: 16px; // Важно для iOS
+        font-size: 16px; 
         font-weight: $font-weight-medium;
         background: transparent;
         border: none;
@@ -90,6 +99,7 @@
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
+        min-width: 100px;
 
         &::placeholder {
             color: $input-text-secondary;
@@ -103,12 +113,11 @@
         color: $input-text-secondary;
         cursor: pointer;
         transition: all $transition-normal;
-        font-size: $font-size-base;
-        min-width: 44px;
+        font-size: $font-size-base;        
         display: flex;
         align-items: center;
         justify-content: center;
-
+        border-radius: 50px;
         &:hover {
             background-color: rgba($input-text-secondary, 0.1);
             color: $input-text-primary;
