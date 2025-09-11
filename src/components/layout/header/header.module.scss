@@ -136,6 +136,13 @@
         color: $input-text-secondary;
         padding: $spacing-sm;
 
+        img {
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            object-fit: cover;
+        }
+
         @media screen and (max-width: $breakpoint-lmd) {
             display: none;
         }

@@ -37,14 +37,20 @@
     border-radius: $border-radius-sm;
     width: 60px;
     color: $text-primary;
-    opacity: 0.5;
+
 
     &:hover {
       color: $text-primary;
     }
 
     &--active {
-      opacity: 1;
+
+
+      .tabBar__icon {
+        svg{
+          opacity: 1;
+        }
+      }
     }
   }
 
@@ -52,6 +58,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    
+    svg{
+      opacity: 0.5;
+    }
+  }
+
+  &__avatar{
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    object-fit: cover;
   }
 
 }

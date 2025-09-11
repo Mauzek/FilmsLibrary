@@ -7,8 +7,9 @@ import {
   Icon28FilmStripOutline,
   Icon28LikeOutline,
   Icon28PlayRectangleStackOutline,
-  Icon28Profile
+  Icon28Profile,
 } from "@vkontakte/icons";
+import type { HeaderProps } from "./types";
 
 const tabs = [
   {
@@ -23,7 +24,7 @@ const tabs = [
   },
   {
     path: "/collections",
-    icon: <Icon28PlayRectangleStackOutline/>,
+    icon: <Icon28PlayRectangleStackOutline />,
     text: "Коллекции",
   },
   {
@@ -33,7 +34,7 @@ const tabs = [
   },
 ];
 
-export const Header = () => {
+export const Header = ({ user }: HeaderProps) => {
   const location = useLocation();
 
   const isActiveLink = (path: string) => {
@@ -51,9 +52,7 @@ export const Header = () => {
           />
         </Link>
 
-        <nav
-          className={styles.header__nav}
-        >
+        <nav className={styles.header__nav}>
           <ul className={styles.header__navList}>
             {tabs.map((tab) => (
               <li key={tab.path} className={styles.header__navItem}>
@@ -63,7 +62,7 @@ export const Header = () => {
                     isActiveLink(tab.path)
                       ? styles["header__navLink--active"]
                       : ""
-                  }`}                 
+                  }`}
                 >
                   {tab.icon} {tab.text}
                 </Link>
@@ -74,9 +73,25 @@ export const Header = () => {
 
         <div className={styles.header__search}>
           <SearchForm />
-          <Link to="/profile" className={`${styles.header__profileLink} ${styles.header__navLink}`}>
-            <Icon28Profile />
-          </Link>
+          {user ? (
+            <Link
+              to={`/user/${user.uid}`}
+              className={`${styles.header__profileLink} ${styles.header__navLink}`}
+            >
+              {user.photoURL ? (
+                <img src={user.photoURL} alt="User avatar" />
+              ) : (
+                <Icon28Profile />
+              )}
+            </Link>
+          ) : (
+            <Link
+              to="/auth"
+              className={`${styles.header__profileLink} ${styles.header__navLink}`}
+            >
+              <Icon28Profile />
+            </Link>
+          )}
         </div>
       </div>
     </header>

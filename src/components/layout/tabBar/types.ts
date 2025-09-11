@@ -1,5 +1,5 @@
 import type { User } from "@/types";
 
-export interface HeaderProps {
+export interface TabBarProps {
     user: User | null;
 }
