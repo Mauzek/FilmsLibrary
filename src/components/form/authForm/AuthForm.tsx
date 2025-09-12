@@ -7,7 +7,7 @@ import {
   loginWithEmail,
   loginWithGoogle,
 } from "@/services/firebase/auth";
-import styles from "./authForm.module.scss";
+import styles from "./AuthForm.module.scss";
 import { useNavigate } from "react-router-dom";
 
 export const AuthForm = () => {
