@@ -1,0 +1,57 @@
+@use '@styles/variables' as *;
+
+.inputForm {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+
+  &__label {
+    text-align: left;
+    font-size: 14px;
+    color: #d1d1d1;
+  }
+
+  &__required {
+    color: #e64646; 
+    margin-left: 2px;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: $bg-input;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+    transition: background-color 0.2s;
+
+    &::placeholder {
+      color: #777;
+    }
+
+    &:focus {
+      background-color: $bg-secondary--active;
+      border-color: $bg-secondary--hover;
+    }
+
+    &:hover{
+        background-color: $bg-secondary--active;
+    }
+
+    &--error {
+      border-color: #e64646;
+
+      &:focus {
+        box-shadow: 0 0 0 2px rgba(230, 70, 70, 0.4);
+      }
+    }
+  }
+
+  &__error {
+    font-size: 12px;
+    color: #e64646;
+    text-align: left;
+  }
+}
