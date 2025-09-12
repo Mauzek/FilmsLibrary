@@ -7,7 +7,8 @@ import {
   Icon28Profile,
 } from "@vkontakte/icons";
 import styles from "./tabBar.module.scss";
-import type { TabBarProps } from "./types";
+import { useUserStore } from "@/store";
+import { observer } from "mobx-react-lite";
 
 interface Tab {
   path: string;
@@ -39,12 +40,13 @@ const tabs = [
   },
 ];
 
-export const TabBar = ({ user }: TabBarProps) => {
+export const TabBar = observer(() => {
   const location = useLocation();
-
+  const {user} = useUserStore();
   const isActiveLink = (path: string) => {
     return location.pathname === path;
   };
+  console.log("render")
 
   const getLinkTo = (tab: Tab) => {
     if (tab.isProfile) {
@@ -83,4 +85,4 @@ export const TabBar = ({ user }: TabBarProps) => {
       </nav>
     </div>
   );
-};
+});

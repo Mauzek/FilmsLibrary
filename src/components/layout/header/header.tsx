@@ -9,7 +9,8 @@ import {
   Icon28PlayRectangleStackOutline,
   Icon28Profile,
 } from "@vkontakte/icons";
-import type { HeaderProps } from "./types";
+import { useUserStore } from "@/store";
+import { observer } from "mobx-react-lite";
 
 const tabs = [
   {
@@ -34,9 +35,9 @@ const tabs = [
   },
 ];
 
-export const Header = ({ user }: HeaderProps) => {
+export const Header = observer(() => {
   const location = useLocation();
-
+  const { user } = useUserStore();
   const isActiveLink = (path: string) => {
     return location.pathname === path;
   };
@@ -96,4 +97,4 @@ export const Header = ({ user }: HeaderProps) => {
       </div>
     </header>
   );
-};
+});

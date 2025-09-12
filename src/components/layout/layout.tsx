@@ -1,20 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Header } from "./header";
 import { Footer } from "./footer";
 import { TabBar } from "./tabBar";
 import { ScrollToTop } from "./scrollToTop";
 import { Analytics } from '@vercel/analytics/react';
-import { useUserStore } from "@/store";
+import { initAuthListener } from "@/services";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
-  const {user} = useUserStore();
+  useEffect(() => {
+    initAuthListener();
+  }, []);
   return (
     <>
       <Analytics/>
       <ScrollToTop/>
-      <Header user={user}/>
+      <Header/>
       {children}
-      <TabBar user={user}/>
+      <TabBar/>
       <Footer />
     </>
   );
