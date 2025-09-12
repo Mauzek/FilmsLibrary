@@ -1,9 +1,17 @@
-import React from 'react'
+import { AuthForm } from "@/components";
+import styles from "./authPage.module.scss";
+import { useEffect } from "react";
 
 const AuthPage = () => {
-  return (
-    <div>AuthPage</div>
-  )
-}
+  useEffect(() => {
+    document.title = "Войти в аккаунт - KINORA";
+  }, []);
 
-export default AuthPage
+  return (
+    <main className={styles.page}>
+      <AuthForm />
+    </main>
+  );
+};
+
+export default AuthPage;
