@@ -7,8 +7,8 @@ export interface User {
   photoURL: string | null;
   emailVerified: boolean;
   isAnonymous: boolean;
-  provider: UserInfo[];
-  createAt: string | undefined;
+  providerData: UserInfo[];
+  createdAt: string;
 }
 
 export interface UserState {
