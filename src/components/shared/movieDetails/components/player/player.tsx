@@ -8,6 +8,7 @@ export const Player = ({ kinopoiskId }: PlayerProps) => {
   const [player, setPlayer] = useState<PlayerData | null>(null);
   const [error, setError] = useState<string | null>(null);
   const token = env.playerToken;
+  const playerUrl = env.playerLumexUrl;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,7 +17,7 @@ export const Player = ({ kinopoiskId }: PlayerProps) => {
 
       try {
         const response = await axios.get<ApiResponse>(
-          `https://portal.lumex.host/api/short?api_token=${token}&kinopoisk_id=${kinopoiskId}`
+          `${playerUrl}=${token}&kinopoisk_id=${kinopoiskId}`
         );
 
         if (!response.data.result) {
@@ -42,7 +43,9 @@ export const Player = ({ kinopoiskId }: PlayerProps) => {
     <section className={styles.playerWrapper} id="player">
       <h3 className={styles.playerWrapper__title}>Смотреть онлайн</h3>
       <div className={styles.playerWrapper__player}>
-        {error && <div className={styles.playerWrapper__error}>Ошибка: {error}</div>}
+        {error && (
+          <div className={styles.playerWrapper__error}>Ошибка: {error}</div>
+        )}
         {player && (
           <iframe
             src={player.iframe_src}
