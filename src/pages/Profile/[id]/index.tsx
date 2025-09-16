@@ -1,11 +1,16 @@
 import { useParams } from "react-router-dom";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { ErrorState, UserDetails } from "@/components";
+import { useEffect } from "react";
 
 const ProfilePage = () => {
   const { id } = useParams<{ id: string }>();
   const { user, lists, loadingProfile, loadingLists, error } =
     useUserProfile(id);
+
+    useEffect(() => {
+      document.title = "Профиль - KINORA";
+    }, []);
 
   if (error || (!user && !loadingProfile))
     return (
