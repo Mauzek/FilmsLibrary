@@ -8,14 +8,18 @@ import {
   loginWithGoogle,
 } from "@/services/firebase/auth";
 import styles from "./AuthForm.module.scss";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const AuthForm = () => {
   const [mode, setMode] = useState<"login" | "register">("login");
   const navigate = useNavigate();
+  const location = useLocation();
   const methods = useForm<AuthFormValues>({
     defaultValues: { email: "", password: "", confirmPassword: "" },
   });
+
+  const params = new URLSearchParams(location.search);
+  const redirect = params.get("redirect");
 
   const { handleSubmit, watch, reset } = methods;
   const password = watch("password");
@@ -31,7 +35,8 @@ export const AuthForm = () => {
         break;
     }
     if (userCred) {
-      navigate(`/user/${userCred.user.uid}`);
+      const target = redirect || `/user/${userCred.user.uid}`;
+      navigate(target, { replace: true });
     }
     reset();
   };
@@ -45,7 +50,8 @@ export const AuthForm = () => {
     try {
       const userCred = await loginWithGoogle();
       if (userCred) {
-        navigate(`/user/${userCred.user.uid}`);
+        const target = redirect || `/user/${userCred.user.uid}`;
+        navigate(target, { replace: true });
       }
     } catch (err) {
       console.error("Ошибка входа через Google:", err);
