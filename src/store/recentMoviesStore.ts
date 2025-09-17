@@ -1,53 +1,60 @@
+import { makeAutoObservable, runInAction } from "mobx";
+import { db } from "@/config/firebase";
 import type { Movie } from "@/types";
-import { makeAutoObservable } from "mobx";
+import {
+  collection,
+  doc,
+  setDoc,
+  query,
+  orderBy,
+  limit,
+  onSnapshot,
+  serverTimestamp,
+} from "firebase/firestore";
 
 export class RecentMoviesStore {
-    recent: Movie[] = [];
+  recent: Movie[] = [];
+  uid: string | null = null;
+  unsubscribe: (() => void) | null = null;
 
-    constructor(){
-        const recent = localStorage.getItem("recent");
-        if(recent){
-            try {
-                this.recent = JSON.parse(recent);
-            } catch (error) {
-                console.error('Error parsing recent movies from localStorage:', error);
-                this.recent = [];
-            }
-        }
-        makeAutoObservable(this);
-    }
+  constructor() {
+    makeAutoObservable(this);
+  }
 
-    addToRecentMovies(movie: Movie){
-        this.recent = this.recent.filter(recentMovie => recentMovie.id !== movie.id);
-        
-        this.recent.unshift(movie);
-        
-        if (this.recent.length > 7) {
-            this.recent = this.recent.slice(0, 7);
-        }
-        
-        try {
-            localStorage.setItem("recent", JSON.stringify(this.recent));
-        } catch (error) {
-            console.error('Error saving recent movies to localStorage:', error);
-        }
-    }
+  subscribe(uid: string) {
+    this.unsubscribeHistory(); 
+    this.uid = uid;
 
-    removeFromRecentMovies(movie: Movie){
-        this.recent = this.recent.filter(recentMovie => recentMovie.id !== movie.id);
-        try {
-            localStorage.setItem("recent", JSON.stringify(this.recent));
-        } catch (error) {
-            console.error('Error saving recent movies to localStorage:', error);
-        }
-    }
+    const historyRef = collection(db, "users", uid, "history");
+    const q = query(historyRef, orderBy("addedAt", "desc"), limit(7));
 
-    clearRecentMovies(){
-        this.recent = [];
-        try {
-            localStorage.removeItem("recent");
-        } catch (error) {
-            console.error('Error clearing recent movies from localStorage:', error);
-        }
+    this.unsubscribe = onSnapshot(q, (snap) => {
+      const movies: Movie[] = snap.docs.map((doc) => doc.data() as Movie);
+      runInAction(() => {
+        this.recent = movies;
+      });
+    });
+  }
+
+  unsubscribeHistory() {
+    if (this.unsubscribe) {
+      this.unsubscribe();
+      this.unsubscribe = null;
     }
+  }
+
+  async addToRecentMovies(movie: Movie) {
+    if (!this.uid) return;
+
+    try {
+      const movieRef = doc(db, "users", this.uid, "history", String(movie.id));
+
+      await setDoc(movieRef, {
+        ...movie,
+        addedAt: serverTimestamp(),
+      });
+    } catch (error) {
+      console.error("Ошибка добавления фильма в историю:", error);
+    }
+  }
 }

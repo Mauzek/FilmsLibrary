@@ -1,13 +1,14 @@
 import { useEffect } from "react";
 import { ErrorState, MoviesGrid, Section } from "@/components";
 import { Icon24Fire, Icon24HistoryBackwardOutline } from "@vkontakte/icons";
-import { useMoviesStore, useRecentMoviesStore } from "@/store";
+import { useMoviesStore, useRecentMoviesStore, useUserStore } from "@/store";
 import { observer } from "mobx-react-lite";
 import styles from "./mainPage.module.scss";
 
 export const MainPage = observer(() => {
   const { loading, popularMovies, loadPopularMovies, error } = useMoviesStore();
-  const { recent } = useRecentMoviesStore();
+  const recentStore = useRecentMoviesStore();
+  const { user } = useUserStore();
 
   useEffect(() => {
     document.title = "KINORA - Онлайн-библиотека фильмов";
@@ -16,19 +17,28 @@ export const MainPage = observer(() => {
   useEffect(() => {
     const popularPreset = {
       limit: 10,
-      "lists": "top10-hd"
+      lists: "top10-hd",
     };
     loadPopularMovies(popularPreset);
   }, [loadPopularMovies]);
 
+  useEffect(() => {
+    if (user?.uid) {
+      recentStore.subscribe(user.uid);
+    }
+    return () => {
+      recentStore.unsubscribeHistory();
+    };
+  }, [user]);
+
   return (
     <main className={styles.page}>
-      {recent.length > 0 && (
+      {recentStore.recent.length > 0 && (
         <Section
           title="Вы недавно смотрели"
           icon={<Icon24HistoryBackwardOutline />}
         >
-          <MoviesGrid movies={recent} gap={20} columns={7} />
+          <MoviesGrid movies={recentStore.recent} gap={20} columns={7} />
         </Section>
       )}
 
