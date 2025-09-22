@@ -38,7 +38,7 @@ export const MainPage = observer(() => {
           title="Вы недавно смотрели"
           icon={<Icon24HistoryBackwardOutline />}
         >
-          <MoviesGrid movies={recentStore.recent} gap={20} columns={7} />
+          <MoviesGrid movies={recentStore.recent} gap={20} columns={7} scrollable="mobile" />
         </Section>
       )}
 
