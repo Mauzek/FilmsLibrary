@@ -4,9 +4,8 @@ import { api } from "@/api";
 import type { Movie } from "@/types";
 import { ErrorState, MovieDetails } from "@/components";
 import { useRecentMoviesStore } from "@/store";
-import { observer } from "mobx-react-lite";
 
-export const MoviePage = observer(() => {
+export const MoviePage = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState<Movie>({} as Movie);
   const [loading, setLoading] = useState(true);
@@ -72,4 +71,4 @@ export const MoviePage = observer(() => {
       )}
     </main>
   );
-});
+};
