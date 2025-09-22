@@ -1,11 +1,12 @@
 import { memo } from "react";
 import styles from "./movieCard.module.scss";
-import type { MovieCardProps, BaseMovieData } from "./types";
+import type { MovieCardProps } from "./types";
 import { images } from "@/assets";
 import { Link } from "react-router-dom";
+import type { SavedMovie } from "@/types";
 
 export const MovieCard = memo(
-  <T extends BaseMovieData>({ movie }: MovieCardProps<T>) => {
+  <T extends SavedMovie>({ movie }: MovieCardProps<T>) => {
     const movieData = {
       name: movie.name || movie.alternativeName || "Без названия",
       poster: movie.poster?.previewUrl || movie.poster?.url,
