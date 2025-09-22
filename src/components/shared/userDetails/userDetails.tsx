@@ -11,7 +11,7 @@ export const UserDetails = observer(
     const isOwner = userId === user?.uid;
     console.log(lists);
     const tabLabels: Record<string, string> = {
-      favorites: "Любимое",
+      favorites: "Избранное",
       planned: "Запланировано",
       dropped: "Брошено",
       watched: "Просмотрено",
