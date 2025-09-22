@@ -101,6 +101,6 @@ export interface SavedMovie {
   year?: number;
   countries?: Country[];
   genres?: Genre[];
-  list: ListType;
-  addedAt: Timestamp | FieldValue;
+  list?: ListType;
+  addedAt?: Timestamp | FieldValue;
 }
