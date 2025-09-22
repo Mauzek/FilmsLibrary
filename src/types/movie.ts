@@ -1,4 +1,6 @@
+import type { ListType } from "@/services";
 import type { MovieType } from "./common";
+import type { FieldValue, Timestamp } from "firebase/firestore";
 
 export interface Movie {
   id: number;
@@ -88,4 +90,17 @@ export interface Rating {
 export interface Poster {
   url?: string;
   previewUrl?: string;
+}
+
+export interface SavedMovie {
+  id: number;
+  name?: string;
+  alternativeName?: string;
+  poster?: Poster;
+  rating?: Rating;
+  year?: number;
+  countries?: Country[];
+  genres?: Genre[];
+  list: ListType;
+  addedAt: Timestamp | FieldValue;
 }
