@@ -12,6 +12,7 @@ export interface ApiFilters {
   lists?: string;
   sortField?: string;
   sortType?: '1' | '-1';
+  notNullFields?: string;
 }
 
 export interface PersonFilters

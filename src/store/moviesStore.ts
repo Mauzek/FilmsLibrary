@@ -6,6 +6,7 @@ import type { AxiosResponse } from "axios";
 export class MoviesStore {
   movies: Movie[] = [];
   popularMovies: Movie[] = [];
+  popularSlides: Movie[] = [];
   loading = false;
   error: string | null = null;
   hasMore = true;
@@ -96,22 +97,6 @@ export class MoviesStore {
     }
   }
 
-  private updatePopularMoviesData(
-    data: ApiResponse<Movie>,
-    filters: ApiFilters
-  ): void {
-    if (data && data.docs) {
-      this.popularMovies = data.docs;
-      this.currentPage = data.page || 1;
-      this.totalPages = data.pages || 0;
-      this.total = data.total || 0;
-      this.hasMore = (data.page || 1) < (data.pages || 0);
-      this.filters = filters;
-    } else {
-      this.popularMovies = [];
-    }
-  }
-
   private appendMoviesData(data: ApiResponse<Movie>, nextPage: number): void {
     this.movies = [...this.movies, ...(data?.docs || [])];
     this.currentPage = data?.page || nextPage;
@@ -135,25 +120,57 @@ export class MoviesStore {
     );
   };
 
-  loadPopularMovies = async (filters: ApiFilters = {}): Promise<void> => {
-    if (this.popularMovies.length > 0) {
-      return;
-    }
+loadPopularContent = async (): Promise<void> => {
+  if (this.popularMovies.length > 0 && this.popularSlides.length > 0) {
+    return;
+  }
 
-    const requestId = this.generateRequestId(filters, 1);
-
-    await this.executeRequest<ApiResponse<Movie>>(
-      requestId,
-      () =>
-        api.getMovies({
-          ...filters,
-          page: 1,
-          limit: filters.limit || this.limit,
-        }),
-      (data) => this.updatePopularMoviesData(data, filters),
-      "Ошибка загрузки популярных фильмов"
-    );
+  const popularPreset = {
+    limit: 10,
+    lists: "top10-hd",
   };
+
+  const slidesPreset = {
+    limit: 10,
+    lists: 'popular-films',
+    'rating.kp': '7-10',
+    notNullFields: 'backdrop.url'
+  };
+
+  const requestId = JSON.stringify({ popularPreset, slidesPreset });
+
+  runInAction(() => {
+    this.loading = true;
+    this.error = null;
+    this.lastRequestId = requestId;
+  });
+
+  try {
+    const [popularResponse, slidesResponse] = await Promise.all([
+      api.getMovies(popularPreset),
+      api.getMovies(slidesPreset)
+    ]);
+
+    // Проверяем, не устарел ли запрос
+    if (this.lastRequestId !== requestId) return;
+
+    runInAction(() => {
+      this.popularMovies = popularResponse.data.docs || [];
+      this.popularSlides = slidesResponse.data.docs || [];
+      this.loading = false;
+    });
+  } catch (error) {
+    if (this.lastRequestId !== requestId) return;
+
+    runInAction(() => {
+      this.error = error instanceof Error 
+        ? error.message 
+        : "Ошибка загрузки популярного контента";
+      this.loading = false;
+    });
+  }
+};
+
 
   searchMovies = async (
     query: string,

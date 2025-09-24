@@ -6,13 +6,13 @@ import { StoreProvider } from "./store-provider.tsx";
 import { BrowserRouter } from "react-router-dom";
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
+  // <StrictMode>
     <BrowserRouter>
       <StoreProvider>
         <App />
       </StoreProvider>
     </BrowserRouter>
-  </StrictMode> 
+  // </StrictMode> 
 );
 
 if ('serviceWorker' in navigator) {

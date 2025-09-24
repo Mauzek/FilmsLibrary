@@ -1,0 +1,28 @@
+@use '@styles/variables' as *;
+
+.custom-swiper-pagination {
+    text-align: center;
+    z-index: 3;
+    position: absolute;
+
+    @media screen and (max-width: $breakpoint-lmd) {
+        display: none;
+    }
+}
+
+.custom-swiper-pagination .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    opacity: 0.3;
+    transition: all 0.3s ease;
+    margin: 0 4px;
+    cursor: pointer;
+}
+
+.custom-swiper-pagination .swiper-pagination-bullet-active {
+    opacity: 1;
+    background: $primary-color;
+    width: 28px;
+    border-radius: 20px;
+}

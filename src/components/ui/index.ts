@@ -8,3 +8,5 @@ export * from './accordion';
 export * from './customSelect';
 export * from './collectionCard';
 export * from './collectionsNavigation';
+export * from './carousel';
+export * from './movieSlide'
