@@ -7,6 +7,6 @@ export * from './emptyState';
 export * from './accordion';
 export * from './customSelect';
 export * from './collectionCard';
-export * from './collectionsNavigation';
+export * from './tabs';
 export * from './carousel';
 export * from './movieSlide'
