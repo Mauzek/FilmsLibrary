@@ -10,6 +10,11 @@ export interface Collection {
 
 type CategoryKey = keyof typeof listsData.categories;
 
+export interface ListsData {
+  categories: Record<CategoryKey, string>;
+  collections: Collection[];
+}
+
 interface Cover {
     url: string;
     previewUrl: string;
