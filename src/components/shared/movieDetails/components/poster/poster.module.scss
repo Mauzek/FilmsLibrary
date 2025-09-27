@@ -53,8 +53,8 @@
         border-radius: 50%;
         width: fit-content;
         padding: $spacing-sm;
-        background: rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(12px);
+        background: rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(30px);
         filter: saturate(1.8);
         border: 1px solid rgba(255, 255, 255, 0.2);
         transition: border-radius 0.15s ease-in-out;
@@ -101,8 +101,8 @@
         top: 0;
         right: 40px;
         min-width: 170px;
-        background: rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(12px);
+        background: rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(30px);
         filter: saturate(1.8);
         border: 1px solid rgba(255, 255, 255, 0.2);
         opacity: 0;
