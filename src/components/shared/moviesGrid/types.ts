@@ -8,4 +8,5 @@ export interface MoviesGridProps {
     isLoadingMore?: boolean;
     className?: string;
     scrollable?: 'none' | 'all' | 'mobile' | 'desktop';
+    skeletonCount?: number;
 }
