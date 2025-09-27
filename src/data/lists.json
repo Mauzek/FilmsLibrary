@@ -1,7 +1,7 @@
 {
   "collections": [
     {
-      "category": "Фильмы",
+      "category": "movies",
       "name": "Популярные фильмы",
       "slug": "popular-films",
       "cover": {
@@ -11,7 +11,7 @@
       "moviesCount": 1000
     },
     {
-      "category": "Сериалы",
+      "category": "serials",
       "name": "Популярные сериалы",
       "slug": "popular-series",
       "cover": {
@@ -21,7 +21,7 @@
       "moviesCount": 1000
     },
     {
-      "category": "Сериалы",
+      "category": "serials",
       "name": "250 лучших сериалов",
       "slug": "series-top250",
       "cover": {
@@ -31,7 +31,7 @@
       "moviesCount": 250
     },
     {
-      "category": "Фильмы",
+      "category": "movies",
       "name": "250 лучших фильмов",
       "slug": "top250",
       "cover": {
@@ -41,7 +41,7 @@
       "moviesCount": 250
     },
     {
-      "category": "Сериалы",
+      "category": "serials",
       "name": "100 великих сериалов XXI века",
       "slug": "100_greatest_TVseries",
       "cover": {
@@ -51,7 +51,7 @@
       "moviesCount": 100
     },
     {
-      "category": "Фильмы",
+      "category": "movies",
       "name": "100 великих фильмов XXI века",
       "slug": "100_greatest_movies_XXI",
       "cover": {
@@ -61,7 +61,7 @@
       "moviesCount": 101
     },
     {
-      "category": "Критика",
+      "category": "criticism",
       "name": "1001 фильм, который вы должны посмотреть за свою жизнь",
       "slug": "best_1001",
       "cover": {
@@ -71,7 +71,7 @@
       "moviesCount": 1001
     },
     {
-      "category": "Онлайн-кинотеатр",
+      "category": "online",
       "name": "Топ-10 в онлайн-кинотеатре",
       "slug": "top10-hd",
       "cover": {
@@ -81,7 +81,7 @@
       "moviesCount": 10
     },
     {
-      "category": "Сериалы",
+      "category": "serials",
       "name": "Шедевры HBO",
       "slug": "hbo_best",
       "cover": {
@@ -91,7 +91,7 @@
       "moviesCount": 30
     },
     {
-      "category": "Онлайн-кинотеатр",
+      "category": "online",
       "name": "Блокбастеры",
       "slug": "hd-blockbusters",
       "cover": {
@@ -101,7 +101,7 @@
       "moviesCount": 104
     },
     {
-      "category": "Онлайн-кинотеатр",
+      "category": "online",
       "name": "Фильмы, которые стоит посмотреть",
       "slug": "hd-must-see",
       "cover": {
@@ -111,7 +111,7 @@
       "moviesCount": 76
     },
     {
-      "category": "Онлайн-кинотеатр",
+      "category": "online",
       "name": "Фильмы по реальным событиям",
       "slug": "hd-real-story",
       "cover": {
@@ -121,7 +121,7 @@
       "moviesCount": 41
     },
     {
-      "category": "Онлайн-кинотеатр",
+      "category": "online",
       "name": "Пересматриваем любимое",
       "slug": "hd-revise",
       "cover": {
@@ -131,7 +131,7 @@
       "moviesCount": 98
     },
     {
-      "category": "Сборы",
+      "category": "fees",
       "name": "Самые дорогие фильмы и сериалы",
       "slug": "most-expensive",
       "cover": {
@@ -141,7 +141,7 @@
       "moviesCount": 100
     },
     {
-      "category": "Сборы",
+      "category": "fees",
       "name": "Самые прибыльные фильмы",
       "slug": "most-profitable",
       "cover": {
@@ -151,7 +151,7 @@
       "moviesCount": 100
     },
     {
-      "category": "Фильмы",
+      "category": "movies",
       "name": "Рейтинг ожидаемых фильмов",
       "slug": "planned-to-watch-films",
       "cover": {
@@ -161,7 +161,7 @@
       "moviesCount": 482
     },
     {
-      "category": "Фильмы",
+      "category": "movies",
       "name": "Лучшие фильмы для детей: список лучших детских фильмов",
       "slug": "theme_kids_films",
       "cover": {
@@ -171,7 +171,7 @@
       "moviesCount": 50
     },
     {
-      "category": "Фильмы",
+      "category": "movies",
       "name": "Фильмы про любовь и страсть: список лучших романтических фильмов ",
       "slug": "theme_love",
       "cover": {
@@ -181,7 +181,7 @@
       "moviesCount": 70
     },
     {
-      "category": "Онлайн-кинотеатр",
+      "category": "online",
       "name": "Смотрим всей семьей",
       "slug": "hd-family",
       "cover": {
@@ -191,7 +191,7 @@
       "moviesCount": 230
     },
     {
-      "category": "Онлайн-кинотеатр",
+      "category": "online",
       "name": "Время приключений",
       "slug": "adventure_time",
       "cover": {
@@ -201,11 +201,12 @@
       "moviesCount": 74
     }
   ],
-  "categories": [
-    "Фильмы",
-    "Сериалы",
-    "Критика",
-    "Онлайн-кинотеатр",
-    "Сборы"
-  ]
+  "categories": {
+    "all": "Все",
+    "movies": "Фильмы",
+    "serials": "Сериалы",
+    "criticism": "Критика",
+    "online": "Онлайн-кинотеатр",
+    "fees": "Сборы"
+  }
 }

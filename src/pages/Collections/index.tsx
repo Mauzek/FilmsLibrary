@@ -1,20 +1,15 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import {
-  CollectionCard,
-  Grid,
-  Section,
-  CollectionsNavigation,
-} from "@/components";
+import { CollectionCard, Grid, Section, Tabs } from "@/components";
 import listsData from "@data/lists.json";
 import { Icon28PlayRectangleStackOutline } from "@vkontakte/icons";
 
 export const CollectionsPage = () => {
   const { collections, categories } = listsData;
-  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [activeCategory, setActiveCategory] = useState<string | null>("all");
 
   const filteredCollections = useMemo(
     () =>
-      activeCategory
+      activeCategory !== "all"
         ? collections.filter((c) => c.category === activeCategory)
         : collections,
     [activeCategory, collections]
@@ -29,15 +24,15 @@ export const CollectionsPage = () => {
   );
 
   useEffect(() => {
-    document.title ="Коллекции фильмов и сериалов на KINORA"
-  },[])
+    document.title = "Коллекции фильмов и сериалов на KINORA";
+  }, []);
 
   return (
     <main>
       <Section title="Коллекции" icon={<Icon28PlayRectangleStackOutline />}>
-        <CollectionsNavigation
-          activeCategory={activeCategory}
-          categories={categories}
+        <Tabs
+          activeTab={activeCategory}
+          tabs={categories}
           onSelect={handleSelectCategory}
         />
         <Grid columns={5}>
