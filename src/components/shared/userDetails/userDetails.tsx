@@ -1,27 +1,30 @@
 import { useUserStore } from "@/store";
-import { Header, TabBar } from "./components";
+import { Header } from "./components";
 import type { UserDetailsProps } from "./types";
 import styles from "./userDetails.module.scss";
 import { observer } from "mobx-react-lite";
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import { MoviesGrid } from "../moviesGrid";
+import { Tabs } from "@/components/ui";
 
 export const UserDetails = observer(
   ({ data, loadingLists, loadingProfile, lists, userId }: UserDetailsProps) => {
     const { user, clearUser } = useUserStore();
+    const [activeTab, setActiveTab] = useState<string>("favorites");
     const isOwner = userId === user?.uid;
-    console.log(lists);
-    const tabLabels: Record<string, string> = {
+
+    const tabs: Record<string, string> = {
       favorites: "Избранное",
       planned: "Запланировано",
       dropped: "Брошено",
       watched: "Просмотрено",
     };
 
-    const tabOrder = ["favorites", "planned", "dropped", "watched"];
-
-    const [activeTab, setActiveTab] = useState<string>("favorites");
-
-    const availableTabs = tabOrder.filter((key) => lists[key]);
+    const handleSelectCategory = useCallback(
+      (e: React.MouseEvent<HTMLButtonElement>) => {
+        const tab = e.currentTarget.dataset.value || "favorites";
+        setActiveTab(tab);
+      }, []);
 
     return (
       <div className={styles.userDetails}>
@@ -32,31 +35,23 @@ export const UserDetails = observer(
           clearUser={clearUser}
         />
 
-        <TabBar
-          tabs={availableTabs.map((key) => tabLabels[key])}
-          activeTab={tabLabels[activeTab]}
+        <Tabs
+          activeTab={activeTab}
+          tabs={tabs}
           isLoading={loadingLists}
-          onChange={(label) => {
-            const foundKey = Object.keys(tabLabels).find(
-              (k) => tabLabels[k] === label
-            );
-            if (foundKey) setActiveTab(foundKey);
-          }}
+          onSelect={handleSelectCategory}
+          className={styles.userDetails__tabBar}
         />
 
-        {!loadingLists && activeTab && (
-          <div>
-            <h3>{tabLabels[activeTab]}</h3>
-            {lists[activeTab]?.length ? (
-              <ul>
-                {lists[activeTab].map((m) => (
-                  <li key={m.id}>{m.name}</li>
-                ))}
-              </ul>
-            ) : (
-              <p>Нет фильмов</p>
-            )}
-          </div>
+        {activeTab && (
+          <MoviesGrid
+            movies={lists[activeTab]}
+            columns={7}
+            gap={10}
+            className={styles.userDetails__mobileGrid}
+            loading={loadingLists}
+            skeletonCount={7}
+          />
         )}
       </div>
     );

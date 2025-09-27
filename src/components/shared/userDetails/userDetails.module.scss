@@ -4,7 +4,6 @@
     display: flex;
     flex-direction: column;
     gap: $spacing-md;
-    padding: $spacing-md;
 
     &__header {
         display: flex;
@@ -16,6 +15,11 @@
         color: $text-primary;
         padding: $spacing-lg;
         gap: $spacing-sm;
+        margin-top: $spacing-md;
+
+        @media screen and (max-width: $container-max-width) {
+            margin: $spacing-md $spacing-md 0 $spacing-md;
+        }
     }
 
     &__avatar {
@@ -71,6 +75,7 @@
 
     &__button {
         width: 100%;
+
         &--logout {
             margin-top: $spacing-sm;
             background-color: $accent-red;
@@ -78,35 +83,11 @@
     }
 
     &__tabBar {
-        display: flex;
         justify-content: center;
-        gap: $spacing-sm;
-        border-radius: $border-radius-lg;
-        backdrop-filter: blur(10px);
-        overflow-x: auto;
-        overflow-y: hidden;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
+        margin: 0;
 
-        @media screen and (max-width: $breakpoint-lmd) {
+        @media screen and (max-width: $breakpoint-sm) {
             justify-content: flex-start;
-        }
-    }
-
-    &__tabItem {
-        padding: 0.5rem 1.2rem;
-        border-radius: $border-radius-md;
-        background-color: $bg-secondary;
-        cursor: pointer;
-        font-weight: 500;
-        transition: background-color 0.3s ease;
-
-        &:hover {
-            background-color: $bg-secondary--hover;
-        }
-
-        &--active {
-            background-color: $bg-secondary--active;
         }
     }
 }
