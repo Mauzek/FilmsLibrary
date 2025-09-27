@@ -3,13 +3,16 @@ import { Icon28Profile } from "@vkontakte/icons";
 import type { HeaderProps } from "./types";
 import { HeaderSkeletone } from "./headerSkeletone";
 import { logout } from "@/services";
+import { useNavigate } from "react-router-dom";
 
 export const Header = ({ user, isLoading, isOwner, clearUser }: HeaderProps) => {
+  const navigation = useNavigate();
   if (isLoading) return <HeaderSkeletone/>;
 
     const handleLogout = () => {
         logout();
         clearUser();
+        navigation('/auth')
     }
 
   return (
