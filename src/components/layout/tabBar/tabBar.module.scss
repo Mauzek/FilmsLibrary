@@ -31,21 +31,17 @@
     justify-content: center;
     height: 100%;
     text-decoration: none;
-    color: $text-muted;
     transition: color $transition-fast;
     min-width: 0;
     border-radius: $border-radius-sm;
     width: 60px;
     color: $text-primary;
 
-
     &:hover {
       color: $text-primary;
     }
 
     &--active {
-
-
       .tabBar__icon {
         svg{
           opacity: 1;

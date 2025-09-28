@@ -43,10 +43,13 @@ const tabs = [
 export const TabBar = observer(() => {
   const location = useLocation();
   const {user} = useUserStore();
-  const isActiveLink = (path: string) => {
-    return location.pathname === path;
+
+  const isActiveLink = (tab: Tab) => {
+    if (tab?.isProfile) {
+      return location.pathname === "/auth" || location.pathname.startsWith("/user/");
+    }
+    return location.pathname === tab.path;
   };
-  console.log("render")
 
   const getLinkTo = (tab: Tab) => {
     if (tab.isProfile) {
@@ -76,7 +79,7 @@ export const TabBar = observer(() => {
             key={tab.path}
             to={getLinkTo(tab)}
             className={`${styles.tabBar__item} ${
-              isActiveLink(tab.path) ? styles["tabBar__item--active"] : ""
+              isActiveLink(tab) ? styles["tabBar__item--active"] : ""
             }`}
           >
             <div className={styles.tabBar__icon}>{getIcon(tab)}</div>
