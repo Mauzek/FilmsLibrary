@@ -60,19 +60,19 @@
         transition: border-radius 0.15s ease-in-out;
 
         &--favorites {
-            background-color: rgba(255, 77, 77, 0.2) !important;
+            background-color: rgba(255, 77, 77, 0.2) ;
         }
 
         &--dropped {
-            background-color: rgba(77, 77, 255, 0.2) !important;
+            background-color: rgba(205, 146, 46, 0.2);
         }
 
         &--planned {
-            background-color: rgba(255, 204, 0, 0.2) !important;
+            background-color: rgba(158, 104, 162, 0.2) ;
         }
 
         &--watched {
-            background-color: rgba(77, 255, 77, 0.2) !important;
+            background-color: rgba(77, 255, 77, 0.2) ;
         }
 
         &--open {
@@ -143,11 +143,11 @@
         }
 
         &--dropped {
-            background-color: rgba(77, 77, 255, 0.2);
+            background-color: rgba(205, 146, 46, 0.2);
         }
 
         &--planned {
-            background-color: rgba(255, 204, 0, 0.2);
+            background-color: rgba(158, 104, 162, 0.2);
         }
 
         &--watched {
@@ -204,19 +204,19 @@
             }
 
             &:nth-child(1)::before {
-                background-color: #ff4d4d;
+                background-color: $favorite-color;
             }
 
             &:nth-child(2)::before {
-                background-color: #4dff4d;
+                background-color: $watched-color;
             }
 
             &:nth-child(3)::before {
-                background-color: #ffcc00;
+                background-color: $planned-color;
             }
 
             &:nth-child(4)::before {
-                background-color: #4d4dff;
+                background-color: $dropped-color;
             }
         }
 
@@ -231,11 +231,11 @@
         }
 
         &--dropped {
-            background-color: rgba(77, 77, 255, 0.2) !important;
+            background-color: rgba(205, 146, 46, 0.2) !important;
         }
 
         &--planned {
-            background-color: rgba(255, 204, 0, 0.2) !important;
+            background-color: rgba(158, 104, 162, 0.2) !important;
         }
 
         &--watched {

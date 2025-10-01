@@ -16,12 +16,12 @@ import { useUserStore } from "@/store";
 const LISTS: { key: ListType; label: string }[] = [
   { key: "favorites", label: "Избранное" },
   { key: "watched", label: "Просмотрено" },
-  { key: "planned", label: "Запланировано" },
+  { key: "planned", label: "В планах" },
   { key: "dropped", label: "Брошено" },
 ];
 
 export const Poster = observer(({ poster, title, movie }: PosterProps) => {
-  const {user} = useUserStore();
+  const {user, addMovieToList, removeMovieFromList} = useUserStore();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
   const [activeList, setActiveList] = useState<ListType | null>(null);
@@ -68,9 +68,11 @@ export const Poster = observer(({ poster, title, movie }: PosterProps) => {
     if (activeList === currentList.key) {
       await removeMovie(movie.id);
       setActiveList(null);
+      removeMovieFromList(currentList.key, movie.id)
     } else {
       await setMovieList(movie, currentList.key);
       setActiveList(currentList.key);
+      addMovieToList(currentList.key, movie)
     }
 
     setIsDropdownOpen(false);
