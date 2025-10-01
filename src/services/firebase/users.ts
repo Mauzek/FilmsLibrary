@@ -24,6 +24,14 @@ export const updateUserProfile = async (user: User) => {
   );
 };
 
+export const ensureUserExists = async (user: User) => {
+  const userRef = doc(db, "users", user.uid);
+  const snap = await getDoc(userRef);
+  if (!snap.exists()) {
+    await createUser(user);
+  }
+};
+
 export const getUserProfile = async (uid: string): Promise<User | null> => {
   const userRef = doc(db, "users", uid);
   const snap = await getDoc(userRef);
