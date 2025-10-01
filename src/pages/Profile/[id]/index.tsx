@@ -2,8 +2,9 @@ import { useParams } from "react-router-dom";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { ErrorState, UserDetails } from "@/components";
 import { useEffect } from "react";
+import { observer } from "mobx-react-lite";
 
-const ProfilePage = () => {
+const ProfilePage = observer(() => {
   const { id } = useParams<{ id: string }>();
   const { user, lists, loadingProfile, loadingLists, error } =
     useUserProfile(id);
@@ -12,7 +13,7 @@ const ProfilePage = () => {
       document.title = "Профиль - KINORA";
     }, []);
 
-  if (error || (!user && !loadingProfile))
+    if (error || (!user && !loadingProfile))
     return (
       <ErrorState
         error="400"
@@ -28,10 +29,9 @@ const ProfilePage = () => {
         lists={lists}
         loadingLists={loadingLists}
         loadingProfile={loadingProfile}
-        userId={id!}
       />
     </main>
   );
-};
+});
 
 export default ProfilePage;
