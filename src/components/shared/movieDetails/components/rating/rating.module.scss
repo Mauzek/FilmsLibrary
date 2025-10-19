@@ -39,13 +39,14 @@
         align-items: center;
         gap: $spacing-sm;
         padding: $spacing-sm $spacing-md;
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(150, 150, 150, 0.1);
         border-radius: $border-radius-md;
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(200, 200, 200, 0.1);
+        transition: all 0.2s ease-in-out;
 
         &:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(170, 170, 170, 0.2);
         }
 
         @media (max-width: $breakpoint-sm) {

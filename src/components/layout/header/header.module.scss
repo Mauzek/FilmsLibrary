@@ -21,6 +21,11 @@
         align-items: center;
         justify-content: space-between;
         height: $header-height;
+        padding: 0 $spacing-xl;
+
+                @media (max-width: $breakpoint-lg) {
+        padding: 0 $spacing-xs;
+        }
 
         @media (max-width: $breakpoint-lmd) {
             height: 54px;
@@ -122,7 +127,7 @@
         flex: 1;
         gap: $spacing-md;
         max-width: 400px;
-        margin: 0 $spacing-xl;
+ 
 
         @media (max-width: $breakpoint-xl) {
             flex: 0;

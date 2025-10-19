@@ -11,14 +11,19 @@
     &__header {
         display: flex;
         justify-content: space-between;
+        align-items: center;
     }
 
     &__title {
         font-size: $font-size-2xl;
-        margin: 0;
+        margin: 0 $spacing-xs;
         text-align: left;
         color: $text-secondary;
         transition: color 0.3s ease, background-color 0.2s ease;
+
+        @media screen and (max-width: $breakpoint-sm) {
+            font-size: $font-size-xl;
+        }
     }
 
     &__player {

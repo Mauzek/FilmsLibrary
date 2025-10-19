@@ -9,10 +9,10 @@
     justify-content: space-between;
     padding: $spacing-sm ;
     gap: $spacing-sm;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(150, 150, 150, 0.1);
     border-radius: $border-radius-lg;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(200, 200, 200, 0.1);
     cursor: pointer;
     width: fit-content;
     min-width: 100px;
@@ -58,7 +58,7 @@
     left: 0;
     right: 0;
     background: $bg-secondary;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);     backdrop-filter: blur(12px);
     border-radius: 0 0 $border-radius-lg $border-radius-lg;
     z-index: 1000;
     max-height: 300px;
