@@ -3,8 +3,9 @@ import { Toaster } from "react-hot-toast";
 const TOAST_OPTIONS = {
   duration: 3000,
   style: {
-    background: "#2a2a2a",
+    background: "#191919",
     color: "#fff",
+    border: "1px solid #2a2a2a",
   },
   error: {
     iconTheme: {
@@ -16,13 +17,13 @@ const TOAST_OPTIONS = {
     duration: Infinity,
     iconTheme: {
       primary: "#2787f5",
-      secondary: "#1D2633",
+      secondary: "#2a2a2a",
     },
   },
   success: {
     iconTheme: {
       primary: "#44eb99",
-      secondary: "#000",
+      secondary: "#191919",
     },
   },
 };

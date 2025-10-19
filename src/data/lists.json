@@ -199,12 +199,133 @@
         "previewUrl": "https://avatars.mds.yandex.net/get-bunker/128809/eb0af3584cbb246d790631c91871d545e4cf51d5/x1000"
       },
       "moviesCount": 74
+    },
+    {
+      "category": "genres",
+      "name": "Аниме",
+      "slug": "anime",
+      "cover": {
+        "url": "https://ik.imagekit.io/kinora/genre_anime.webp",
+        "previewUrl": "https://ik.imagekit.io/kinora/genre_anime.webp"
+      },
+      "moviesCount": 320
+    },
+    {
+      "category": "genres",
+      "name": "Биография",
+      "slug": "biografiya",
+      "cover": {
+        "url": "https://ik.imagekit.io/kinora/genre_biografiya.webp",
+        "previewUrl": "https://ik.imagekit.io/kinora/genre_biografiya.webp"
+      },
+      "moviesCount": 118
+    },
+    {
+      "category": "genres",
+      "name": "Боевик",
+      "slug": "boevik",
+      "cover": {
+        "url": "https://ik.imagekit.io/kinora/genre_boevik.webp",
+        "previewUrl": "https://ik.imagekit.io/kinora/genre_boevik.webp"
+      },
+      "moviesCount": 542
+    },
+    {
+      "category": "genres",
+      "name": "Вестерн",
+      "slug": "vestern",
+      "cover": {
+        "url": "https://ik.imagekit.io/kinora/genre_vestern.webp",
+        "previewUrl": "https://ik.imagekit.io/kinora/genre_vestern.webp"
+      },
+      "moviesCount": 62
+    },
+    {
+      "category": "genres",
+      "name": "Военный",
+      "slug": "voennyy",
+      "cover": {
+        "url": "https://ik.imagekit.io/kinora/genre_voennyy.webp",
+        "previewUrl": "https://ik.imagekit.io/kinora/genre_voennyy.webp"
+      },
+      "moviesCount": 145
+    },
+    {
+      "category": "genres",
+      "name": "Детектив",
+      "slug": "detektiv",
+      "cover": {
+        "url": "https://ik.imagekit.io/kinora/genre_detektiv.webp",
+        "previewUrl": "https://ik.imagekit.io/kinora/genre_detektiv.webp"
+      },
+      "moviesCount": 272
+    },
+    {
+      "category": "genres",
+      "name": "Драма",
+      "slug": "drama",
+      "cover": {
+        "url": "https://ik.imagekit.io/kinora/genre_drama.webp",
+        "previewUrl": "https://ik.imagekit.io/kinora/genre_drama.webp"
+      },
+      "moviesCount": 890
+    },
+    {
+      "category": "genres",
+      "name": "Комедия",
+      "slug": "komediya",
+      "cover": {
+        "url": "https://ik.imagekit.io/kinora/genre_komediya.webp",
+        "previewUrl": "https://ik.imagekit.io/kinora/genre_komediya.webp"
+      },
+      "moviesCount": 610
+    },
+    {
+      "category": "genres",
+      "name": "Криминал",
+      "slug": "kriminal",
+      "cover": {
+        "url": "https://ik.imagekit.io/kinora/genre_kriminal.webp",
+        "previewUrl": "https://ik.imagekit.io/kinora/genre_kriminal.webp"
+      },
+      "moviesCount": 328
+    },
+    {
+      "category": "genres",
+      "name": "Фантастика",
+      "slug": "fantastika",
+      "cover": {
+        "url": "https://ik.imagekit.io/kinora/genre_fantastika.webp",
+        "previewUrl": "https://ik.imagekit.io/kinora/genre_fantastika.webp"
+      },
+      "moviesCount": 457
+    },
+    {
+      "category": "genres",
+      "name": "Ужасы",
+      "slug": "uzhasy",
+      "cover": {
+        "url": "https://ik.imagekit.io/kinora/genre_uzhasy.webp",
+        "previewUrl": "https://ik.imagekit.io/kinora/genre_uzhasy.webp"
+      },
+      "moviesCount": 198
+    },
+    {
+      "category": "genres",
+      "name": "Фэнтези",
+      "slug": "fentezi",
+      "cover": {
+        "url": "https://ik.imagekit.io/kinora/genre_fentezi.webp",
+        "previewUrl": "https://ik.imagekit.io/kinora/genre_fentezi.webp"
+      },
+      "moviesCount": 311
     }
   ],
   "categories": {
     "all": "Все",
     "movies": "Фильмы",
     "serials": "Сериалы",
+    "genres": "Жанры",
     "criticism": "Критика",
     "online": "Онлайн-кинотеатр",
     "fees": "Сборы"

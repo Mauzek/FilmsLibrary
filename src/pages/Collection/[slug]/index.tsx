@@ -3,12 +3,20 @@ import { useInfiniteScroll } from "@/hooks";
 import { useMoviesStore } from "@/store";
 import { Icon24VideoOutline } from "@vkontakte/icons";
 import { observer } from "mobx-react-lite";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import listsData from "@data/lists.json";
 
+interface GenreType {
+  category: string;
+  name: string;
+  slug: string;
+  cover: { url: string; previewUrl: string };
+  moviesCount: number;
+}
+
 export const CollectionPage = observer(() => {
-  const { slug } = useParams();
+  const { slug } = useParams<{ slug: string }>();
   const {
     loading,
     movies,
@@ -20,13 +28,27 @@ export const CollectionPage = observer(() => {
     reset,
   } = useMoviesStore();
 
-  const collection = listsData.collections.find((c) => c.slug === slug);
-  if (!collection) {
+  const genresMap: Record<string, GenreType> = useMemo(() => {
+    const map: Record<string, GenreType> = {};
+    listsData.collections
+      .filter((c) => c.category === "genres")
+      .forEach((g) => {
+        map[g.slug] = g;
+      });
+    return map;
+  }, []);
+
+  const collection = listsData.collections.find(
+    (c) => c.slug === slug && c.category !== "genres"
+  );
+  const genre = slug ? genresMap[slug] : null;
+
+  if (!collection && !genre) {
     return (
       <div>
         <ErrorState
-          error="Коллекция не найдена"
-          title="Коллекция не найдена"
+          error="Коллекция или жанр не найдены"
+          title="Ничего не найдено"
           description="Возможно, вы ввели неправильный запрос"
         />
       </div>
@@ -36,11 +58,24 @@ export const CollectionPage = observer(() => {
   useEffect(() => {
     if (slug === "popular-films" || slug === "popular-series") {
       loadMovies({ lists: slug });
-    } else {
-      loadMovies({ lists: slug, sortField: "rating.kp", sortType: "-1" });
+    } else if (genre) {
+      loadMovies({
+        "genres.name": [genre.name.toLowerCase()],
+        sortField: "rating.kp",
+        sortType: "-1",
+        "votes.kp": "100000-6666666",
+      });
+    } else if (collection) {
+      loadMovies({
+        lists: collection.slug,
+        sortField: "rating.kp",
+        sortType: "-1",
+      });
     }
 
-    document.title = `${collection.name} на KINORA`
+    const title = collection?.name || genre?.name || "Фильмы";
+    document.title = `${title} на KINORA`;
+
     return () => {
       reset();
     };
@@ -55,7 +90,10 @@ export const CollectionPage = observer(() => {
 
   return (
     <div>
-      <Section title={collection.name} icon={<Icon24VideoOutline />}>
+      <Section
+        title={(collection || genre)?.name || ""}
+        icon={<Icon24VideoOutline />}
+      >
         {error ? (
           <ErrorState
             error={error}

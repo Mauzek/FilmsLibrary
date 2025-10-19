@@ -9,7 +9,7 @@
   @media (max-width: $container-max-width) {
     grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: calc(var(--grid-gap, 20px) / 2);
-    padding: 0 $spacing-md;
+    padding: 0 $spacing-sm;
   }
 
   @media (max-width: $breakpoint-lg) {

@@ -8,7 +8,7 @@
     margin-top: $spacing-md;
 
     @media screen and (max-width: $container-max-width) {
-        padding: 0 $spacing-md;
+        padding: 0 $spacing-sm;
     }
 
     @media screen and (max-width: $breakpoint-lg) {
