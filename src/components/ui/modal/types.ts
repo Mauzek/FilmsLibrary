@@ -5,5 +5,5 @@ export interface ModalProps {
   title?: string;
   className?: string;
   closeOnBackdropClick?: boolean;
-  closeOnEscape?: boolean;
+  variant?: "center" | "side";
 }

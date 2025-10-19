@@ -18,7 +18,6 @@ export const ListModal = ({
         isListMovie ? `Удалить из "${collectionName}"?` : `Добавить в "${collectionName}"?`
       }
       closeOnBackdropClick={true}
-      closeOnEscape={true}
       className={styles["modal--small"]}
     >
       <div className={styles.modal}>
