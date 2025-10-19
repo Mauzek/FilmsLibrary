@@ -12,6 +12,7 @@ import {
   type ListType,
 } from "@services/firebase";
 import { useUserStore } from "@/store";
+import { toast } from "react-hot-toast";
 
 const LISTS: { key: ListType; label: string }[] = [
   { key: "favorites", label: "Избранное" },
@@ -21,7 +22,7 @@ const LISTS: { key: ListType; label: string }[] = [
 ];
 
 export const Poster = observer(({ poster, title, movie }: PosterProps) => {
-  const {user, addMovieToList, removeMovieFromList} = useUserStore();
+  const { user, addMovieToList, removeMovieFromList } = useUserStore();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
   const [activeList, setActiveList] = useState<ListType | null>(null);
@@ -35,7 +36,7 @@ export const Poster = observer(({ poster, title, movie }: PosterProps) => {
   const posterUrl = poster?.url ?? poster?.previewUrl ?? images.noPoster;
 
   useEffect(() => {
-    if(!user) return;
+    if (!user) return;
     (async () => {
       const list = await getMovieList(movie.id);
       setActiveList(list);
@@ -44,9 +45,7 @@ export const Poster = observer(({ poster, title, movie }: PosterProps) => {
 
   const handleToggleDropdown = () => {
     setIsDropdownOpen((prev) => !prev);
-    if (isDropdownOpen) {
-      setShowOptions(false);
-    }
+    if (isDropdownOpen) setShowOptions(false);
   };
 
   const handleShowOptions = () => {
@@ -65,19 +64,26 @@ export const Poster = observer(({ poster, title, movie }: PosterProps) => {
   const handleConfirmAction = async () => {
     if (!currentList) return;
 
-    if (activeList === currentList.key) {
-      await removeMovie(movie.id);
-      setActiveList(null);
-      removeMovieFromList(currentList.key, movie.id)
-    } else {
-      await setMovieList(movie, currentList.key);
-      setActiveList(currentList.key);
-      addMovieToList(currentList.key, movie)
+    try {
+      if (activeList === currentList.key) {
+        await removeMovie(movie.id);
+        setActiveList(null);
+        removeMovieFromList(currentList.key, movie.id);
+        toast.success(`Удалено из списка "${currentList.label}"`);
+      } else {
+        await setMovieList(movie, currentList.key);
+        setActiveList(currentList.key);
+        addMovieToList(currentList.key, movie);
+        toast.success(`Добавлено в список "${currentList.label}"`);
+      }
+    } catch (err) {
+      console.error("Ошибка при обновлении списка:", err);
+      toast.error("Не удалось обновить список. Попробуйте снова.");
+    } finally {
+      setIsDropdownOpen(false);
+      setShowOptions(false);
+      setIsModalOpen(false);
     }
-
-    setIsDropdownOpen(false);
-    setShowOptions(false);
-    setIsModalOpen(false);
   };
 
   useEffect(() => {
@@ -105,14 +111,20 @@ export const Poster = observer(({ poster, title, movie }: PosterProps) => {
       />
 
       <div className={styles.posterWrapper__likeWrapper}>
-        <button
-          className={`${styles.posterWrapper__likeButton} ${
-            activeList ? styles[`posterWrapper__likeButton--${activeList}`] : ""
-          } ${isDropdownOpen ? styles["posterWrapper__likeButton--open"] : ""}`}
-          onClick={handleToggleDropdown}
-        >
-          {activeList ? <Icon24ChecksOutline /> : <Icon24AddOutline />}
-        </button>
+        {user && (
+          <button
+            className={`${styles.posterWrapper__likeButton} ${
+              activeList
+                ? styles[`posterWrapper__likeButton--${activeList}`]
+                : ""
+            } ${
+              isDropdownOpen ? styles["posterWrapper__likeButton--open"] : ""
+            }`}
+            onClick={handleToggleDropdown}
+          >
+            {activeList ? <Icon24ChecksOutline /> : <Icon24AddOutline />}
+          </button>
+        )}
 
         <div
           ref={dropdownRef}

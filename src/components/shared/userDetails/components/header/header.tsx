@@ -14,6 +14,7 @@ import { useEffect, useRef, useState } from "react";
 import { useUserStore } from "@/store";
 import { Statistics } from "./statistics";
 import { Summary } from "./summary";
+import toast from "react-hot-toast";
 
 export const Header = ({
   user: propsUser,
@@ -62,8 +63,10 @@ export const Header = ({
       try {
         await updateUserProfile(updatedUser);
         setUser(updatedUser);
+        toast.success("Профиль успешно обновлен!");
       } catch (error) {
         console.error("Ошибка обновления профиля:", error);
+        toast.error("Не удалось обновить профиль.");
       }
     }
     setEditMode(false);
