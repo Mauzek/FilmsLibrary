@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { EmptyState, MoviesGrid, Section } from "@/components";
 import { Icon28LikeOutline } from "@vkontakte/icons";
-import { useFavouriteStore } from "@/store";
+import { useUserStore } from "@/store";
 
 export const FavouritePage = () => {
-  const { favourites } = useFavouriteStore();
+  const { lists } = useUserStore();
 
   useEffect(() => {
     document.title = "Избранное на KINORA";
@@ -13,8 +13,8 @@ export const FavouritePage = () => {
   return (
     <main>
       <Section title="Избранное" icon={<Icon28LikeOutline />}>
-        {favourites.length > 0 ? (
-          <MoviesGrid movies={favourites} />
+        {lists.favorites.length > 0 ? (
+          <MoviesGrid movies={lists.favorites} />
         ) : (
           <EmptyState
             title="Список избранного пуст"
