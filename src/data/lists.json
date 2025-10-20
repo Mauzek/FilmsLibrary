@@ -205,8 +205,8 @@
       "name": "Аниме",
       "slug": "anime",
       "cover": {
-        "url": "https://ik.imagekit.io/kinora/genre_anime.webp",
-        "previewUrl": "https://ik.imagekit.io/kinora/genre_anime.webp"
+        "url": "https://ik.imagekit.io/kinora/genre_anime.webp?updatedAt=1760986225139",
+        "previewUrl": "https://ik.imagekit.io/kinora/genre_anime.webp?updatedAt=1760986225139"
       },
       "moviesCount": 320
     },
@@ -300,6 +300,16 @@
       },
       "moviesCount": 457
     },
+        {
+      "category": "genres",
+      "name": "Фэнтези",
+      "slug": "fentezi",
+      "cover": {
+        "url": "https://ik.imagekit.io/kinora/genre_fentezi.webp",
+        "previewUrl": "https://ik.imagekit.io/kinora/genre_fentezi.webp"
+      },
+      "moviesCount": 311
+    },
     {
       "category": "genres",
       "name": "Ужасы",
@@ -309,16 +319,6 @@
         "previewUrl": "https://ik.imagekit.io/kinora/genre_uzhasy.webp"
       },
       "moviesCount": 198
-    },
-    {
-      "category": "genres",
-      "name": "Фэнтези",
-      "slug": "fentezi",
-      "cover": {
-        "url": "https://ik.imagekit.io/kinora/genre_fentezi.webp",
-        "previewUrl": "https://ik.imagekit.io/kinora/genre_fentezi.webp"
-      },
-      "moviesCount": 311
     }
   ],
   "categories": {
