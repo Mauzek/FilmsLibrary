@@ -1,7 +1,8 @@
-export interface FavoriteModalProps {
+export interface ListModalProps {
   movieName?: string;
+  collectionName: string
   isOpen: boolean;
-  isFavouriteMovie: boolean;
+  isListMovie: boolean;
   handleToggleModal: () => void;
   handleConfirmAction: () => void;
 }

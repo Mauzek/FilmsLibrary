@@ -2,10 +2,10 @@
 
 .accordion {
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(150, 150, 150, 0.1);
   border-radius: $border-radius-lg;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(200, 200, 200, 0.1);
 
   &__header {
     width: 100%;

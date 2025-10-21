@@ -30,6 +30,7 @@
       "@config/*": ["./src/config/*"],
       "@pages/*": ["./src/pages/*"],
       "@data/*": ["./src/data/*"],
+      "@services/*": ["./src/services/*"],
     },
 
     /* Linting */

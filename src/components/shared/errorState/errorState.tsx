@@ -43,7 +43,7 @@ export const ErrorState = ({ error, title, description }: ErrorStateProps) => {
       return (
         <EmptyState
           title="Похоже закончились токены"
-          description="Вы можете воспользоваться VK FilmsLib позже"
+          description="Вы можете воспользоваться KINORA позже"
           icon={<Icon28ClockCircleDashedOutline />}
         />
       );

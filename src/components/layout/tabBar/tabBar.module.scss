@@ -5,6 +5,7 @@
   bottom: 0;
   left: 0;
   right: 0;
+  backdrop-filter: blur(12px) saturate(180%);
   background: $bg-secondary;
   z-index: $z-header;
   display: none;
@@ -16,9 +17,11 @@
 
   &__nav {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     max-width: 100%;
+    height: 54px;
+    gap:2vw;
   }
 
   &__item {
@@ -26,20 +29,24 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: $spacing-sm $spacing-md;
+    height: 100%;
     text-decoration: none;
-    color: $text-muted;
     transition: color $transition-fast;
     min-width: 0;
-    flex: 1;
     border-radius: $border-radius-sm;
+    width: 60px;
+    color: $text-primary;
 
     &:hover {
       color: $text-primary;
     }
 
     &--active {
-      color: $text-primary;
+      .tabBar__icon {
+        svg{
+          opacity: 1;
+        }
+      }
     }
   }
 
@@ -47,24 +54,23 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: $spacing-xs;
+    
+    svg{
+      opacity: 0.5;
+    }
   }
 
-  &__text {
-    font-size: $font-size-xs;
-    font-weight: $font-weight-regular;
-    line-height: 1;
-    text-align: center;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
-    font-family: $font-primary;
+  &__avatar{
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    object-fit: cover;
   }
+
 }
 
 body {
   @media (max-width: $breakpoint-md) {
-    padding-bottom: 60px;
+    padding-bottom: 50px;
   }
 }

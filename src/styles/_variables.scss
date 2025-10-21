@@ -6,12 +6,12 @@ $primary-dark: #1976d2;            // Темно-синий для ховера
 $primary-light: #447BBA;           // Светло-синий для акцентов
 
 $bg-primary: #141414;              // Основной темный фон
-$bg-secondary: #222222;            // Вторичный фон
+$bg-secondary: #191919cc;          // Вторичный фон
 $bg-card: #2a2a2a;                 // Фон карточек
 $bg-primay--hover: #1d1d1d;        // Фон при наведении
-$bg-secondary--hover: #2b2b2b;     // Фон при наведении
-$bg-secondary--active: #333333;    // Фон при фокусе
-$bg-input: #424242;                // Фон полей ввода
+$bg-secondary--hover: #ffffff0d;   // Фон при наведении
+$bg-secondary--active: #ffffff1a;  // Фон при фокусе
+$bg-input: #222222;                // Фон полей ввода
 $bg-input--hover: #4a4a4a;         // Фон при наведении
 
 $text-primary: #ffffff;            // Основной текст
@@ -26,6 +26,12 @@ $input-text-secondary: #939393;    // Вторичный текст
 // Вторичный текст 
 $border-color-light: #dadce0;
 $shadow-light: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+
+// Цвета коллекций
+$favorite-color: #B24443;        // Красный для избранного
+$planned-color: #9E68A2;         // Фиолетовый для запланированного
+$watched-color: #639C67;         // Зеленый для просмотренного
+$dropped-color: #CD922E;         // Желтый для брошенного
 
 // Акцентные цвета
 $accent-blue: #2787f5;             // Синий для ссылок

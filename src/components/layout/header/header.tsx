@@ -7,7 +7,10 @@ import {
   Icon28FilmStripOutline,
   Icon28LikeOutline,
   Icon28PlayRectangleStackOutline,
+  Icon28Profile,
 } from "@vkontakte/icons";
+import { useUserStore } from "@/store";
+import { observer } from "mobx-react-lite";
 
 const tabs = [
   {
@@ -22,7 +25,7 @@ const tabs = [
   },
   {
     path: "/collections",
-    icon: <Icon28PlayRectangleStackOutline/>,
+    icon: <Icon28PlayRectangleStackOutline />,
     text: "Коллекции",
   },
   {
@@ -32,9 +35,9 @@ const tabs = [
   },
 ];
 
-export const Header = () => {
+export const Header = observer(() => {
   const location = useLocation();
-
+  const { user } = useUserStore();
   const isActiveLink = (path: string) => {
     return location.pathname === path;
   };
@@ -45,14 +48,12 @@ export const Header = () => {
         <Link to="/" className={styles.header__logo}>
           <img
             src={images.logo}
-            alt="Logo VK FilmsLib"
+            alt="Logo KINORA"
             className={styles.header__logoImage}
           />
         </Link>
 
-        <nav
-          className={styles.header__nav}
-        >
+        <nav className={styles.header__nav}>
           <ul className={styles.header__navList}>
             {tabs.map((tab) => (
               <li key={tab.path} className={styles.header__navItem}>
@@ -62,7 +63,7 @@ export const Header = () => {
                     isActiveLink(tab.path)
                       ? styles["header__navLink--active"]
                       : ""
-                  }`}                 
+                  }`}
                 >
                   {tab.icon} {tab.text}
                 </Link>
@@ -73,8 +74,27 @@ export const Header = () => {
 
         <div className={styles.header__search}>
           <SearchForm />
+          {user ? (
+            <Link
+              to={`/user/${user.uid}`}
+              className={`${styles.header__profileLink} ${styles.header__navLink}`}
+            >
+              {user.photoURL ? (
+                <img src={user.photoURL} alt="User avatar" />
+              ) : (
+                <Icon28Profile />
+              )}
+            </Link>
+          ) : (
+            <Link
+              to="/auth"
+              className={`${styles.header__profileLink} ${styles.header__navLink}`}
+            >
+              <Icon28Profile />
+            </Link>
+          )}
         </div>
       </div>
     </header>
   );
-};
+});

@@ -4,21 +4,18 @@
     display: flex;
     width: 100%;
     position: relative;
-    background: $bg-input;
+    background: none;
+    background-color: $bg-secondary--hover;
     border-radius: $border-radius-lg;
     transition: all $transition-normal;
     overflow: hidden;
 
+    &:has(&__input:focus) {
+        background-color: $bg-secondary--active;
+    }
+
     &:hover {
-        background-color: $bg-input--hover;
-
-        .searchForm__input {
-            background-color: $bg-input--hover;
-        }
-
-        .searchForm__button {
-            background-color: $bg-input--hover;
-        }
+        background-color: $bg-secondary--active;
     }
 
     &__input {
@@ -28,7 +25,7 @@
         font-size: $font-size-base;
         font-weight: $font-weight-medium;
         transition: all $transition-normal;
-        background-color: inherit;
+        background: none;
         border: none;
         outline: none;
         color: $input-text-primary;
@@ -48,7 +45,7 @@
 
     &__button {
         padding: $spacing-sm;
-        background-color: inherit;
+        background-color: transparent;
         border: none;
         color: $input-text-secondary;
         cursor: pointer;
@@ -61,7 +58,6 @@
         transform: translateX(50px);
 
         &:hover {
-            background-color: $bg-input;
             color: $input-text-primary;
         }
 

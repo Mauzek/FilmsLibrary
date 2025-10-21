@@ -4,9 +4,8 @@ import { api } from "@/api";
 import type { Movie } from "@/types";
 import { ErrorState, MovieDetails } from "@/components";
 import { useRecentMoviesStore } from "@/store";
-import { observer } from "mobx-react-lite";
 
-export const MoviePage = observer(() => {
+export const MoviePage = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState<Movie>({} as Movie);
   const [loading, setLoading] = useState(true);
@@ -23,7 +22,7 @@ export const MoviePage = observer(() => {
         recentStore.addToRecentMovies(res.data);
         document.title = `${
           res.data.name ?? res.data.alternativeName
-        } на VK FilmsLib`;
+        } на KINORA`;
         const metaDescription = document.querySelector(
           'meta[name="description"]'
         );
@@ -32,7 +31,7 @@ export const MoviePage = observer(() => {
             "content",
             movie
               ? `"${movie.description}"`
-              : "Поиск фильмов в библиотеке VK FilmsLib"
+              : "Поиск фильмов в библиотеке KINORA"
           );
         }
       } catch (err) {
@@ -72,4 +71,4 @@ export const MoviePage = observer(() => {
       )}
     </main>
   );
-});
+};

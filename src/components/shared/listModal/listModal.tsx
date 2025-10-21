@@ -1,36 +1,35 @@
 import { Modal } from "@/components/ui";
-import styles from "./favoriteModal.module.scss";
-import type { FavoriteModalProps } from "./types";
+import styles from "./listModal.module.scss";
+import type { ListModalProps } from "./types";
 
-export const FavoriteModal = ({
+export const ListModal = ({
   isOpen,
-  isFavouriteMovie,
+  isListMovie,
   handleToggleModal,
   movieName,
+  collectionName,
   handleConfirmAction,
-}: FavoriteModalProps) => {
+}: ListModalProps) => {
   return (
     <Modal
       isOpen={isOpen}
       onClose={handleToggleModal}
       title={
-        isFavouriteMovie ? "Удалить из избранного?" : "Добавить в избранное?"
+        isListMovie ? `Удалить из "${collectionName}"?` : `Добавить в "${collectionName}"?`
       }
       closeOnBackdropClick={true}
-      closeOnEscape={true}
       className={styles["modal--small"]}
     >
       <div className={styles.modal}>
         <div className={styles.modal__content}>
           <p className={styles.modal__text}>
-            {isFavouriteMovie ? (
+            {isListMovie ? (
               <>
-                Вы уверены, что хотите удалить <span>{movieName}</span> из
-                избранного?
+                Вы уверены, что хотите удалить <span>{movieName}</span> из списка "{collectionName}"?
               </>
             ) : (
               <>
-                Хотите добавить <span>{movieName}</span> в избранное?
+                Хотите добавить <span>{movieName}</span> в список "{collectionName}"?
               </>
             )}
           </p>
@@ -42,13 +41,13 @@ export const FavoriteModal = ({
           </button>
           <button
             className={`${styles.modal__button} ${
-              isFavouriteMovie
+              isListMovie
                 ? styles["modal__button--remove"]
                 : styles["modal__button--add"]
             }`}
             onClick={handleConfirmAction}
           >
-            {isFavouriteMovie ? "Удалить" : "Добавить"}
+            {isListMovie ? "Удалить" : "Добавить"}
           </button>
         </div>
       </div>

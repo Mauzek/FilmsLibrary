@@ -1,5 +1,5 @@
 import "./App.scss";
-import { Layout } from "@/components";
+import { Layout, PublicRoute } from "@/components";
 import { Route, Routes } from "react-router-dom";
 import {
   CollectionPage,
@@ -11,6 +11,8 @@ import {
   NotFoundPage,
   SearchPage,
 } from "@/pages";
+import AuthPage from "./pages/Auth";
+import ProfilePage from "./pages/Profile/[id]";
 
 function App() {
   return (
@@ -24,6 +26,10 @@ function App() {
           <Route path="/favourite" element={<FavouritePage />} />
           <Route path="/collections" element={<CollectionsPage />} />
           <Route path="/collections/:slug" element={<CollectionPage />} />
+          <Route element={<PublicRoute />}>
+            <Route path="/auth" element={<AuthPage />} />
+          </Route>
+          <Route path="/user/:id" element={<ProfilePage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Layout>

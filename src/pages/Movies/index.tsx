@@ -24,7 +24,7 @@ export const MoviesPage = observer(() => {
   } = moviesStore;
 
   useEffect(() => {
-    document.title = "Фильмы на VK FilmsLib";
+    document.title = "Фильмы на KINORA";
   }, []);
 
   useEffect(() => {

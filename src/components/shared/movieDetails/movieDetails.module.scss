@@ -41,11 +41,12 @@
 
         @media screen and (max-width: $breakpoint-md) {
             gap: $spacing-lg;
+            padding: $spacing-lg $spacing-md;
         }
 
         @media screen and (max-width: $breakpoint-sm) {
             gap: $spacing-lg;
-            padding: $spacing-lg $spacing-md;
+            padding: $spacing-lg $spacing-sm;
         }
 
         @media screen and (max-width: $breakpoint-2xs) {

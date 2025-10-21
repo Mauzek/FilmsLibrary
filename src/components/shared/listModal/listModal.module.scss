@@ -5,7 +5,7 @@
     &--small {
         max-width: 350px;
 
-        @media screen and (max-width: $breakpoint-md) {
+        @media screen and (max-width: $breakpoint-sm) {
             max-width: 100%;
         }
     }

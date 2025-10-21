@@ -30,8 +30,8 @@ export const SearchPage = observer(() => {
 
   useEffect(() => {
     const title = query
-      ? `Поиск: "${query}" - VK FilmsLib`
-      : "Поиск фильмов - VK FilmsLib";
+      ? `Поиск: "${query}" - KINORA`
+      : "Поиск фильмов - KINORA";
     document.title = title;
 
     const metaDescription = document.querySelector('meta[name="description"]');
@@ -40,7 +40,7 @@ export const SearchPage = observer(() => {
         "content",
         query
           ? `Результаты поиска фильмов по запросу "${query}"`
-          : "Поиск фильмов в библиотеке VK FilmsLib"
+          : "Поиск фильмов в библиотеке KINORA"
       );
     }
   }, [query]);

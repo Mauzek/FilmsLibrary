@@ -1,0 +1,58 @@
+@use '@styles/variables' as *;
+
+.carousel {
+    margin-top: 40px;
+    position: relative;
+    
+    @media screen and (max-width: $breakpoint-lmd) {
+        margin-top: $spacing-lg;
+    }
+
+    @media screen and (max-width: $breakpoint-lmd) {
+        max-height: 400px;
+    }
+
+    @media screen and (max-width: $breakpoint-sm) {
+        max-height: 300px;
+    }
+
+    &__swiper {
+        background: #000;
+        height: var(--swiper-height, 500px);
+        min-height: 300px;
+        border-radius: $border-radius-xl;
+
+        @media screen and (max-width: $container-max-width) {
+            border-radius: 0;
+        }
+
+        @media screen and (max-width: $breakpoint-lmd) {
+            height: 400px;
+        }
+
+        @media screen and (max-width: $breakpoint-sm) {
+            height: 300px;
+        }
+    }
+
+    &__pagination {
+        margin-top: 20px;
+        text-align: center;
+        z-index: 3;
+        position: relative;
+    }
+
+    &__pagination .swiper-pagination-bullet {
+        width: 10px;
+        height: 10px;
+        background: $bg-secondary--active;
+        transition: all 0.3s ease;
+    }
+
+    &__pagination .swiper-pagination-bullet-active {
+        opacity: 1;
+        background: $primary-color;
+        width: 28px;
+        border-radius: 20px;
+    }
+}

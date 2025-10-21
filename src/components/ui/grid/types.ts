@@ -3,4 +3,5 @@ export interface GridProps {
   columns?: number;
   gap?: number;
   className?: string;
+  scrollable?: 'none' | 'all' | 'mobile' | 'desktop';
 }

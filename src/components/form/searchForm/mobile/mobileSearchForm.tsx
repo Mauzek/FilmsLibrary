@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from "react";
-import { Icon24Search, Icon24CancelOutline } from "@vkontakte/icons";
+import { Icon28SearchOutline, Icon24CancelOutline } from "@vkontakte/icons";
 import { useSearchForm } from "@/hooks";
 import styles from "./mobileSearchForm.module.scss";
+import { createPortal } from "react-dom";
 
 export const MobileSearchForm = () => {
   const { query, handleSubmit, handleQueryChange } = useSearchForm();
@@ -26,10 +27,22 @@ export const MobileSearchForm = () => {
   useEffect(() => {
     if (isExpanded && inputRef.current) {
       const timer = setTimeout(() => {
-        inputRef.current?.focus();       
+        inputRef.current?.focus();
       }, 10);
       return () => clearTimeout(timer);
     }
+  }, [isExpanded]);
+
+  useEffect(() => {
+    if (isExpanded) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [isExpanded]);
 
   return (
@@ -43,7 +56,7 @@ export const MobileSearchForm = () => {
           onClick={handleToggleExpand}
           aria-label="Поиск"
         >
-          <Icon24Search />
+          <Icon28SearchOutline />
         </button>
 
         <div
@@ -54,7 +67,7 @@ export const MobileSearchForm = () => {
           <form onSubmit={onSubmit} className={styles.searchFormMobile__form}>
             <div className={styles.searchFormMobile__inputWrapper}>
               <span className={styles.searchFormMobile__icon}>
-                <Icon24Search />
+                <Icon28SearchOutline />
               </span>
               <input
                 ref={inputRef}
@@ -81,12 +94,14 @@ export const MobileSearchForm = () => {
         </div>
       </div>
 
-      {isExpanded && (
-        <div
-          className={styles.searchFormMobile__overlay}
-          onClick={handleClose}
-        />
-      )}
+      {isExpanded &&
+        createPortal(
+          <div
+            className={styles.searchFormMobile__overlay}
+            onClick={handleClose}
+          />,
+          document.body
+        )}
     </>
   );
 };

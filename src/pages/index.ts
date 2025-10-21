@@ -6,3 +6,5 @@ export * from './Search';
 export * from './NotFound';
 export * from './Collection/[slug]';
 export * from './Collections';
+export * from './Auth';
+export * from './Profile/[id]';

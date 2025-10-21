@@ -1,11 +1,12 @@
 {
-  "short_name": "VK FilmsLib",
-  "name": "VK FilmsLib - онлайн-библиотека фильмов.",
-  "description": "VK FilmsLib - онлайн-библиотека фильмов. Найдите и смотрите любимые фильмы в высоком качестве. Широкий выбор жанров и удобный поиск.",
+  "id": "/",
+  "short_name": "KINORA",
+  "name": "KINORA",
+  "description": "KINORA - онлайн-библиотека фильмов. Найдите и смотрите любимые фильмы в высоком качестве. Широкий выбор жанров и удобный поиск.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#141414",
-  "theme_color": "#222222",
+  "theme_color": "#141414",
   "orientation": "portrait-primary",
   "scope": "/",
   "lang": "ru-RU",
@@ -46,14 +47,14 @@
     {
       "src": "/screenshots/mainPage-desktop.png",
       "type": "image/png",
-      "sizes": "1280x720",
+      "sizes": "1917x1079",
       "form_factor": "wide",
       "description": "Главная страница на большом экране"
     },
     {
       "src": "/screenshots/mainPage-mobile.png",
       "type": "image/png",
-      "sizes": "360x791",
+      "sizes": "438x971",
       "description": "Главная страница на смартфоне"
     }
   ]

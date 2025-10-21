@@ -12,6 +12,7 @@ export interface ApiFilters {
   lists?: string;
   sortField?: string;
   sortType?: '1' | '-1';
+  notNullFields?: string;
 }
 
 export interface PersonFilters
@@ -37,4 +38,14 @@ export interface ApiError {
   statusCode: number;
   message: string;
   error: string;
+}
+
+export interface FirebaseConfigType {
+  apiKey: string;
+  authDomain: string;
+  projectId: string;
+  storageBucket: string;
+  messagingSenderId: string;
+  appId: string;
+  measurementId: string;
 }

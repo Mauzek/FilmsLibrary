@@ -7,18 +7,20 @@ export const MoviesGrid = ({
   gap,
   loading = false,
   isLoadingMore = false,
-  className = ''
+  className = '',
+  scrollable = 'none',
+  skeletonCount = 10
 }: MoviesGridProps) => {
   const renderSkeletons = () => {
-    return Array.from({ length: 10 }, (_, index) => (
+    return Array.from({ length: skeletonCount }, (_, index) => (
       <MovieCardSkeleton key={`skeleton-${index}`} />
     ));
   };
 
   return (
-    <Grid columns={columns} gap={gap} className={className}>
+    <Grid columns={columns} gap={gap} className={className} scrollable={scrollable}>
       {loading && renderSkeletons()}
-      {movies.map((movie) => (
+      {!loading && movies.map((movie) => (
         <MovieCard key={movie.id} movie={movie} />
       ))}
       {isLoadingMore && renderSkeletons()}

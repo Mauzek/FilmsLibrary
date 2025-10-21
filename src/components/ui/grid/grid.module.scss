@@ -8,9 +8,10 @@
 
   @media (max-width: $container-max-width) {
     grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap:calc(var(--grid-gap, 20px) / 2);
-    padding: 0 $spacing-md;
+    gap: calc(var(--grid-gap, 20px) / 2);
+    padding: 0 $spacing-sm;
   }
+
   @media (max-width: $breakpoint-lg) {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
@@ -18,9 +19,58 @@
   @media (max-width: $breakpoint-md) {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-  
+
   @media (max-width: $breakpoint-xs) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
 
+.scrollableX {
+  display: flex !important;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  gap: var(--grid-gap, 20px);
+
+  & > * {
+    flex: 0 0 auto; 
+  }
+}
+
+.scrollableXMobile {
+  @media (max-width: $breakpoint-lmd) {
+    display: flex !important;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: $spacing-sm;
+
+    & > * {
+      flex: 0 0 auto;
+      width: 150px;
+    }
+  }
+}
+
+.scrollableXDesktop {
+  @media (min-width: 769px) {
+    display: flex !important;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: var(--grid-gap, 20px);
+
+    & > * {
+      flex: 0 0 auto;
+    }
+  }
+}
+
+.scrollableX,
+.scrollableXMobile,
+.scrollableXDesktop {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }

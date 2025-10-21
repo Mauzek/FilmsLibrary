@@ -7,4 +7,6 @@ export interface MoviesGridProps {
     loading?: boolean;
     isLoadingMore?: boolean;
     className?: string;
+    scrollable?: 'none' | 'all' | 'mobile' | 'desktop';
+    skeletonCount?: number;
 }

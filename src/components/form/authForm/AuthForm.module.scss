@@ -1,0 +1,54 @@
+@use '@styles/variables' as *;
+
+.authForm {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 100%;
+    max-width: 400px;
+    background-color: $bg-secondary;
+    padding: $spacing-lg;
+    border-radius: $border-radius-lg;
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-md;
+    }
+
+    &__submit {
+        margin-top: $spacing-sm;
+        height: 40px;
+        background-color: $primary-dark;
+
+        &:hover {
+            background-color: $accent-blue;
+        }
+    }
+
+    &__google {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: $spacing-sm;
+        background-color: $bg-input;
+        margin-top: $spacing-sm;
+
+        svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        &:hover {
+            background-color: $bg-secondary--active;
+        }
+    }
+
+    &__toggle {
+        background-color: transparent;
+        color: $accent-blue;
+        margin-top: $spacing-sm;
+    }
+}

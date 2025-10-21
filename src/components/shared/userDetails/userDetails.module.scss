@@ -1,0 +1,16 @@
+@use '@styles/variables' as *;
+
+.userDetails {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+
+    &__tabBar {
+        justify-content: center;
+        margin: 0;
+
+        @media screen and (max-width: $breakpoint-sm) {
+            justify-content: flex-start;
+        }
+    }
+}
