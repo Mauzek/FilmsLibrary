@@ -2,7 +2,7 @@ import { Navigate, Outlet } from "react-router-dom";
 import { useUserStore } from "@/store";
 import { observer } from "mobx-react-lite";
 
-export const PublicRoute = observer(() => {
+const PublicRoute = observer(() => {
   const { user, loading} = useUserStore();
 
   if (loading) return null;
@@ -13,3 +13,5 @@ export const PublicRoute = observer(() => {
 
   return <Outlet />;
 });
+
+export default PublicRoute;

@@ -1,7 +1,7 @@
 import { ErrorState } from "@/components";
 import { useEffect } from "react";
 
-export const NotFoundPage = () => {
+const NotFoundPage = () => {
   useEffect(() => {
     document.title = "Страница не найдена 404 - KINORA";
   }, []);
@@ -11,3 +11,5 @@ export const NotFoundPage = () => {
     </main>
   );
 };
+
+export default NotFoundPage;

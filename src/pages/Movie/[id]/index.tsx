@@ -5,7 +5,7 @@ import type { Movie } from "@/types";
 import { ErrorState, MovieDetails } from "@/components";
 import { useRecentMoviesStore } from "@/store";
 
-export const MoviePage = () => {
+const MoviePage = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState<Movie>({} as Movie);
   const [loading, setLoading] = useState(true);
@@ -72,3 +72,5 @@ export const MoviePage = () => {
     </main>
   );
 };
+
+export default MoviePage;

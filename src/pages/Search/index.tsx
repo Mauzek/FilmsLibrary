@@ -6,7 +6,7 @@ import { useInfiniteScroll } from "@/hooks";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 
-export const SearchPage = observer(() => {
+const SearchPage = observer(() => {
   const [searchParams] = useSearchParams();
   const {
     loading,
@@ -77,3 +77,5 @@ export const SearchPage = observer(() => {
     </main>
   );
 });
+
+export default SearchPage;

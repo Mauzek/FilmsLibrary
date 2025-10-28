@@ -11,7 +11,7 @@ import { useMoviesStore, useRecentMoviesStore, useUserStore } from "@/store";
 import { observer } from "mobx-react-lite";
 import styles from "./mainPage.module.scss";
 
-export const MainPage = observer(() => {
+const MainPage = observer(() => {
   const { loading, popularMovies, popularSlides, loadPopularContent, error } =
     useMoviesStore();
   const recentStore = useRecentMoviesStore();
@@ -70,3 +70,5 @@ export const MainPage = observer(() => {
     </main>
   );
 });
+
+export default MainPage;
