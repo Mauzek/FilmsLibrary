@@ -1,4 +1,4 @@
-import styles from "./CollectionsPage.module.scss";
+import styles from "./collectionsPage.module.scss";
 import { CollectionCardSkeleton, Grid, Skeleton } from "@/components";
 
 export const CollectionsPageSkeleton = () => {
