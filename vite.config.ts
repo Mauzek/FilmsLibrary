@@ -26,15 +26,13 @@ export default defineConfig({
 outDir: 'dist',
     sourcemap: false,
     minify: 'esbuild',
-    chunkSizeWarningLimit: 800,
+    chunkSizeWarningLimit: 500,
     rollupOptions: {
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'],
           router: ['react-router-dom'],
-          firebase: ['firebase/*'],
-          gsap: ['gsap'],
-          swiper: ['swiper'],
+          firebase: ['firebase/app', 'firebase/auth', 'firebase/firestore'],
           axios: ['axios'],
           mobx: ['mobx']
         }
