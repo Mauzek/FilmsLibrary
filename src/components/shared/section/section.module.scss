@@ -12,14 +12,12 @@
 
         @media (max-width: $breakpoint-lg) {
             padding: $spacing-sm $spacing-md;
-
         }
 
         @media (max-width: $breakpoint-md) {
             padding: $spacing-sm $spacing-md;
             padding-left: $spacing-lg;
         }
-
     }
 
     &__title {

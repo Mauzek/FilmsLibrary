@@ -17,7 +17,7 @@
     }
 
     &__swiper {
-        background: #000;
+        background: $bg-secondary;
         height: var(--swiper-height, 500px);
         min-height: 300px;
         border-radius: $border-radius-xl;

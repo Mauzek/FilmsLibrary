@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { gsap } from "gsap";
 import { Icon24Cancel } from "@vkontakte/icons";
 import styles from "./modal.module.scss";
 import type { ModalProps } from "./types";
@@ -20,8 +19,15 @@ export const Modal = ({
   if (!modalRoot) throw new Error("Не найден элемент #modal-root в index.html");
 
   const [isMobile, setIsMobile] = useState(false);
+  const [gsapLib, setGsapLib] = useState<typeof import("gsap") | null>(null);
   const currentVariant = isMobile ? "bottom" : variant;
   const THRESHOLD = 80;
+  
+  useEffect(() => {
+    if (isOpen && !gsapLib) {
+      import("gsap").then((mod) => setGsapLib(mod));
+    }
+  }, [isOpen, gsapLib]);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 640);
@@ -31,7 +37,8 @@ export const Modal = ({
   }, []);
 
   const animateOpen = () => {
-    if (!modalRef.current || !backdropRef.current) return;
+    if (!modalRef.current || !backdropRef.current || !gsapLib) return;
+    const gsap = gsapLib.gsap;
 
     if (currentVariant === "bottom") gsap.set(modalRef.current, { y: "100%" });
     else if (currentVariant === "center")
@@ -40,7 +47,6 @@ export const Modal = ({
       gsap.set(modalRef.current, { x: "100%" });
 
     gsap.set(backdropRef.current, { opacity: 0, pointerEvents: "auto" });
-
     gsap.to(backdropRef.current, { opacity: 1, duration: 0.3, ease: "power2.out" });
 
     if (currentVariant === "bottom") {
@@ -58,7 +64,8 @@ export const Modal = ({
   };
 
   const animateClose = (callback?: () => void) => {
-    if (!modalRef.current || !backdropRef.current) return;
+    if (!modalRef.current || !backdropRef.current || !gsapLib) return;
+    const gsap = gsapLib.gsap;
 
     const closeAnim =
       currentVariant === "bottom"
@@ -83,9 +90,9 @@ export const Modal = ({
   };
 
   useEffect(() => {
-    if (isOpen) animateOpen();
-    else animateClose();
-  }, [isOpen, currentVariant]);
+    if (isOpen && gsapLib) animateOpen();
+    else if (!isOpen && gsapLib) animateClose();
+  }, [isOpen, currentVariant, gsapLib]);
 
   useEffect(() => {
     const body = document.body;
@@ -95,7 +102,7 @@ export const Modal = ({
       body.style.overflow = "hidden";
       body.style.paddingRight = `${scrollbarW}px`;
     } else {
-      gsap.delayedCall(0.35, () => {
+      gsapLib?.gsap.delayedCall(0.35, () => {
         body.style.overflow = "";
         body.style.paddingRight = "";
       });
@@ -105,10 +112,11 @@ export const Modal = ({
       body.style.overflow = "";
       body.style.paddingRight = "";
     };
-  }, [isOpen]);
+  }, [isOpen, gsapLib]);
 
   useEffect(() => {
-    if (currentVariant !== "bottom") return;
+    if (currentVariant !== "bottom" || !gsapLib) return;
+    const gsap = gsapLib.gsap;
 
     const modal = modalRef.current;
     const content = modal?.querySelector(`.${styles.modal__content}`) as HTMLElement | null;
@@ -159,8 +167,7 @@ export const Modal = ({
       modal.removeEventListener("touchmove", onTouchMove);
       modal.removeEventListener("touchend", onTouchEnd);
     };
-  }, [isOpen, currentVariant, onClose]);
-
+  }, [isOpen, currentVariant, onClose, gsapLib]);
 
   const handleClickOutside = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget && closeOnBackdropClick) {

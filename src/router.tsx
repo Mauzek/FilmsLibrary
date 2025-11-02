@@ -5,7 +5,15 @@ import { RouteWrapper } from "./lib";
 import { ErrorState } from "./components";
 import { MainPageSkeleton } from "./pages/Main/mainPageSkeleton";
 import NotFoundPage from "@/pages/NotFound";
-
+import { MoviesPageSkeleton } from "./pages/Movies/moviesPageSkeleton";
+import { CollectionPageSkeleton } from "./pages/Collection/[slug]/collectionPageSkeleton";
+import { CollectionsPageSkeleton } from "./pages/Collections/collectionsPageSkeleton";
+import { FavouritePageSkeleton } from "./pages/Favourite/favouritePageSkeleton";
+import { PublicRoute } from "@/components/layout/routes/PublicRoute";
+import { AuthPageSkeleton } from "./pages/Auth/authPageSkeleton";
+import { SearchPageSkeleton } from "./pages/Search/searchPageSkeleton";
+import { ProfilePageSkeleton } from "./pages/Profile/[id]/profilePageSkeleton";
+import { MovieDetailsSkeleton } from "./components/shared/movieDetails/movieDetailsSkeleton";
 const MainPage = lazy(() => import("@/pages/Main"));
 const MoviesPage = lazy(() => import("@/pages/Movies"));
 const MoviePage = lazy(() => import("@/pages/Movie/[id]"));
@@ -15,8 +23,6 @@ const CollectionsPage = lazy(() => import("@/pages/Collections"));
 const CollectionPage = lazy(() => import("@/pages/Collection/[slug]"));
 const AuthPage = lazy(() => import("@/pages/Auth"));
 const ProfilePage = lazy(() => import("@/pages/Profile/[id]"));
-
-const PublicRoute = lazy(() => import("@/components/layout/routes/PublicRoute"));
 
 export const router = createBrowserRouter([
   {
@@ -44,7 +50,7 @@ export const router = createBrowserRouter([
         element: (
           <RouteWrapper
             Page={MoviesPage}
-            skeleton={<div style={{ padding: 24 }}>Загрузка фильмов...</div>}
+            skeleton={<MoviesPageSkeleton />}
             errorComponent={(props) => (
               <ErrorState
                 error={props.error.message}
@@ -60,7 +66,7 @@ export const router = createBrowserRouter([
         element: (
           <RouteWrapper
             Page={MoviePage}
-            skeleton={<div style={{ padding: 24 }}>Загрузка фильма...</div>}
+            skeleton={<MovieDetailsSkeleton />}
             errorComponent={(props) => (
               <ErrorState
                 error={props.error.message}
@@ -76,7 +82,7 @@ export const router = createBrowserRouter([
         element: (
           <RouteWrapper
             Page={SearchPage}
-            skeleton={<div style={{ padding: 24 }}>Поиск...</div>}
+            skeleton={<SearchPageSkeleton />}
             errorComponent={(props) => (
               <ErrorState
                 error={props.error.message}
@@ -92,7 +98,7 @@ export const router = createBrowserRouter([
         element: (
           <RouteWrapper
             Page={FavouritePage}
-            skeleton={<div style={{ padding: 24 }}>Загрузка избранного...</div>}
+            skeleton={<FavouritePageSkeleton />}
             errorComponent={(props) => (
               <ErrorState
                 error={props.error.message}
@@ -108,7 +114,7 @@ export const router = createBrowserRouter([
         element: (
           <RouteWrapper
             Page={CollectionsPage}
-            skeleton={<div style={{ padding: 24 }}>Загрузка подборок...</div>}
+            skeleton={<CollectionsPageSkeleton />}
             errorComponent={(props) => (
               <ErrorState
                 error={props.error.message}
@@ -124,7 +130,7 @@ export const router = createBrowserRouter([
         element: (
           <RouteWrapper
             Page={CollectionPage}
-            skeleton={<div style={{ padding: 24 }}>Загрузка коллекции...</div>}
+            skeleton={<CollectionPageSkeleton />}
             errorComponent={(props) => (
               <ErrorState
                 error={props.error.message}
@@ -136,26 +142,14 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        element: (
-          <RouteWrapper
-            Page={PublicRoute}
-            skeleton={<div style={{ padding: 24 }}>Загрузка страницы...</div>}
-            errorComponent={(props) => (
-              <ErrorState
-                error={props.error.message}
-                title="Ошибка маршрута"
-                description="Не удалось загрузить компонент маршрута."
-              />
-            )}
-          />
-        ),
+        element: <PublicRoute />,
         children: [
           {
             path: "/auth",
             element: (
               <RouteWrapper
                 Page={AuthPage}
-                skeleton={<div style={{ padding: 24 }}>Загрузка авторизации...</div>}
+                skeleton={<AuthPageSkeleton />}
                 errorComponent={(props) => (
                   <ErrorState
                     error={props.error.message}
@@ -173,7 +167,7 @@ export const router = createBrowserRouter([
         element: (
           <RouteWrapper
             Page={ProfilePage}
-            skeleton={<div style={{ padding: 24 }}>Загрузка профиля...</div>}
+            skeleton={<ProfilePageSkeleton />}
             errorComponent={(props) => (
               <ErrorState
                 error={props.error.message}

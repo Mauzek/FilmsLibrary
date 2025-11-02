@@ -1,0 +1,393 @@
+@use '@styles/variables' as *;
+
+.skeleton{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-md;
+
+&__tabBar {
+        justify-content: center;
+        margin: 0;
+
+        @media screen and (max-width: $breakpoint-sm) {
+            justify-content: flex-start;
+        }
+    }
+}
+
+.header {
+    display: flex;
+    position: relative;
+    gap: $spacing-md;
+    width: 100%;
+    margin-top: $spacing-md;
+
+    @media screen and (max-width: $container-max-width) {
+        padding: 0 $spacing-sm;
+    }
+
+    @media screen and (max-width: $breakpoint-lg) {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        gap: $spacing-md;
+    }
+
+    &__main {
+        display: flex;
+        border-radius: $border-radius-xl;
+        overflow: hidden;
+        color: $text-primary;
+        gap: $spacing-md;
+        position: relative;
+        width: 100%;
+        flex-direction: column;
+    }
+
+    &__profile {
+        display: flex;
+        align-items: center;
+        border-radius: $border-radius-xl;
+        overflow: hidden;
+        background: $bg-secondary;
+        color: $text-primary;
+        padding: $spacing-md;
+        gap: $spacing-lg;
+        position: relative;
+        width: 100%;
+        height: fit-content;
+
+        @media screen and (max-width: $breakpoint-xl) {
+            gap: $spacing-md;
+        }
+
+        @media screen and (max-width: $breakpoint-lmd) {
+            flex-direction: column;
+            align-items: center;
+            padding: $spacing-md;
+            gap: $spacing-md;
+        }
+    }
+
+    &__summary {
+        display: flex;
+        border-radius: $border-radius-xl;
+        overflow: hidden;
+        background: $bg-secondary;
+        align-items: center;
+        color: $text-primary;
+        padding: $spacing-md;
+        gap: $spacing-xl;
+        width: 100%;
+
+        @media screen and (max-width: $breakpoint-lg) {
+            gap: $spacing-md;
+            height: auto;
+        }
+    }
+
+    &__summaryList {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: $spacing-lg;
+
+        @media screen and (max-width: $breakpoint-lmd) {
+            gap: $spacing-sm;
+        }
+    }
+
+    &__summaryItem {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 70px;
+    }
+
+    &__summaryValue {
+        font-size: $font-size-3xl;
+        font-weight: 700;
+        color: white;
+
+        @media screen and (max-width: $breakpoint-lmd) {
+            font-size: $font-size-xl;
+        }
+    }
+
+    &__summaryLabel {
+        font-size: $font-size-base;
+        color: rgba(255, 255, 255, 0.8);
+        text-align: center;
+        margin-top: 4px;
+
+        @media screen and (max-width: $breakpoint-lmd) {
+            font-size: $font-size-sm;
+        }
+    }
+
+    &__statistics {
+        display: flex;
+        flex-direction: column;
+        border-radius: $border-radius-xl;
+        overflow: hidden;
+        background: $bg-secondary;
+        color: $text-primary;
+        padding: $spacing-md;
+        gap: $spacing-xl;
+        position: relative;
+        width: 100%;
+
+        @media screen and (max-width: $breakpoint-lg) {
+            padding: $spacing-md;
+            gap: $spacing-md;
+        }
+
+
+        @media screen and (max-width: $breakpoint-sm) {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    &__legends {
+        display: flex;
+    }
+
+    &__legendsTitle {
+        text-align: left;
+        margin-bottom: 0;
+
+        @media screen and (max-width: $breakpoint-sm) {
+            font-size: $font-size-lg;
+
+            height: auto;
+        }
+    }
+
+    &__legendList {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-sm;
+        min-width: 150px;
+    }
+
+    &__legendItem {
+        display: flex;
+        align-items: center;
+        gap: $spacing-sm;
+    }
+
+    &__legendMarker {
+        width: 15px;
+        height: 15px;
+        border-radius: $border-radius-sm;
+
+        &--favorite {
+            background-color: $favorite-color;
+        }
+
+        &--planned {
+            background-color: $planned-color;
+        }
+
+        &--dropped {
+            background-color: $dropped-color ;
+        }
+
+        &--watched {
+            background-color: $watched-color;
+        }
+    }
+
+    &__statisticsChart {
+        display: flex;
+        flex-direction: column;
+        gap: 13px;
+        align-items: left;
+        justify-content: space-evenly;
+        width: 100%;
+    }
+
+    &__avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        overflow: hidden;
+        background: rgba(0, 0, 0, 0.2);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        svg {
+            width: 100% !important;
+            height: 100% !important;
+        }
+    }
+
+    &__info {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        justify-content: center;
+        padding: $spacing-sm $spacing-md;
+        border-radius: $border-radius-lg;
+        z-index: 1;
+        background: rgba(0, 0, 0, 0.2);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        height: fit-content;
+
+        @media screen and (max-width: $breakpoint-lmd) {
+            flex-direction: column;
+            align-items: center;
+            padding: $spacing-md;
+            text-align: center;
+        }
+    }
+
+    &__name {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: $text-primary;
+        margin: 0;
+    }
+
+    &__date {
+        font-size: 0.85rem;
+        color: #999;
+    }
+
+    &__button {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.2);
+        margin: 0;
+        padding: $spacing-xs;
+        transition: all 0.2s ease;
+
+        &--logout {
+            bottom: $spacing-lg;
+            right: $spacing-lg;
+            z-index: 2;
+
+            &:hover {
+                background-color: $accent-red;
+            }
+
+            @media screen and (max-width: $breakpoint-sm) {
+                top: $spacing-md;
+                left: $spacing-md;
+                height: fit-content;
+                width: fit-content;
+            }
+        }
+    }
+
+    &__tools {
+        position: absolute;
+        top: $spacing-lg;
+        right: $spacing-lg;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: $spacing-sm;
+        z-index: 1;
+
+        @media screen and (max-width: $breakpoint-sm) {
+            top: $spacing-md;
+            right: $spacing-md;
+        }
+    }
+
+    &__edit {
+        background-color: rgba(0, 0, 0, 0.2);
+        margin: 0;
+        padding: $spacing-xs;
+        transition: all 0.2s ease;
+
+        @media (hover: hover) {
+            &:hover {
+                opacity: 0.7;
+            }
+        }
+
+        &--cancel {
+            transform: translateY(-40px);
+            z-index: -1;
+            opacity: 0;
+
+            &--visible {
+                transform: translateY(0);
+                z-index: 1;
+                opacity: 1;
+            }
+        }
+    }
+
+    &__input {
+        background-color: rgba(0, 0, 0, 0.3);
+        border: none;
+        margin-bottom: $spacing-sm;
+
+        @media screen and (max-width: $breakpoint-sm) {
+            width: 185px;
+        }
+    }
+
+    &__containerColorPicker {
+        display: flex;
+        background-color: rgba(0, 0, 0, 0.3);
+        align-items: center;
+        padding: $spacing-sm;
+        border-radius: $border-radius-lg;
+        align-items: center;
+        gap: $spacing-sm;
+        margin: 0 auto;
+        cursor: pointer;
+        width: fit-content;
+
+        label {
+            cursor: pointer;
+            line-height: 1.1;
+        }
+    }
+
+    &__colorPicker {
+        background-color: transparent;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        padding: 0;
+        border: none;
+        border-radius: $border-radius-md;
+        cursor: pointer;
+    }
+
+    &__colorPicker::-webkit-color-swatch-wrapper {
+        padding: 0;
+    }
+
+    &__colorPicker::-webkit-color-swatch {
+        border: 1px solid rgba(200, 200, 200, 0.1);
+        border-radius: $border-radius-md;
+    }
+
+    &__tabBar {
+        justify-content: center;
+        margin: 0;
+
+        @media screen and (max-width: $breakpoint-sm) {
+            justify-content: flex-start;
+        }
+    }
+}

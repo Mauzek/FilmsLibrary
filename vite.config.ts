@@ -23,13 +23,20 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: 'dist',
+outDir: 'dist',
     sourcemap: false,
+    minify: 'esbuild',
+    chunkSizeWarningLimit: 800,
     rollupOptions: {
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'],
-          router: ['react-router-dom']
+          router: ['react-router-dom'],
+          firebase: ['firebase/*'],
+          gsap: ['gsap'],
+          swiper: ['swiper'],
+          axios: ['axios'],
+          mobx: ['mobx']
         }
       }
     }
