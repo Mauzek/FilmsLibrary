@@ -4,7 +4,7 @@ import listsData from "@data/lists.json";
 import { Icon28PlayRectangleStackOutline } from "@vkontakte/icons";
 import type { ListsData } from "@/types";
 
-export const CollectionsPage = () => {
+const CollectionsPage = () => {
   const { collections, categories } = listsData as ListsData;
   const [activeCategory, setActiveCategory] = useState<string | null>("all");
 
@@ -45,3 +45,5 @@ export const CollectionsPage = () => {
     </main>
   );
 };
+
+export default CollectionsPage;

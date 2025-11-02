@@ -1,0 +1,44 @@
+@use "@styles/_variables" as *;
+
+.skeleton {
+    display: flex;
+    flex-direction: column;
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: $spacing-lg;
+
+        @media (max-width: $breakpoint-lg) {
+            padding: $spacing-sm $spacing-md;
+        }
+
+        @media (max-width: $breakpoint-md) {
+            padding: $spacing-sm $spacing-md;
+            padding-left: $spacing-lg;
+        }
+    }
+
+    &__tabs {
+        display: flex;
+        gap: $spacing-md;
+        overflow-x: auto;
+        margin-bottom: $spacing-md;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+
+        @media (max-width: $container-max-width) {
+            padding: 0 $spacing-md;
+        }
+
+        @media (max-width: $breakpoint-lg) {
+            margin-top: $spacing-sm;
+            gap: $spacing-sm;
+        }
+    }
+
+    &__tab{
+                flex: 0 0 auto;
+    }
+}

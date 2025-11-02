@@ -1,3 +1,17 @@
-.page{
+.page {
     padding: 32px;
+
+    &__skeleton {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        width: 100%;
+        max-width: 400px;
+        min-height: 430px;
+        background-color: rgba(25, 25, 25, 0.8);
+        padding: 1.5rem;
+        border-radius: 0.75rem;
+    }
 }

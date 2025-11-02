@@ -5,3 +5,17 @@
     flex-direction: column;
     gap: $spacing-md;
 }
+
+.skeleton{
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+
+    &__header{
+        margin-top: 40px;
+    }
+
+    &__title{
+        padding: $spacing-lg !important;
+    }
+}

@@ -1,0 +1,22 @@
+@use "@styles/_variables" as *;
+
+.skeleton {
+    display: flex;
+    flex-direction: column;
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: $spacing-lg;
+
+        @media (max-width: $breakpoint-lg) {
+            padding: $spacing-sm $spacing-md;
+        }
+
+        @media (max-width: $breakpoint-md) {
+            padding: $spacing-sm $spacing-md;
+            padding-left: $spacing-lg;
+        }
+    }
+}

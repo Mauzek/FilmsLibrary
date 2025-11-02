@@ -3,7 +3,7 @@ import { EmptyState, MoviesGrid, Section } from "@/components";
 import { Icon28LikeOutline } from "@vkontakte/icons";
 import { useUserStore } from "@/store";
 
-export const FavouritePage = () => {
+const FavouritePage = () => {
   const { lists } = useUserStore();
 
   useEffect(() => {
@@ -26,3 +26,5 @@ export const FavouritePage = () => {
     </main>
   );
 };
+
+export default FavouritePage;

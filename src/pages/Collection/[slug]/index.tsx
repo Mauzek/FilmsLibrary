@@ -15,7 +15,7 @@ interface GenreType {
   moviesCount: number;
 }
 
-export const CollectionPage = observer(() => {
+const CollectionPage = observer(() => {
   const { slug } = useParams<{ slug: string }>();
   const {
     loading,
@@ -111,3 +111,5 @@ export const CollectionPage = observer(() => {
     </div>
   );
 });
+
+export default CollectionPage;

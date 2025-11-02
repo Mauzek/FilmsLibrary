@@ -7,7 +7,7 @@ import { MoviesGrid } from "@/components";
 import { useInfiniteScroll } from "@/hooks";
 import { useSearchParams } from "react-router-dom";
 
-export const MoviesPage = observer(() => {
+const MoviesPage = observer(() => {
   const [searchParams] = useSearchParams();
   const moviesStore = useMoviesStore();
   const filtersStore = useFiltersStore();
@@ -74,3 +74,5 @@ export const MoviesPage = observer(() => {
     </main>
   );
 });
+
+export default MoviesPage;

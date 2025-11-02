@@ -9,6 +9,7 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
       '@components': path.resolve(__dirname, './src/components'),
       '@hooks': path.resolve(__dirname, './src/hooks'),
+      '@lib': path.resolve(__dirname, './src/lib'),
       '@store': path.resolve(__dirname, './src/store'),
       '@utils': path.resolve(__dirname, './src/utils'),
       '@types': path.resolve(__dirname, './src/types'),
@@ -22,13 +23,18 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: 'dist',
+outDir: 'dist',
     sourcemap: false,
+    minify: 'esbuild',
+    chunkSizeWarningLimit: 500,
     rollupOptions: {
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'],
-          router: ['react-router-dom']
+          router: ['react-router-dom'],
+          firebase: ['firebase/app', 'firebase/auth', 'firebase/firestore'],
+          axios: ['axios'],
+          mobx: ['mobx']
         }
       }
     }
