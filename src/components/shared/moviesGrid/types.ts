@@ -1,7 +1,7 @@
-import type { Movie, CollectionMovie } from "@/types";
+import type { Movie, CollectionMovie, SavedMovie } from "@/types";
 
 export interface MoviesGridProps {
-    movies: Movie[] | CollectionMovie[];
+    movies: Movie[] | CollectionMovie[] | SavedMovie[];
     columns?: number;
     gap?: number;
     loading?: boolean;
