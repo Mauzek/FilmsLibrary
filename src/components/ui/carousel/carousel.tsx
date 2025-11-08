@@ -2,8 +2,8 @@ import React, { Suspense, useEffect, useState } from "react";
 import { Skeleton } from "../skeleton";
 import type { CarouselProps } from "./types";
 import styles from "./carousel.module.scss";
+import "@styles/global.scss";
 
-// Типы для динамически импортируемых модулей
 type SwiperModuleType = typeof import("swiper/modules");
 type SwiperReactType = typeof import("swiper/react");
 
@@ -54,7 +54,7 @@ export const Carousel: React.FC<CarouselProps> = ({
   if (loading || !swiperReact || !swiperModules) {
     return (
       <div className={styles.carousel} style={{ height: `${height}px` }}>
-        <Skeleton width="100%" height="100%" borderRadius={16} />
+        <Skeleton width="100%" height="100%" borderRadius={0} />
       </div>
     );
   }
@@ -68,7 +68,7 @@ export const Carousel: React.FC<CarouselProps> = ({
 
   return (
     <div className={styles.carousel}>
-      <Suspense fallback={<Skeleton width="100%" height="100%" borderRadius={16} />}>
+      <Suspense fallback={<Skeleton width="100%" height="100%" borderRadius={0} />}>
         <Swiper
           className={styles.carousel__swiper}
           modules={[Pagination, EffectFade, Autoplay]}

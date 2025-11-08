@@ -3,12 +3,15 @@
 .carousel {
     margin-top: 40px;
     position: relative;
-    
-    @media screen and (max-width: $breakpoint-lmd) {
-        margin-top: $spacing-lg;
+    border-radius: $border-radius-xl;
+    overflow: hidden;
+
+    @media screen and (max-width: $container-max-width) {
+        border-radius: 0;
     }
 
     @media screen and (max-width: $breakpoint-lmd) {
+        margin-top: $spacing-lg;
         max-height: 400px;
     }
 
@@ -20,11 +23,6 @@
         background: $bg-secondary;
         height: var(--swiper-height, 500px);
         min-height: 300px;
-        border-radius: $border-radius-xl;
-
-        @media screen and (max-width: $container-max-width) {
-            border-radius: 0;
-        }
 
         @media screen and (max-width: $breakpoint-lmd) {
             height: 400px;
