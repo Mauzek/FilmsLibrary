@@ -26,18 +26,33 @@
 }
 
 .scrollableX {
-  display: flex !important;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  gap: var(--grid-gap, 20px);
+  @media (max-width: $container-max-width) {
+    display: flex !important;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: $spacing-sm;
 
-  & > * {
-    flex: 0 0 auto; 
+    & > * {
+      flex: 0 0 auto;
+      width: 185px;
+    }
+  }
+
+    @media (max-width: $breakpoint-lmd) {
+    display: flex !important;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: $spacing-sm;
+
+    & > * {
+      flex: 0 0 auto;
+      width: 150px;
+    }
   }
 }
 
 .scrollableXMobile {
-  @media (max-width: $breakpoint-lmd) {
+    @media (max-width: $breakpoint-lmd) {
     display: flex !important;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
@@ -51,14 +66,15 @@
 }
 
 .scrollableXDesktop {
-  @media (min-width: 769px) {
+  @media (max-width: $container-max-width) {
     display: flex !important;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    gap: var(--grid-gap, 20px);
+    gap: $spacing-sm;
 
     & > * {
       flex: 0 0 auto;
+      width: 185px;
     }
   }
 }
