@@ -1,6 +1,6 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import { db } from "@/config/firebase";
-import type { Movie } from "@/types";
+import type { Movie, SavedMovie } from "@/types";
 import {
   collection,
   doc,
@@ -13,7 +13,7 @@ import {
 } from "firebase/firestore";
 
 export class RecentMoviesStore {
-  recent: Movie[] = [];
+  recent: SavedMovie[] = [];
   uid: string | null = null;
   unsubscribe: (() => void) | null = null;
 
@@ -22,14 +22,15 @@ export class RecentMoviesStore {
   }
 
   subscribe(uid: string) {
-    this.unsubscribeHistory(); 
+    this.unsubscribeHistory();
     this.uid = uid;
 
     const historyRef = collection(db, "users", uid, "history");
     const q = query(historyRef, orderBy("addedAt", "desc"), limit(7));
 
     this.unsubscribe = onSnapshot(q, (snap) => {
-      const movies: Movie[] = snap.docs.map((doc) => doc.data() as Movie);
+      const movies: SavedMovie[] = snap.docs.map((doc) => doc.data() as Movie);
+      console.log("Recent movies updated:", movies);
       runInAction(() => {
         this.recent = movies;
       });
@@ -49,8 +50,19 @@ export class RecentMoviesStore {
     try {
       const movieRef = doc(db, "users", this.uid, "history", String(movie.id));
 
+      const reducedMovie: SavedMovie = {
+        id: movie.id,
+        name: movie.name || movie.alternativeName || "Без названия",
+        poster: movie.poster,
+        rating: movie.rating,
+        year: movie.year,
+        countries: movie.countries,
+        genres: movie.genres,
+        addedAt: serverTimestamp(),
+      };
+
       await setDoc(movieRef, {
-        ...movie,
+        ...reducedMovie,
         addedAt: serverTimestamp(),
       });
     } catch (error) {
