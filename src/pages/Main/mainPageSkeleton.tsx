@@ -5,7 +5,7 @@ export const MainPageSkeleton = () => {
   return (
     <div className={styles.skeleton}>
       <div className={styles.skeleton__header}>
-        <Skeleton width="100%" height={500} borderRadius={16} />
+        <Skeleton width="100%" height="100%" borderRadius={0} />
       </div>
       <div>
         <div className={styles.skeleton__title}>
