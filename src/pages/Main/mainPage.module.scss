@@ -6,16 +6,32 @@
     gap: $spacing-md;
 }
 
-.skeleton{
+.skeleton {
     display: flex;
     flex-direction: column;
     gap: $spacing-md;
 
-    &__header{
+    &__header {
         margin-top: 40px;
+        height: 500px;
+        border-radius: $border-radius-xl;
+        overflow: hidden;
+
+        @media screen and (max-width: $container-max-width) {
+            border-radius: 0;
+        }
+
+        @media screen and (max-width: $breakpoint-lmd) {
+            margin-top: $spacing-lg;
+            max-height: 400px;
+        }
+
+        @media screen and (max-width: $breakpoint-sm) {
+            max-height: 300px;
+        }
     }
 
-    &__title{
+    &__title {
         padding: $spacing-lg !important;
     }
 }

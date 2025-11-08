@@ -5,8 +5,8 @@
       "name": "Популярные фильмы",
       "slug": "popular-films",
       "cover": {
-        "url": "https://image.openmoviedb.com/kinopoisk-images/9784475/3d089ef6-4a24-4c6a-aff7-db153e4dbb7f/orig",
-        "previewUrl": "https://image.openmoviedb.com/kinopoisk-images/9784475/3d089ef6-4a24-4c6a-aff7-db153e4dbb7f/x1000"
+        "url": "https://ik.imagekit.io/kinora/tr:w-500/popular-films_orig?updatedAt=1762632307885",
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/popular-films?updatedAt=1762629227240"
       },
       "moviesCount": 1000
     },
@@ -15,8 +15,8 @@
       "name": "Популярные сериалы",
       "slug": "popular-series",
       "cover": {
-        "url": "https://image.openmoviedb.com/kinopoisk-images/10703959/7d1793e4-6217-4a76-89e1-c8da8d652797/orig",
-        "previewUrl": "https://image.openmoviedb.com/kinopoisk-images/10703959/7d1793e4-6217-4a76-89e1-c8da8d652797/x1000"
+        "url": "https://ik.imagekit.io/kinora/tr:w-500/popular-series_orig",
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/popular-series?updatedAt=1762629319626"
       },
       "moviesCount": 1000
     },
@@ -25,8 +25,8 @@
       "name": "250 лучших сериалов",
       "slug": "series-top250",
       "cover": {
-        "url": "https://avatars.mds.yandex.net/get-bunker/118781/02f27f401e650b75c4d42ed9f15e999392d33615/orig",
-        "previewUrl": "https://avatars.mds.yandex.net/get-bunker/118781/02f27f401e650b75c4d42ed9f15e999392d33615/x1000"
+        "url": "https://ik.imagekit.io/kinora/tr:w-500/series-top250_orig?updatedAt=1762632678096",
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/series-top250?updatedAt=1762622104335"
       },
       "moviesCount": 250
     },
@@ -35,8 +35,8 @@
       "name": "250 лучших фильмов",
       "slug": "top250",
       "cover": {
-        "url": "https://avatars.mds.yandex.net/get-bunker/56833/3ee361778f24483f04a6819bc6d84bcfba9030e4/orig",
-        "previewUrl": "https://avatars.mds.yandex.net/get-bunker/56833/3ee361778f24483f04a6819bc6d84bcfba9030e4/x1000"
+        "url": "https://ik.imagekit.io/kinora/tr:w-500/top250?updatedAt=1762623305376",
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/top250?updatedAt=1762623305376"
       },
       "moviesCount": 250
     },
@@ -45,8 +45,8 @@
       "name": "100 великих сериалов XXI века",
       "slug": "100_greatest_TVseries",
       "cover": {
-        "url": "https://avatars.mds.yandex.net/get-bunker/128809/42390deeca7c1c280f477a247083d9e8fcd6be2b/orig",
-        "previewUrl": "https://avatars.mds.yandex.net/get-bunker/128809/42390deeca7c1c280f477a247083d9e8fcd6be2b/x1000"
+        "url": "https://ik.imagekit.io/kinora/tr:w-500/100_greatest_TVseries?updatedAt=1762623528857",
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/100_greatest_TVseries?updatedAt=1762623528857"
       },
       "moviesCount": 100
     },
@@ -55,8 +55,8 @@
       "name": "100 великих фильмов XXI века",
       "slug": "100_greatest_movies_XXI",
       "cover": {
-        "url": "https://avatars.mds.yandex.net/get-bunker/120922/9ef93279153c45ee182cf8c6bc819590af4c1d25/orig",
-        "previewUrl": "https://avatars.mds.yandex.net/get-bunker/120922/9ef93279153c45ee182cf8c6bc819590af4c1d25/x1000"
+        "url": "https://ik.imagekit.io/kinora/tr:w-500/100_greatest_movies_XXI?updatedAt=1762623721418",
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/100_greatest_movies_XXI?updatedAt=1762623721418"
       },
       "moviesCount": 101
     },
@@ -65,8 +65,8 @@
       "name": "1001 фильм, который вы должны посмотреть за свою жизнь",
       "slug": "best_1001",
       "cover": {
-        "url": "https://avatars.mds.yandex.net/get-bunker/118781/71fcb316b5ff58545b0f0074328c328675091202/orig",
-        "previewUrl": "https://avatars.mds.yandex.net/get-bunker/118781/71fcb316b5ff58545b0f0074328c328675091202/x1000"
+        "url": "https://ik.imagekit.io/kinora/tr:w-500/best_1001?updatedAt=1762623939310",
+        "previewUrl": "https://ik.imagekit.io/tr:bl-20,w-500/kinora/best_1001?updatedAt=1762623939310"
       },
       "moviesCount": 1001
     },
@@ -75,8 +75,8 @@
       "name": "Топ-10 в онлайн-кинотеатре",
       "slug": "top10-hd",
       "cover": {
-        "url": "https://avatars.mds.yandex.net/get-bunker/118781/11afa095c91056ad786576769a15060266d5e72e/orig",
-        "previewUrl": "https://avatars.mds.yandex.net/get-bunker/118781/11afa095c91056ad786576769a15060266d5e72e/x1000"
+        "url": "https://ik.imagekit.io/kinora/tr:w-500/top10-hd?updatedAt=1762624049664",
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/top10-hd?updatedAt=1762624049664"
       },
       "moviesCount": 10
     },
@@ -85,8 +85,8 @@
       "name": "Шедевры HBO",
       "slug": "hbo_best",
       "cover": {
-        "url": "https://image.openmoviedb.com/kinopoisk-images/10768063/a7de5bb6-38b1-45b7-a9fe-6439c95fdc2f/orig",
-        "previewUrl": "https://image.openmoviedb.com/kinopoisk-images/10768063/a7de5bb6-38b1-45b7-a9fe-6439c95fdc2f/x1000"
+        "url": "https://ik.imagekit.io/kinora/tr:w-500/hbo_best?updatedAt=1762629435185",
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/hbo_best?updatedAt=1762629435185"
       },
       "moviesCount": 30
     },
@@ -95,8 +95,8 @@
       "name": "Блокбастеры",
       "slug": "hd-blockbusters",
       "cover": {
-        "url": "https://avatars.mds.yandex.net/get-bunker/60661/70f9dd410ae03c6af031f03e6cf44e3778da0c20/orig",
-        "previewUrl": "https://avatars.mds.yandex.net/get-bunker/60661/70f9dd410ae03c6af031f03e6cf44e3778da0c20/x1000"
+        "url": "https://ik.imagekit.io/kinora/tr:w-500/hd-blockbusters?updatedAt=1762624226964",
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/hd-blockbusters?updatedAt=1762624226964"
       },
       "moviesCount": 104
     },
@@ -105,8 +105,8 @@
       "name": "Фильмы, которые стоит посмотреть",
       "slug": "hd-must-see",
       "cover": {
-        "url": "https://avatars.mds.yandex.net/get-bunker/50064/9a7c29bf643a8f27c2f95502bf604b1e2a3a8474/orig",
-        "previewUrl": "https://avatars.mds.yandex.net/get-bunker/50064/9a7c29bf643a8f27c2f95502bf604b1e2a3a8474/x1000"
+        "url": "https://ik.imagekit.io/kinora/tr:w-500/hd-must-see?updatedAt=1762624334438",
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/hd-must-see?updatedAt=1762624334438"
       },
       "moviesCount": 76
     },
@@ -115,8 +115,8 @@
       "name": "Фильмы по реальным событиям",
       "slug": "hd-real-story",
       "cover": {
-        "url": "https://avatars.mds.yandex.net/get-bunker/56833/a6a749766d6e63b55a50f68a6059a0e8ae704b7e/orig",
-        "previewUrl": "https://avatars.mds.yandex.net/get-bunker/56833/a6a749766d6e63b55a50f68a6059a0e8ae704b7e/x1000"
+        "url": "https://ik.imagekit.io/kinora/tr:w-500/hd-real-story?updatedAt=1762624456582",
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/hd-real-story?updatedAt=1762624456582"
       },
       "moviesCount": 41
     },
@@ -125,8 +125,8 @@
       "name": "Пересматриваем любимое",
       "slug": "hd-revise",
       "cover": {
-        "url": "https://avatars.mds.yandex.net/get-bunker/56833/68de79bf6f0b4b3b299688620cb87939c0962a6f/orig",
-        "previewUrl": "https://avatars.mds.yandex.net/get-bunker/56833/68de79bf6f0b4b3b299688620cb87939c0962a6f/x1000"
+        "url": "https://ik.imagekit.io/kinora/tr:w-500/hd-revise?updatedAt=1762625614711",
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/hd-revise?updatedAt=1762625614711"
       },
       "moviesCount": 98
     },
@@ -135,8 +135,8 @@
       "name": "Самые дорогие фильмы и сериалы",
       "slug": "most-expensive",
       "cover": {
-        "url": "https://avatars.mds.yandex.net/get-bunker/60661/fdfe79ba1d24b7c03a4ddded3faa9064e72917a3/orig",
-        "previewUrl": "https://avatars.mds.yandex.net/get-bunker/60661/fdfe79ba1d24b7c03a4ddded3faa9064e72917a3/x1000"
+        "url": "https://ik.imagekit.io/kinora/tr:w-500/most-expensive?updatedAt=1762625743466",
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/most-expensive?updatedAt=1762625743466"
       },
       "moviesCount": 100
     },
@@ -145,8 +145,8 @@
       "name": "Самые прибыльные фильмы",
       "slug": "most-profitable",
       "cover": {
-        "url": "https://avatars.mds.yandex.net/get-bunker/60661/cb5ba1ed99d9c411d7bc3ddb7b5d4684bdf52fbe/orig",
-        "previewUrl": "https://avatars.mds.yandex.net/get-bunker/60661/cb5ba1ed99d9c411d7bc3ddb7b5d4684bdf52fbe/x1000"
+        "url": "https://ik.imagekit.io/kinora/tr:w-500/most-profitable?updatedAt=1762625845859",
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/most-profitable?updatedAt=1762625845859"
       },
       "moviesCount": 100
     },
@@ -155,8 +155,8 @@
       "name": "Рейтинг ожидаемых фильмов",
       "slug": "planned-to-watch-films",
       "cover": {
-        "url": "https://image.openmoviedb.com/kinopoisk-images/4486454/ac7a539a-a0df-4d0e-b524-48541466f15b/orig",
-        "previewUrl": "https://image.openmoviedb.com/kinopoisk-images/4486454/ac7a539a-a0df-4d0e-b524-48541466f15b/x1000"
+        "url": "https://ik.imagekit.io/kinora/tr:w-500/planned-to-watch-films?updatedAt=1762629533925",
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/planned-to-watch-films?updatedAt=1762629533925"
       },
       "moviesCount": 482
     },
@@ -165,8 +165,8 @@
       "name": "Лучшие фильмы для детей: список лучших детских фильмов",
       "slug": "theme_kids_films",
       "cover": {
-        "url": "https://avatars.mds.yandex.net/get-bunker/128809/40b60a14fdd5774d2e98097ec3aabb3238749030/orig",
-        "previewUrl": "https://avatars.mds.yandex.net/get-bunker/128809/40b60a14fdd5774d2e98097ec3aabb3238749030/x1000"
+        "url": "https://ik.imagekit.io/kinora/tr:w-500/theme_kids_films?updatedAt=1762626007372",
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/theme_kids_films?updatedAt=1762626007372"
       },
       "moviesCount": 50
     },
@@ -175,8 +175,8 @@
       "name": "Фильмы про любовь и страсть: список лучших романтических фильмов ",
       "slug": "theme_love",
       "cover": {
-        "url": "https://avatars.mds.yandex.net/get-bunker/49769/bc0d7724803fa746db20da65a7d3ca059ba91c29/orig",
-        "previewUrl": "https://avatars.mds.yandex.net/get-bunker/49769/bc0d7724803fa746db20da65a7d3ca059ba91c29/x1000"
+        "url": "https://ik.imagekit.io/kinora/tr:w-500/theme_love?updatedAt=1762626196338",
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/theme_love?updatedAt=1762626196338"
       },
       "moviesCount": 70
     },
@@ -185,8 +185,8 @@
       "name": "Смотрим всей семьей",
       "slug": "hd-family",
       "cover": {
-        "url": "https://avatars.mds.yandex.net/get-bunker/56833/19df29a58c0e605bc96be22e9b1b0d0829951244/orig",
-        "previewUrl": "https://avatars.mds.yandex.net/get-bunker/56833/19df29a58c0e605bc96be22e9b1b0d0829951244/x1000"
+        "url": "https://ik.imagekit.io/kinora/tr:w-500/hd-family?updatedAt=1762626390026",
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/hd-family?updatedAt=1762626390026"
       },
       "moviesCount": 230
     },
@@ -195,8 +195,8 @@
       "name": "Время приключений",
       "slug": "adventure_time",
       "cover": {
-        "url": "https://avatars.mds.yandex.net/get-bunker/128809/eb0af3584cbb246d790631c91871d545e4cf51d5/orig",
-        "previewUrl": "https://avatars.mds.yandex.net/get-bunker/128809/eb0af3584cbb246d790631c91871d545e4cf51d5/x1000"
+        "url": "https://ik.imagekit.io/kinora/tr:w-500/adventure_time?updatedAt=1762627325352",
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/adventure_time?updatedAt=1762627325352"
       },
       "moviesCount": 74
     },
@@ -205,8 +205,8 @@
       "name": "Аниме",
       "slug": "anime",
       "cover": {
-        "url": "https://ik.imagekit.io/kinora/genre_anime.webp?updatedAt=1760986225139",
-        "previewUrl": "https://ik.imagekit.io/kinora/genre_anime.webp?updatedAt=1760986225139"
+        "url": "https://ik.imagekit.io/kinora/tr:w-500/genre_anime?updatedAt=1762627522962",
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/genre_anime?updatedAt=1762627522962"
       },
       "moviesCount": 320
     },
@@ -215,8 +215,8 @@
       "name": "Биография",
       "slug": "biografiya",
       "cover": {
-        "url": "https://ik.imagekit.io/kinora/genre_biografiya.webp",
-        "previewUrl": "https://ik.imagekit.io/kinora/genre_biografiya.webp"
+        "url": "https://ik.imagekit.io/kinora/tr:w-500/genre_biografiya?updatedAt=1762627662446",
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/genre_biografiya?updatedAt=1762627662446"
       },
       "moviesCount": 118
     },
@@ -225,8 +225,8 @@
       "name": "Боевик",
       "slug": "boevik",
       "cover": {
-        "url": "https://ik.imagekit.io/kinora/genre_boevik.webp",
-        "previewUrl": "https://ik.imagekit.io/kinora/genre_boevik.webp"
+        "url": "https://ik.imagekit.io/kinora/tr:w-500/genre_boevik?updatedAt=1762627834849",
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/genre_boevik?updatedAt=1762627834849"
       },
       "moviesCount": 542
     },
@@ -235,8 +235,8 @@
       "name": "Вестерн",
       "slug": "vestern",
       "cover": {
-        "url": "https://ik.imagekit.io/kinora/genre_vestern.webp",
-        "previewUrl": "https://ik.imagekit.io/kinora/genre_vestern.webp"
+        "url": "https://ik.imagekit.io/kinora/tr:w-500/genre_vestern?updatedAt=1762627942530",
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/genre_vestern?updatedAt=1762627942530"
       },
       "moviesCount": 62
     },
@@ -245,8 +245,8 @@
       "name": "Военный",
       "slug": "voennyy",
       "cover": {
-        "url": "https://ik.imagekit.io/kinora/genre_voennyy.webp",
-        "previewUrl": "https://ik.imagekit.io/kinora/genre_voennyy.webp"
+        "url": "https://ik.imagekit.io/kinora/tr:w-500/genre_voennyy?updatedAt=1762628074523",
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/genre_voennyy?updatedAt=1762628074523"
       },
       "moviesCount": 145
     },
@@ -255,8 +255,8 @@
       "name": "Детектив",
       "slug": "detektiv",
       "cover": {
-        "url": "https://ik.imagekit.io/kinora/genre_detektiv.webp",
-        "previewUrl": "https://ik.imagekit.io/kinora/genre_detektiv.webp"
+        "url": "https://ik.imagekit.io/kinora/tr:w-500/genre_detektiv?updatedAt=1762628466792",
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/genre_detektiv?updatedAt=1762628466792"
       },
       "moviesCount": 272
     },
@@ -265,8 +265,8 @@
       "name": "Драма",
       "slug": "drama",
       "cover": {
-        "url": "https://ik.imagekit.io/kinora/genre_drama.webp",
-        "previewUrl": "https://ik.imagekit.io/kinora/genre_drama.webp"
+        "url": "https://ik.imagekit.io/kinora/tr:w-500/genre_drama?updatedAt=1762628570187",
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/genre_drama?updatedAt=1762628570187"
       },
       "moviesCount": 890
     },
@@ -275,8 +275,8 @@
       "name": "Комедия",
       "slug": "komediya",
       "cover": {
-        "url": "https://ik.imagekit.io/kinora/genre_komediya.webp",
-        "previewUrl": "https://ik.imagekit.io/kinora/genre_komediya.webp"
+        "url": "https://ik.imagekit.io/kinora/tr:w-500/genre_komediya?updatedAt=1762628699590",
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/genre_komediya?updatedAt=1762628699590"
       },
       "moviesCount": 610
     },
@@ -285,8 +285,8 @@
       "name": "Криминал",
       "slug": "kriminal",
       "cover": {
-        "url": "https://ik.imagekit.io/kinora/genre_kriminal.webp",
-        "previewUrl": "https://ik.imagekit.io/kinora/genre_kriminal.webp"
+        "url": "https://ik.imagekit.io/kinora/tr:w-500/genre_kriminal?updatedAt=1762628792470",
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/genre_kriminal?updatedAt=1762628792470"
       },
       "moviesCount": 328
     },
@@ -295,18 +295,18 @@
       "name": "Фантастика",
       "slug": "fantastika",
       "cover": {
-        "url": "https://ik.imagekit.io/kinora/genre_fantastika.webp",
-        "previewUrl": "https://ik.imagekit.io/kinora/genre_fantastika.webp"
+        "url": "https://ik.imagekit.io/kinora/tr:w-500/genre_fantastika?updatedAt=1762628900974",
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/genre_fantastika?updatedAt=1762628900974"
       },
       "moviesCount": 457
     },
-        {
+    {
       "category": "genres",
       "name": "Фэнтези",
       "slug": "fentezi",
       "cover": {
-        "url": "https://ik.imagekit.io/kinora/genre_fentezi.webp",
-        "previewUrl": "https://ik.imagekit.io/kinora/genre_fentezi.webp"
+        "url": "https://ik.imagekit.io/kinora/tr:w-500/genre_fentezi?updatedAt=1762628996078",
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/genre_fentezi?updatedAt=1762628996078"
       },
       "moviesCount": 311
     },
@@ -315,8 +315,8 @@
       "name": "Ужасы",
       "slug": "uzhasy",
       "cover": {
-        "url": "https://ik.imagekit.io/kinora/genre_uzhasy.webp",
-        "previewUrl": "https://ik.imagekit.io/kinora/genre_uzhasy.webp"
+        "url": "https://ik.imagekit.io/kinora/tr:w-500/genre_uzhasy?updatedAt=1762629095244",
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/genre_uzhasy?updatedAt=1762629095244"
       },
       "moviesCount": 198
     }

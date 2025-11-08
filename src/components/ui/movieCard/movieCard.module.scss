@@ -41,7 +41,12 @@
         aspect-ratio: 1 / 1.5;
         object-fit: cover;
         display: block;
-        transition: transform $transition-fast;
+        transition: all $transition-fast;
+        filter: blur(20px);
+
+        &--loaded{
+            filter: none;
+        }
     }
 
     &__rating {

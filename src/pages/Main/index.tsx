@@ -51,7 +51,7 @@ const MainPage = observer(() => {
             movies={recentStore.recent}
             gap={20}
             columns={7}
-            scrollable="mobile"
+            scrollable="all"
           />
         </Section>
       )}

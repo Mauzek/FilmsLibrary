@@ -31,7 +31,7 @@ export const api = {
     filters: ApiFilters = {}
   ): Promise<AxiosResponse<ApiResponse<Movie>>> => {
     const query = buildQuery(filters);
-    return apiClient.get(`/movie${query ? `?${query}` : ""}`);
+    return apiClient.get(`/movie${query ? `?${query}` : ""}&notNullFields=poster.url`);
   },
 
   searchMovies: async (
