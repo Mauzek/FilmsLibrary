@@ -6,7 +6,7 @@
       "slug": "popular-films",
       "cover": {
         "url": "https://ik.imagekit.io/kinora/tr:w-500/popular-films_orig?updatedAt=1762632307885",
-        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/popular-films?updatedAt=1762629227240"
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-300/popular-films?updatedAt=1762629227240"
       },
       "moviesCount": 1000
     },
@@ -16,7 +16,7 @@
       "slug": "popular-series",
       "cover": {
         "url": "https://ik.imagekit.io/kinora/tr:w-500/popular-series_orig",
-        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/popular-series?updatedAt=1762629319626"
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-300/popular-series?updatedAt=1762629319626"
       },
       "moviesCount": 1000
     },
@@ -26,7 +26,7 @@
       "slug": "series-top250",
       "cover": {
         "url": "https://ik.imagekit.io/kinora/tr:w-500/series-top250_orig?updatedAt=1762632678096",
-        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/series-top250?updatedAt=1762622104335"
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-300/series-top250?updatedAt=1762622104335"
       },
       "moviesCount": 250
     },
@@ -36,7 +36,7 @@
       "slug": "top250",
       "cover": {
         "url": "https://ik.imagekit.io/kinora/tr:w-500/top250?updatedAt=1762623305376",
-        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/top250?updatedAt=1762623305376"
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-300/top250?updatedAt=1762623305376"
       },
       "moviesCount": 250
     },
@@ -46,7 +46,7 @@
       "slug": "100_greatest_TVseries",
       "cover": {
         "url": "https://ik.imagekit.io/kinora/tr:w-500/100_greatest_TVseries?updatedAt=1762623528857",
-        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/100_greatest_TVseries?updatedAt=1762623528857"
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-300/100_greatest_TVseries?updatedAt=1762623528857"
       },
       "moviesCount": 100
     },
@@ -56,7 +56,7 @@
       "slug": "100_greatest_movies_XXI",
       "cover": {
         "url": "https://ik.imagekit.io/kinora/tr:w-500/100_greatest_movies_XXI?updatedAt=1762623721418",
-        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/100_greatest_movies_XXI?updatedAt=1762623721418"
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-300/100_greatest_movies_XXI?updatedAt=1762623721418"
       },
       "moviesCount": 101
     },
@@ -66,7 +66,7 @@
       "slug": "best_1001",
       "cover": {
         "url": "https://ik.imagekit.io/kinora/tr:w-500/best_1001?updatedAt=1762623939310",
-        "previewUrl": "https://ik.imagekit.io/tr:bl-20,w-500/kinora/best_1001?updatedAt=1762623939310"
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-300/best_1001?updatedAt=1762623939310"
       },
       "moviesCount": 1001
     },
@@ -76,7 +76,7 @@
       "slug": "top10-hd",
       "cover": {
         "url": "https://ik.imagekit.io/kinora/tr:w-500/top10-hd?updatedAt=1762624049664",
-        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/top10-hd?updatedAt=1762624049664"
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-300/top10-hd?updatedAt=1762624049664"
       },
       "moviesCount": 10
     },
@@ -86,7 +86,7 @@
       "slug": "hbo_best",
       "cover": {
         "url": "https://ik.imagekit.io/kinora/tr:w-500/hbo_best?updatedAt=1762629435185",
-        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/hbo_best?updatedAt=1762629435185"
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-300/hbo_best?updatedAt=1762629435185"
       },
       "moviesCount": 30
     },
@@ -96,7 +96,7 @@
       "slug": "hd-blockbusters",
       "cover": {
         "url": "https://ik.imagekit.io/kinora/tr:w-500/hd-blockbusters?updatedAt=1762624226964",
-        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/hd-blockbusters?updatedAt=1762624226964"
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-300/hd-blockbusters?updatedAt=1762624226964"
       },
       "moviesCount": 104
     },
@@ -106,7 +106,7 @@
       "slug": "hd-must-see",
       "cover": {
         "url": "https://ik.imagekit.io/kinora/tr:w-500/hd-must-see?updatedAt=1762624334438",
-        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/hd-must-see?updatedAt=1762624334438"
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-300/hd-must-see?updatedAt=1762624334438"
       },
       "moviesCount": 76
     },
@@ -116,7 +116,7 @@
       "slug": "hd-real-story",
       "cover": {
         "url": "https://ik.imagekit.io/kinora/tr:w-500/hd-real-story?updatedAt=1762624456582",
-        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/hd-real-story?updatedAt=1762624456582"
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-300/hd-real-story?updatedAt=1762624456582"
       },
       "moviesCount": 41
     },
@@ -126,7 +126,7 @@
       "slug": "hd-revise",
       "cover": {
         "url": "https://ik.imagekit.io/kinora/tr:w-500/hd-revise?updatedAt=1762625614711",
-        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/hd-revise?updatedAt=1762625614711"
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-300/hd-revise?updatedAt=1762625614711"
       },
       "moviesCount": 98
     },
@@ -136,7 +136,7 @@
       "slug": "most-expensive",
       "cover": {
         "url": "https://ik.imagekit.io/kinora/tr:w-500/most-expensive?updatedAt=1762625743466",
-        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/most-expensive?updatedAt=1762625743466"
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-300/most-expensive?updatedAt=1762625743466"
       },
       "moviesCount": 100
     },
@@ -146,7 +146,7 @@
       "slug": "most-profitable",
       "cover": {
         "url": "https://ik.imagekit.io/kinora/tr:w-500/most-profitable?updatedAt=1762625845859",
-        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/most-profitable?updatedAt=1762625845859"
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-300/most-profitable?updatedAt=1762625845859"
       },
       "moviesCount": 100
     },
@@ -156,7 +156,7 @@
       "slug": "planned-to-watch-films",
       "cover": {
         "url": "https://ik.imagekit.io/kinora/tr:w-500/planned-to-watch-films?updatedAt=1762629533925",
-        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/planned-to-watch-films?updatedAt=1762629533925"
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-300/planned-to-watch-films?updatedAt=1762629533925"
       },
       "moviesCount": 482
     },
@@ -166,7 +166,7 @@
       "slug": "theme_kids_films",
       "cover": {
         "url": "https://ik.imagekit.io/kinora/tr:w-500/theme_kids_films?updatedAt=1762626007372",
-        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/theme_kids_films?updatedAt=1762626007372"
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-300/theme_kids_films?updatedAt=1762626007372"
       },
       "moviesCount": 50
     },
@@ -176,7 +176,7 @@
       "slug": "theme_love",
       "cover": {
         "url": "https://ik.imagekit.io/kinora/tr:w-500/theme_love?updatedAt=1762626196338",
-        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/theme_love?updatedAt=1762626196338"
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-300/theme_love?updatedAt=1762626196338"
       },
       "moviesCount": 70
     },
@@ -186,7 +186,7 @@
       "slug": "hd-family",
       "cover": {
         "url": "https://ik.imagekit.io/kinora/tr:w-500/hd-family?updatedAt=1762626390026",
-        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/hd-family?updatedAt=1762626390026"
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-300/hd-family?updatedAt=1762626390026"
       },
       "moviesCount": 230
     },
@@ -196,7 +196,7 @@
       "slug": "adventure_time",
       "cover": {
         "url": "https://ik.imagekit.io/kinora/tr:w-500/adventure_time?updatedAt=1762627325352",
-        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/adventure_time?updatedAt=1762627325352"
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-300/adventure_time?updatedAt=1762627325352"
       },
       "moviesCount": 74
     },
@@ -206,7 +206,7 @@
       "slug": "anime",
       "cover": {
         "url": "https://ik.imagekit.io/kinora/tr:w-500/genre_anime?updatedAt=1762627522962",
-        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/genre_anime?updatedAt=1762627522962"
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-300/genre_anime?updatedAt=1762627522962"
       },
       "moviesCount": 320
     },
@@ -216,7 +216,7 @@
       "slug": "biografiya",
       "cover": {
         "url": "https://ik.imagekit.io/kinora/tr:w-500/genre_biografiya?updatedAt=1762627662446",
-        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/genre_biografiya?updatedAt=1762627662446"
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-300/genre_biografiya?updatedAt=1762627662446"
       },
       "moviesCount": 118
     },
@@ -226,7 +226,7 @@
       "slug": "boevik",
       "cover": {
         "url": "https://ik.imagekit.io/kinora/tr:w-500/genre_boevik?updatedAt=1762627834849",
-        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/genre_boevik?updatedAt=1762627834849"
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-300/genre_boevik?updatedAt=1762627834849"
       },
       "moviesCount": 542
     },
@@ -236,7 +236,7 @@
       "slug": "vestern",
       "cover": {
         "url": "https://ik.imagekit.io/kinora/tr:w-500/genre_vestern?updatedAt=1762627942530",
-        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/genre_vestern?updatedAt=1762627942530"
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-300/genre_vestern?updatedAt=1762627942530"
       },
       "moviesCount": 62
     },
@@ -246,7 +246,7 @@
       "slug": "voennyy",
       "cover": {
         "url": "https://ik.imagekit.io/kinora/tr:w-500/genre_voennyy?updatedAt=1762628074523",
-        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/genre_voennyy?updatedAt=1762628074523"
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-300/genre_voennyy?updatedAt=1762628074523"
       },
       "moviesCount": 145
     },
@@ -256,7 +256,7 @@
       "slug": "detektiv",
       "cover": {
         "url": "https://ik.imagekit.io/kinora/tr:w-500/genre_detektiv?updatedAt=1762628466792",
-        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/genre_detektiv?updatedAt=1762628466792"
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-300/genre_detektiv?updatedAt=1762628466792"
       },
       "moviesCount": 272
     },
@@ -266,7 +266,7 @@
       "slug": "drama",
       "cover": {
         "url": "https://ik.imagekit.io/kinora/tr:w-500/genre_drama?updatedAt=1762628570187",
-        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/genre_drama?updatedAt=1762628570187"
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-300/genre_drama?updatedAt=1762628570187"
       },
       "moviesCount": 890
     },
@@ -276,7 +276,7 @@
       "slug": "komediya",
       "cover": {
         "url": "https://ik.imagekit.io/kinora/tr:w-500/genre_komediya?updatedAt=1762628699590",
-        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/genre_komediya?updatedAt=1762628699590"
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-300/genre_komediya?updatedAt=1762628699590"
       },
       "moviesCount": 610
     },
@@ -286,7 +286,7 @@
       "slug": "kriminal",
       "cover": {
         "url": "https://ik.imagekit.io/kinora/tr:w-500/genre_kriminal?updatedAt=1762628792470",
-        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/genre_kriminal?updatedAt=1762628792470"
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-300/genre_kriminal?updatedAt=1762628792470"
       },
       "moviesCount": 328
     },
@@ -296,7 +296,7 @@
       "slug": "fantastika",
       "cover": {
         "url": "https://ik.imagekit.io/kinora/tr:w-500/genre_fantastika?updatedAt=1762628900974",
-        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/genre_fantastika?updatedAt=1762628900974"
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-300/genre_fantastika?updatedAt=1762628900974"
       },
       "moviesCount": 457
     },
@@ -306,7 +306,7 @@
       "slug": "fentezi",
       "cover": {
         "url": "https://ik.imagekit.io/kinora/tr:w-500/genre_fentezi?updatedAt=1762628996078",
-        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/genre_fentezi?updatedAt=1762628996078"
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-300/genre_fentezi?updatedAt=1762628996078"
       },
       "moviesCount": 311
     },
@@ -316,7 +316,7 @@
       "slug": "uzhasy",
       "cover": {
         "url": "https://ik.imagekit.io/kinora/tr:w-500/genre_uzhasy?updatedAt=1762629095244",
-        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-500/genre_uzhasy?updatedAt=1762629095244"
+        "previewUrl": "https://ik.imagekit.io/kinora/tr:bl-20,w-300/genre_uzhasy?updatedAt=1762629095244"
       },
       "moviesCount": 198
     }

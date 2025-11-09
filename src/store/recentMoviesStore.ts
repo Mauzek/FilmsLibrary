@@ -30,7 +30,6 @@ export class RecentMoviesStore {
 
     this.unsubscribe = onSnapshot(q, (snap) => {
       const movies: SavedMovie[] = snap.docs.map((doc) => doc.data() as Movie);
-      console.log("Recent movies updated:", movies);
       runInAction(() => {
         this.recent = movies;
       });

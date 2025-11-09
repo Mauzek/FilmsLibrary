@@ -5,36 +5,49 @@ const imageCache = new Map<string, boolean>();
 export function useProgressiveLazyImage(previewUrl?: string, fullUrl?: string) {
   const ref = useRef<HTMLImageElement | null>(null);
 
-  const [imgSrc, setImgSrc] = useState(() => {
-    if (fullUrl && imageCache.get(fullUrl)) return fullUrl;
-    return previewUrl || "";
-  });
-
-  const [isLoaded, setIsLoaded] = useState(() => {
-    if (fullUrl && imageCache.get(fullUrl)) return true;
-    return false;
-  });
+  // 💡 Если full уже загружено — сразу показать его
+  const isFullCached = !!(fullUrl && imageCache.get(fullUrl));
+  const [imgSrc, setImgSrc] = useState(() =>
+    isFullCached ? fullUrl! : ""
+  );
+  const [isLoaded, setIsLoaded] = useState(isFullCached);
 
   useEffect(() => {
-    if (!fullUrl || imageCache.get(fullUrl)) return;
+    // Если полное изображение уже закэшировано, ничего не делаем
+    if (isFullCached) return;
 
-    setImgSrc(previewUrl || "");
-    setIsLoaded(false);
+    let hasStartedLoading = false;
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const img = new Image();
-            img.src = fullUrl;
-            img.onload = () => {
+          if (!entry.isIntersecting || hasStartedLoading) return;
+
+          hasStartedLoading = true;
+
+          // Сначала грузим превью (если есть)
+          if (previewUrl) {
+            const previewImg = new Image();
+            previewImg.src = previewUrl;
+            previewImg.onload = () => {
+              // Подставляем превью только если полная версия ещё не загрузилась
+              setImgSrc((prev) => (prev === "" ? previewUrl : prev));
+            };
+          }
+
+          // Затем грузим полное изображение
+          if (fullUrl) {
+            const fullImg = new Image();
+            fullImg.src = fullUrl;
+            fullImg.onload = () => {
               imageCache.set(fullUrl, true);
               setImgSrc(fullUrl);
               setIsLoaded(true);
             };
-            img.onerror = () => setIsLoaded(true);
-            observer.disconnect();
+            fullImg.onerror = () => setIsLoaded(true);
           }
+
+          observer.disconnect();
         });
       },
       { rootMargin: "200px" }
@@ -43,7 +56,7 @@ export function useProgressiveLazyImage(previewUrl?: string, fullUrl?: string) {
     if (ref.current) observer.observe(ref.current);
 
     return () => observer.disconnect();
-  }, [previewUrl, fullUrl]);
+  }, [previewUrl, fullUrl, isFullCached]);
 
   return { imgSrc, isLoaded, ref };
 }

@@ -35,7 +35,7 @@ export const MovieCard = memo(
       if (!rating || rating === 0) return "–";
       return rating.toFixed(1);
     };
-    console.log(movie.name);
+
     return (
       <article className={styles.movieCard}>
         <Link to={`/movie/${movie.id}`} className={styles.movieCard__link}>

@@ -1,44 +1,24 @@
-const CACHE_NAME = 'vk-filmslib-v1';
-
-const urlsToCache = [
-  '/',
-  '/index.html',
-  '/logo-icon.png'
-];
+const CACHE_NAME = 'kinora-v1';
+const OFFLINE_URL = '/';
 
 self.addEventListener('install', (event) => {
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then((cache) => cache.addAll(urlsToCache))
-      .then(() => self.skipWaiting())
+      .then(cache => cache.addAll([OFFLINE_URL, '/logo-icon.png']))
+      .catch(err => console.warn('[SW] Pre-cache failed:', err))
   );
 });
 
 self.addEventListener('activate', (event) => {
+  const cacheWhitelist = [CACHE_NAME];
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME) {
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    })
-  );
-  return self.clients.claim();
-});
-
-self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request)
-      .then((response) => {
-        return response || fetch(event.request);
-      })
-      .catch(() => {
-        if (event.request.mode === 'navigate') {
-          return caches.match('/');
-        }
-      })
+    caches.keys()
+      .then(cacheNames => Promise.all(
+        cacheNames
+          .filter(name => !cacheWhitelist.includes(name))
+          .map(name => caches.delete(name))
+      ))
+      .then(() => self.clients.claim())
   );
 });
