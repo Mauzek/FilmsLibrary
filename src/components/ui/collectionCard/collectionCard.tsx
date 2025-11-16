@@ -19,7 +19,7 @@ export const CollectionCard = memo(
         <div className={styles.card__imageWrapper}>
           <img
             ref={ref}
-            src={imgSrc}
+            src={imgSrc ?? undefined}
             alt={name}
             className={`${styles.card__image} ${
               isLoaded ? styles["card__image--loaded"] : ""
