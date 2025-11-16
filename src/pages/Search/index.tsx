@@ -2,36 +2,35 @@ import { ErrorState, MoviesGrid, Section } from "@/components";
 import { Icon24Search } from "@vkontakte/icons";
 import { useMoviesStore } from "@/store";
 import { useEffect } from "react";
-import { useInfiniteScroll } from "@/hooks";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { observer } from "mobx-react-lite";
+import { useInfiniteScroll } from "@/hooks";
 
 const SearchPage = observer(() => {
   const [searchParams] = useSearchParams();
+  const moviesStore = useMoviesStore();
   const {
     loading,
     movies,
-    isLoadingMore,
+    loadingMore,
     hasMore,
     loadMoreMovies,
     searchMovies,
     error,
-  } = useMoviesStore();
-
-  useInfiniteScroll({
-    hasMore,
-    loading: isLoadingMore,
-    onLoadMore: loadMoreMovies,
-    threshold: 500,
-  });
+  } = moviesStore;
 
   const navigate = useNavigate();
-  const query = searchParams.get("query");
+  const query = searchParams.get("query")?.trim() || "";
+
+  const sentinelRef = useInfiniteScroll({
+    hasMore,
+    loading: loadingMore || loading,
+    onLoadMore: loadMoreMovies,
+    disabled: !!error,
+  });
 
   useEffect(() => {
-    const title = query
-      ? `Поиск: "${query}" - KINORA`
-      : "Поиск фильмов - KINORA";
+    const title = query ? `Поиск: "${query}" - KINORA` : "Поиск фильмов - KINORA";
     document.title = title;
 
     const metaDescription = document.querySelector('meta[name="description"]');
@@ -46,12 +45,12 @@ const SearchPage = observer(() => {
   }, [query]);
 
   useEffect(() => {
-    if (query && query.trim()) {
-      searchMovies(query.trim());
-    } else {
+    if (!query) {
       navigate("/");
+    } else {
+      searchMovies(query);
     }
-  }, [searchParams, searchMovies, navigate, query]);
+  }, [query, searchMovies, navigate]);
 
   return (
     <main
@@ -63,6 +62,7 @@ const SearchPage = observer(() => {
       <Section
         title={query ? `Поиск: "${query}"` : "Поиск фильмов"}
         icon={<Icon24Search />}
+        isFiltered={true}
       >
         {error ? (
           <ErrorState
@@ -71,7 +71,20 @@ const SearchPage = observer(() => {
             description="Возможно вы ввели неправильное название, попробуйте изменить запрос и повторить поиск"
           />
         ) : (
-          <MoviesGrid movies={movies} loading={loading} />
+          <>
+            <MoviesGrid
+              movies={movies}
+              loading={loading}
+              isLoadingMore={loadingMore}
+            />
+            {hasMore && (
+              <div
+                ref={sentinelRef}
+                style={{ height: 40, opacity: 0 }}
+                aria-hidden="true"
+              />
+            )}
+          </>
         )}
       </Section>
     </main>
