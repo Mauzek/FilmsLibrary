@@ -29,6 +29,10 @@
         &--active {         
             color: white;
         }
+
+        @media screen and (max-width: $breakpoint-lmd) {
+            display: none;
+        }
     }
 
     &__dropdown {

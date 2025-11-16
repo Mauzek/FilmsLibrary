@@ -52,6 +52,7 @@ const MainPage = observer(() => {
             gap={20}
             columns={7}
             scrollable="all"
+            skeletonCount={7}
           />
         </Section>
       )}

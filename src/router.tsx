@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, ScrollRestoration } from "react-router-dom";
 import { lazy } from "react";
 import App from "./App";
 import { RouteWrapper } from "./lib";
@@ -27,7 +27,9 @@ const ProfilePage = lazy(() => import("@/pages/Profile/[id]"));
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <>
+    <ScrollRestoration/>
+    <App /></>,
     children: [
       {
         index: true,

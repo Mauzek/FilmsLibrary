@@ -1,11 +1,10 @@
-import { ErrorState, Section } from "@/components";
+import { useEffect } from "react";
+import { observer } from "mobx-react-lite";
+import { useSearchParams } from "react-router-dom";
+import { ErrorState, Section, MoviesGrid } from "@/components";
 import { Icon24VideoOutline } from "@vkontakte/icons";
 import { useMoviesStore, useFiltersStore } from "@/store";
-import { observer } from "mobx-react-lite";
-import { useEffect } from "react";
-import { MoviesGrid } from "@/components";
 import { useInfiniteScroll } from "@/hooks";
-import { useSearchParams } from "react-router-dom";
 
 const MoviesPage = observer(() => {
   const [searchParams] = useSearchParams();
@@ -15,8 +14,8 @@ const MoviesPage = observer(() => {
   const {
     loading,
     movies,
-    isLoadingMore,
-    hasMore,
+    loadingMore,
+    hasMore,  
     loadMoreMovies,
     loadMovies,
     searchMovies,
@@ -40,11 +39,11 @@ const MoviesPage = observer(() => {
     }
   }, [searchParams.toString()]);
 
-  useInfiniteScroll({
+  const sentinelRef = useInfiniteScroll({
     hasMore,
-    loading: isLoadingMore || loading,
+    loading: loadingMore || loading,
     onLoadMore: loadMoreMovies,
-    threshold: 500,
+    disabled: error !== null,
   });
 
   return (
@@ -52,8 +51,8 @@ const MoviesPage = observer(() => {
       role="main"
       aria-label={
         movies.length > 0
-          ? `Найдео фильмов ${movies.length}. Страница фильмов на VK FilmsLib`
-          : "Страница фильмов на VK FilmsLib"
+          ? `Найдено фильмов: ${movies.length}. Страница фильмов на KINORA`
+          : "Страница фильмов на KINORA"
       }
     >
       <Section title="Фильмы" icon={<Icon24VideoOutline />} isFiltered={true}>
@@ -64,11 +63,20 @@ const MoviesPage = observer(() => {
             description="Возможно, вы ввели неправильный запрос"
           />
         ) : (
-          <MoviesGrid
-            movies={movies}
-            loading={loading}
-            isLoadingMore={isLoadingMore}
-          />
+          <>
+            <MoviesGrid
+              movies={movies}
+              loading={loading}
+              isLoadingMore={loadingMore}
+            />
+            {hasMore && (
+              <div
+                ref={sentinelRef}
+                style={{ height: "40px", opacity: 0 }}
+                aria-hidden="true"
+              />
+            )}
+          </>
         )}
       </Section>
     </main>

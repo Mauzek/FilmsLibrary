@@ -42,7 +42,7 @@ export const MovieCard = memo(
           <div className={styles.movieCard__posterWrapper}>
             <img
               ref={ref}
-              src={imgSrc}
+              src={imgSrc ?? undefined}
               alt={movieData.name}
               className={`${styles.movieCard__poster} ${
                 isLoaded ? styles["movieCard__poster--loaded"] : ""

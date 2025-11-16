@@ -17,16 +17,17 @@ interface GenreType {
 
 const CollectionPage = observer(() => {
   const { slug } = useParams<{ slug: string }>();
+  const moviesStore = useMoviesStore();
   const {
     loading,
     movies,
-    isLoadingMore,
+    loadingMore,
     hasMore,
     loadMoreMovies,
     loadMovies,
     error,
     reset,
-  } = useMoviesStore();
+  } = moviesStore;
 
   const genresMap: Record<string, GenreType> = useMemo(() => {
     const map: Record<string, GenreType> = {};
@@ -45,13 +46,11 @@ const CollectionPage = observer(() => {
 
   if (!collection && !genre) {
     return (
-      <div>
-        <ErrorState
-          error="Коллекция или жанр не найдены"
-          title="Ничего не найдено"
-          description="Возможно, вы ввели неправильный запрос"
-        />
-      </div>
+      <ErrorState
+        error="Коллекция или жанр не найдены"
+        title="Ничего не найдено"
+        description="Возможно, вы ввели неправильный запрос"
+      />
     );
   }
 
@@ -63,7 +62,7 @@ const CollectionPage = observer(() => {
         "genres.name": [genre.name.toLowerCase()],
         sortField: "rating.kp",
         sortType: "-1",
-        "votes.kp": "100000-6666666",
+        "votes.kp": "20000-6666666",
       });
     } else if (collection) {
       loadMovies({
@@ -76,20 +75,24 @@ const CollectionPage = observer(() => {
     const title = collection?.name || genre?.name || "Фильмы";
     document.title = `${title} на KINORA`;
 
-    return () => {
-      reset();
-    };
+    return () => reset();
   }, [slug]);
 
-  useInfiniteScroll({
+  // useInfiniteScroll с sentinelRef
+  const sentinelRef = useInfiniteScroll({
     hasMore,
-    loading: isLoadingMore || loading,
+    loading: loadingMore || loading,
     onLoadMore: loadMoreMovies,
-    threshold: 500,
+    disabled: !!error,
   });
 
   return (
-    <div>
+    <main
+      role="main"
+      aria-label={`Страница ${
+        collection?.name || genre?.name || "фильмов"
+      } на KINORA`}
+    >
       <Section
         title={(collection || genre)?.name || ""}
         icon={<Icon24VideoOutline />}
@@ -101,14 +104,23 @@ const CollectionPage = observer(() => {
             description="Возможно, вы ввели неправильный запрос"
           />
         ) : (
-          <MoviesGrid
-            movies={movies}
-            loading={loading}
-            isLoadingMore={isLoadingMore}
-          />
+          <>
+            <MoviesGrid
+              movies={movies}
+              loading={loading}
+              isLoadingMore={loadingMore}
+            />
+            {hasMore && (
+              <div
+                ref={sentinelRef}
+                style={{ height: 40, opacity: 0 }}
+                aria-hidden="true"
+              />
+            )}
+          </>
         )}
       </Section>
-    </div>
+    </main>
   );
 });
 

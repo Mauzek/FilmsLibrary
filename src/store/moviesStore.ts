@@ -1,13 +1,14 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import { api } from "@/api";
 import type { Movie, ApiFilters, ApiResponse } from "@/types";
-import type { AxiosResponse } from "axios";
 
 export class MoviesStore {
   movies: Movie[] = [];
   popularMovies: Movie[] = [];
   popularSlides: Movie[] = [];
+
   loading = false;
+  loadingMore = false;
   error: string | null = null;
   hasMore = true;
 
@@ -17,244 +18,238 @@ export class MoviesStore {
   limit = 50;
 
   filters: ApiFilters = {};
-  lastRequestId: string | null = null;
 
   constructor() {
-    makeAutoObservable(this);
+    makeAutoObservable(this, {}, { autoBind: true });
   }
 
-  private generateRequestId(filters: ApiFilters, page: number = 1): string {
-    return JSON.stringify({ ...filters, page });
+  //
+  // ============= UTILITIES =============
+  //
+
+  private resetPagination() {
+    this.movies = [];
+    this.currentPage = 1;
+    this.hasMore = true;
   }
 
-  private async executeRequest<T>(
-    requestId: string,
-    apiCall: () => Promise<AxiosResponse<T>>,
-    onSuccess: (data: T) => void,
-    errorMessage: string
-  ): Promise<void> {
-    if (this.lastRequestId === requestId && this.loading) {
-      return;
+  private handleFiltersChange(nextFilters: ApiFilters) {
+    const changed =
+      JSON.stringify(this.filters) !== JSON.stringify(nextFilters);
+
+    if (changed) {
+      this.filters = nextFilters;
+      this.resetPagination();
     }
 
+    return changed;
+  }
+
+  private applyInitialData(data: ApiResponse<Movie>) {
+    this.movies = data.docs || [];
+    this.currentPage = data.page || 1;
+    this.totalPages = data.pages || 0;
+    this.total = data.total || 0;
+    this.hasMore = this.currentPage < this.totalPages;
+  }
+
+  private appendMovies(data: ApiResponse<Movie>) {
+    if (data.docs && data.docs.length > 0) {
+      this.movies.push(...data.docs);
+    }
+
+    this.currentPage = data.page || this.currentPage + 1;
+    this.hasMore = this.currentPage < (data.pages || this.totalPages);
+  }
+
+  //
+  // ============= LOAD MOVIES (first load) =============
+  //
+
+  async loadMovies(filters: ApiFilters = {}) {
+    this.handleFiltersChange(filters);
+
     runInAction(() => {
-      this.setLoading(true);
-      this.setError(null);
-      this.lastRequestId = requestId;
+      this.loading = true;
+      this.error = null;
     });
 
     try {
-      const response = await apiCall();
-
-      if (this.lastRequestId !== requestId) {
-        return;
-      }
+      const response = await api.getMovies({
+        ...filters,
+        page: 1,
+        limit: filters.limit || this.limit,
+      });
 
       runInAction(() => {
-        onSuccess(response.data);
+        this.applyInitialData(response.data);
       });
-    } catch (error) {
-      if (this.lastRequestId !== requestId) {
-        return;
-      }
-
-      this.setError(error instanceof Error ? error.message : errorMessage);
+    } catch (e: unknown) {
+      runInAction(() => {
+        this.error =
+          e instanceof Error ? e.message : "Ошибка загрузки фильмов";
+      });
     } finally {
-      if (this.lastRequestId === requestId) {
-        this.setLoading(false);
-      }
-    }
-  }
-
-  private handleFiltersChange(filters: ApiFilters): boolean {
-    const filtersChanged =
-      JSON.stringify(this.filters) !== JSON.stringify(filters);
-
-    if (filtersChanged) {
       runInAction(() => {
-        this.movies = [];
-        this.currentPage = 1;
-        this.hasMore = true;
+        this.loading = false;
       });
     }
-
-    return filtersChanged;
   }
 
-  private updateMoviesData(
-    data: ApiResponse<Movie>,
-    filters: ApiFilters
-  ): void {
-    if (data && data.docs) {
-      this.movies = data.docs;
-      this.currentPage = data.page || 1;
-      this.totalPages = data.pages || 0;
-      this.total = data.total || 0;
-      this.hasMore = (data.page || 1) < (data.pages || 0);
-      this.filters = filters;
-    } else {
-      this.movies = [];
+  //
+  // ============= LOAD MORE (pagination) =============
+  //
+
+  async loadMoreMovies() {
+    if (!this.hasMore || this.loadingMore) return;
+
+    const nextPage = this.currentPage + 1;
+
+    runInAction(() => {
+      this.loadingMore = true;
+    });
+
+    try {
+      const response = await api.getMovies({
+        ...this.filters,
+        page: nextPage,
+        limit: this.limit,
+      });
+
+      runInAction(() => {
+        this.appendMovies(response.data);
+      });
+    } catch {
+      /* ошибки догрузки не критичны */
+    } finally {
+      runInAction(() => {
+        this.loadingMore = false;
+      });
     }
   }
 
-  private appendMoviesData(data: ApiResponse<Movie>, nextPage: number): void {
-    this.movies = [...this.movies, ...(data?.docs || [])];
-    this.currentPage = data?.page || nextPage;
-    this.hasMore = (data?.page || nextPage) < (data?.pages || 0);
-  }
+  //
+  // ============= SEARCH =============
+  //
 
-  loadMovies = async (filters: ApiFilters = {}): Promise<void> => {
-    const requestId = this.generateRequestId(filters, 1);
-    this.handleFiltersChange(filters);
-
-    await this.executeRequest<ApiResponse<Movie>>(
-      requestId,
-      () =>
-        api.getMovies({
-          ...filters,
-          page: 1,
-          limit: filters.limit || this.limit,
-        }),
-      (data) => this.updateMoviesData(data, filters),
-      "Ошибка загрузки фильмов"
-    );
-  };
-
-loadPopularContent = async (): Promise<void> => {
-  if (this.popularMovies.length > 0 && this.popularSlides.length > 0) {
-    return;
-  }
-
-  const popularPreset = {
-    limit: 10,
-    lists: "top10-hd",
-  };
-
-  const slidesPreset = {
-    limit: 10,
-    lists: 'popular-films',
-    'rating.kp': '7-10',
-    notNullFields: 'backdrop.url'
-  };
-
-  const requestId = JSON.stringify({ popularPreset, slidesPreset });
-
-  runInAction(() => {
-    this.loading = true;
-    this.error = null;
-    this.lastRequestId = requestId;
-  });
-
-  try {
-    const [popularResponse, slidesResponse] = await Promise.all([
-      api.getMovies(popularPreset),
-      api.getMovies(slidesPreset)
-    ]);
-
-    // Проверяем, не устарел ли запрос
-    if (this.lastRequestId !== requestId) return;
-
-    runInAction(() => {
-      this.popularMovies = popularResponse.data.docs || [];
-      this.popularSlides = slidesResponse.data.docs || [];
-      this.loading = false;
-    });
-  } catch (error) {
-    if (this.lastRequestId !== requestId) return;
-
-    runInAction(() => {
-      this.error = error instanceof Error 
-        ? error.message 
-        : "Ошибка загрузки популярного контента";
-      this.loading = false;
-    });
-  }
-};
-
-
-  searchMovies = async (
-    query: string,
-    filters: ApiFilters = {}
-  ): Promise<void> => {
+  async searchMovies(query: string, filters: ApiFilters = {}) {
     if (!query.trim()) {
-      this.loadMovies(filters);
+      return this.loadMovies(filters);
+    }
+
+    const searchFilters = { ...filters, query };
+
+    this.handleFiltersChange(searchFilters);
+
+    runInAction(() => {
+      this.loading = true;
+      this.error = null;
+    });
+
+    try {
+      const response = await api.searchMovies(query, {
+        ...filters,
+        page: 1,
+        limit: this.limit,
+      });
+
+      runInAction(() => {
+        this.applyInitialData(response.data);
+        this.filters = searchFilters;
+      });
+    } catch (e: unknown) {
+      runInAction(() => {
+        this.error =
+          e instanceof Error ? e.message : "Ошибка поиска фильмов";
+      });
+    } finally {
+      runInAction(() => {
+        this.loading = false;
+      });
+    }
+  }
+
+  //
+  // ============= POPULAR CONTENT =============
+  //
+
+  async loadPopularContent() {
+    if (this.popularMovies.length > 0 && this.popularSlides.length > 0) {
       return;
     }
 
-    const searchFilters: ApiFilters = { ...filters, query };
-    const requestId = this.generateRequestId(searchFilters, 1);
-    this.handleFiltersChange(searchFilters);
+    runInAction(() => {
+      this.error = null;
+      this.loading = true;
+    });
 
-    await this.executeRequest<ApiResponse<Movie>>(
-      requestId,
-      () =>
-        api.searchMovies(query, {
-          ...filters,
-          page: 1,
-          limit: this.limit,
-        }),
-      (data) => {
-        this.movies = data?.docs || [];
-        this.currentPage = data?.page || 1;
-        this.totalPages = data?.pages || 0;
-        this.total = data?.total || 0;
-        this.hasMore = (data?.page || 1) < (data?.pages || 0);
-        this.filters = searchFilters;
-      },
-      "Ошибка поиска фильмов"
-    );
-  };
+    try {
+      const popularPreset = {
+        limit: 10,
+        lists: "top10-hd",
+      };
 
-  loadMoreMovies = async (): Promise<void> => {
-    if (!this.hasMore || this.loading) return;
+      const slidesPreset = {
+        limit: 10,
+        lists: "popular-films",
+        "rating.kp": "7-10",
+        notNullFields: "backdrop.url",
+      };
 
-    const nextPage = this.currentPage + 1;
-    const requestId = this.generateRequestId(this.filters, nextPage);
+      const [popularRes, slidesRes] = await Promise.all([
+        api.getMovies(popularPreset),
+        api.getMovies(slidesPreset),
+      ]);
 
-    await this.executeRequest<ApiResponse<Movie>>(
-      requestId,
-      () =>
-        api.getMovies({
-          ...this.filters,
-          page: nextPage,
-          limit: this.limit,
-        }),
-      (data) => this.appendMoviesData(data, nextPage),
-      "Ошибка загрузки фильмов"
-    );
-  };
+      runInAction(() => {
+        this.popularMovies = popularRes.data.docs || [];
+        this.popularSlides = slidesRes.data.docs || [];
+      });
+    } catch (e: unknown) {
+      runInAction(() => {
+        this.error =
+          e instanceof Error
+            ? e.message
+            : "Ошибка загрузки популярного контента";
+      });
+    } finally {
+      runInAction(() => {
+        this.loading = false;
+      });
+    }
+  }
 
-  reset = (): void => {
+  //
+  // ============= RESET STORE =============
+  //
+
+  reset() {
     runInAction(() => {
       this.movies = [];
+      this.popularMovies = [];
+      this.popularSlides = [];
+      this.filters = {};
+
       this.currentPage = 1;
       this.totalPages = 0;
       this.total = 0;
+
       this.hasMore = true;
-      this.filters = {};
-      this.error = null;
       this.loading = false;
-      this.lastRequestId = null;
+      this.loadingMore = false;
+      this.error = null;
     });
-  };
+  }
 
-  private setLoading = (loading: boolean): void => {
-    this.loading = loading;
-  };
+  //
+  // ============= COMPUTED =============
+  //
 
-  private setError = (error: string | null): void => {
-    this.error = error;
-  };
-
-  get isEmpty(): boolean {
+  get isEmpty() {
     return this.movies.length === 0 && !this.loading;
   }
 
-  get isFirstLoad(): boolean {
+  get isFirstLoad() {
     return this.movies.length === 0;
-  }
-
-  get isLoadingMore(): boolean {
-    return this.loading && this.movies.length > 0;
   }
 }

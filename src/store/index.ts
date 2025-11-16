@@ -3,18 +3,21 @@ import { MoviesStore } from "./moviesStore";
 import { FiltersStore } from "./filtersStore";
 import { RecentMoviesStore } from "./recentMoviesStore";
 import { UserStore } from "./userStore";
+import { SearchStore } from "./searchStore";
 
 class RootStore {
   moviesStore: MoviesStore;
   filtersStore: FiltersStore;
   recentMoviesStore: RecentMoviesStore;
   userStore: UserStore;
+  searchStore: SearchStore
 
   constructor() {
     this.moviesStore = new MoviesStore();
     this.filtersStore = new FiltersStore();
     this.recentMoviesStore = new RecentMoviesStore();
     this.userStore = new UserStore();
+    this.searchStore = new SearchStore();
   }
 }
 
@@ -34,5 +37,6 @@ export const useMoviesStore = () => useStore().moviesStore;
 export const useFiltersStore = () => useStore().filtersStore;
 export const useRecentMoviesStore = () => useStore().recentMoviesStore;
 export const useUserStore = () => useStore().userStore;
+export const useSearchStore = () => useStore().searchStore;
 
 export { rootStore, StoreContext };

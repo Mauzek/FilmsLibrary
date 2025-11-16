@@ -1,49 +1,33 @@
-import { useState, useRef, useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Icon28SearchOutline, Icon24CancelOutline } from "@vkontakte/icons";
 import { useSearchForm } from "@/hooks";
 import styles from "./mobileSearchForm.module.scss";
 import { createPortal } from "react-dom";
+import { useSearchStore } from "@/store";
+import { observer } from "mobx-react-lite";
 
-export const MobileSearchForm = () => {
+export const MobileSearchForm = observer(() => {
   const { query, handleSubmit, handleQueryChange } = useSearchForm();
-  const [isExpanded, setIsExpanded] = useState<boolean>(false);
+  const { isMobileOpen, close, toggle } = useSearchStore();
   const inputRef = useRef<HTMLInputElement>(null);
-
-  const handleToggleExpand = () => {
-    setIsExpanded(!isExpanded);
-  };
-
-  const handleClose = () => {
-    setIsExpanded(false);
-  };
 
   const onSubmit = (e: React.FormEvent) => {
     const success = handleSubmit(e);
-    if (success) {
-      setIsExpanded(false);
-    }
+    if (success) close();
   };
 
   useEffect(() => {
-    if (isExpanded && inputRef.current) {
-      const timer = setTimeout(() => {
-        inputRef.current?.focus();
-      }, 10);
-      return () => clearTimeout(timer);
+    if (isMobileOpen && inputRef.current) {
+      inputRef.current.focus({ preventScroll: true });
     }
-  }, [isExpanded]);
+  }, [isMobileOpen]);
 
   useEffect(() => {
-    if (isExpanded) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-
+    document.body.style.overflow = isMobileOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
-  }, [isExpanded]);
+  }, [isMobileOpen]);
 
   return (
     <>
@@ -51,57 +35,52 @@ export const MobileSearchForm = () => {
         <button
           type="button"
           className={`${styles.searchFormMobile__trigger} ${
-            isExpanded ? styles["searchFormMobile__trigger--active"] : ""
+            isMobileOpen ? styles["searchFormMobile__trigger--active"] : ""
           }`}
-          onClick={handleToggleExpand}
+          onClick={toggle}
           aria-label="Поиск"
         >
           <Icon28SearchOutline />
         </button>
 
-        <div
-          className={`${styles.searchFormMobile__dropdown} ${
-            isExpanded ? styles["searchFormMobile__dropdown--open"] : ""
-          }`}
-        >
-          <form onSubmit={onSubmit} className={styles.searchFormMobile__form}>
-            <div className={styles.searchFormMobile__inputWrapper}>
-              <span className={styles.searchFormMobile__icon}>
-                <Icon28SearchOutline />
-              </span>
-              <input
-                ref={inputRef}
-                type="text"
-                value={query}
-                onChange={(e) => handleQueryChange(e.target.value)}
-                placeholder="Поиск фильмов"
-                inputMode="search"
-                className={styles.searchFormMobile__input}
-                autoComplete="off"
-                autoCorrect="off"
-                autoCapitalize="off"
-                spellCheck="false"
-              />
-              <button
-                type="button"
-                className={styles.searchFormMobile__close}
-                onClick={handleClose}
-              >
-                <Icon24CancelOutline />
-              </button>
-            </div>
-          </form>
-        </div>
+        {isMobileOpen && (
+          <div
+            className={`${styles.searchFormMobile__dropdown} ${
+              styles["searchFormMobile__dropdown--open"]
+            }`}
+          >
+            <form onSubmit={onSubmit} className={styles.searchFormMobile__form}>
+              <div className={styles.searchFormMobile__inputWrapper}>
+                <span className={styles.searchFormMobile__icon}>
+                  <Icon28SearchOutline />
+                </span>
+                <input
+                  ref={inputRef}
+                  type="text"
+                  value={query}
+                  onChange={(e) => handleQueryChange(e.target.value)}
+                  placeholder="Поиск фильмов"
+                  inputMode="search"
+                  className={styles.searchFormMobile__input}
+                  autoComplete="off"
+                  autoCorrect="off"
+                  autoCapitalize="off"
+                  spellCheck={false}
+                />
+                <button type="button" className={styles.searchFormMobile__close} onClick={close}>
+                  <Icon24CancelOutline />
+                </button>
+              </div>
+            </form>
+          </div>
+        )}
       </div>
 
-      {isExpanded &&
+      {isMobileOpen &&
         createPortal(
-          <div
-            className={styles.searchFormMobile__overlay}
-            onClick={handleClose}
-          />,
+          <div className={styles.searchFormMobile__overlay} onClick={close} />,
           document.body
         )}
     </>
   );
-};
+});
