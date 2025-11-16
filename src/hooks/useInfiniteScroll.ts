@@ -1,46 +1,51 @@
-import { useEffect, useCallback } from "react";
-import type { UseInfiniteScrollProps } from "./types";
+import { useEffect, useRef } from "react";
+
+export interface UseInfiniteScrollOptions {
+  hasMore: boolean;
+  loading: boolean;
+  onLoadMore: () => void;
+  disabled?: boolean;
+}
 
 export const useInfiniteScroll = ({
   hasMore,
   loading,
   onLoadMore,
-  threshold = 200,
-}: UseInfiniteScrollProps) => {
-  const handleScroll = useCallback(() => {
-    if (loading || !hasMore) {
-      return;
-    }
-
-    const scrollTop = document.documentElement.scrollTop;
-    const scrollHeight = document.documentElement.scrollHeight;
-    const clientHeight = document.documentElement.clientHeight;
-
-    const shouldLoadMore = scrollTop + clientHeight >= scrollHeight - threshold;
-
-    if (shouldLoadMore) {
-      onLoadMore();
-    }
-  }, [loading, hasMore, onLoadMore, threshold]);
+  disabled = false,
+}: UseInfiniteScrollOptions) => {
+  const sentinelRef = useRef<HTMLDivElement>(null);
+  
+  const stateRef = useRef({ hasMore, loading, disabled });
+  useEffect(() => {
+    stateRef.current = { hasMore, loading, disabled };
+  }, [hasMore, loading, disabled]);
 
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
+    if (disabled || !hasMore) return;
 
-    const throttledHandleScroll = () => {
-      if (timeoutId) {
-        clearTimeout(timeoutId);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !stateRef.current.loading) {
+          onLoadMore();
+        }
+      },
+      {
+        rootMargin: "300px",
+        threshold: 0.1,
       }
+    );
 
-      timeoutId = setTimeout(handleScroll, 100);
-    };
-
-    window.addEventListener("scroll", throttledHandleScroll);
+    const currentSentinel = sentinelRef.current;
+    if (currentSentinel) {
+      observer.observe(currentSentinel);
+    }
 
     return () => {
-      window.removeEventListener("scroll", throttledHandleScroll);
-      if (timeoutId) {
-        clearTimeout(timeoutId);
+      if (currentSentinel) {
+        observer.unobserve(currentSentinel);
       }
     };
-  }, [handleScroll]);
+  }, [onLoadMore, disabled, hasMore]);
+
+  return sentinelRef;
 };
