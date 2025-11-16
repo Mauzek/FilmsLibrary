@@ -1,3 +1,4 @@
+import { useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { SearchForm } from "@/components";
 import styles from "./header.module.scss";
@@ -9,42 +10,91 @@ import {
   Icon28PlayRectangleStackOutline,
   Icon28Profile,
 } from "@vkontakte/icons";
-import { useUserStore } from "@/store";
+import { useUserStore, useSearchStore } from "@/store";
 import { observer } from "mobx-react-lite";
 
 const tabs = [
-  {
-    path: "/",
-    icon: <Icon28HomeOutline />,
-    text: "Главная",
-  },
-  {
-    path: "/movies",
-    icon: <Icon28FilmStripOutline />,
-    text: "Фильмы",
-  },
+  { path: "/", icon: <Icon28HomeOutline />, text: "Главная" },
+  { path: "/movies", icon: <Icon28FilmStripOutline />, text: "Фильмы" },
   {
     path: "/collections",
     icon: <Icon28PlayRectangleStackOutline />,
     text: "Коллекции",
   },
-  {
-    path: "/favourite",
-    icon: <Icon28LikeOutline />,
-    text: "Избранное",
-  },
+  { path: "/favourite", icon: <Icon28LikeOutline />, text: "Избранное" },
 ];
 
 export const Header = observer(() => {
   const location = useLocation();
   const { user } = useUserStore();
-  const isActiveLink = (path: string) => {
-    return location.pathname === path;
-  };
+  const { isMobileOpen } = useSearchStore();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const lastScrollRef = useRef<number>(0);
+  const prevWidthRef = useRef<string>("100%");
+
+  const isActiveLink = (path: string) => location.pathname === path;
+
+  useEffect(() => {
+    if (!containerRef.current || window.innerWidth > 850) return;
+
+    const container = containerRef.current;
+
+    const animate = async () => {
+      const { default: gsap } = await import("gsap");
+      if (isMobileOpen) {
+        prevWidthRef.current = container.getBoundingClientRect().width + "px";
+        gsap.to(container, { width: "100%", duration: 0.2, ease: "power2.out" });
+      } else {
+        gsap.to(container, {
+          width: prevWidthRef.current,
+          duration: 0.2,
+          ease: "power2.out",
+        });
+      }
+    };
+
+    animate();
+  }, [isMobileOpen]);
+
+  useEffect(() => {
+    if (window.innerWidth > 850 || isMobileOpen) return;
+    const container = containerRef.current;
+    if (!container) return;
+
+    let gsap: typeof import("gsap").default;
+
+    const loadGsapAndAnimate = async () => {
+      const mod = await import("gsap");
+      gsap = mod.default;
+    };
+
+    const handleScroll = async () => {
+      if (!gsap) {
+        await loadGsapAndAnimate();
+      }
+
+      const scrollTop = window.scrollY;
+
+      if (scrollTop > lastScrollRef.current && scrollTop > 50) {
+        gsap.to(container, { width: "40%", duration: 0.5, ease: "power2.out" });
+      } else {
+        gsap.to(container, {
+          width: "100%",
+          duration: 0.5,
+          ease: "power2.out",
+        });
+      }
+
+      lastScrollRef.current = scrollTop;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isMobileOpen]);
 
   return (
     <header className={styles.header}>
-      <div className={styles.header__container}>
+      <div ref={containerRef} className={styles.header__container}>
         <Link to="/" className={styles.header__logo}>
           <img
             src={images.logo}

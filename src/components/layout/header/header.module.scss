@@ -1,6 +1,9 @@
 @use '@styles/variables' as *;
 
 .header {
+    display: flex;
+    justify-content: center;
+
     position: sticky;
     top: 0;
     z-index: $z-header;
@@ -10,6 +13,7 @@
     }
 
     @media (min-width: $breakpoint-lmd) {
+        display: block;
         backdrop-filter: blur(12px) saturate(180%);
         background: $bg-secondary;
     }
@@ -22,9 +26,10 @@
         justify-content: space-between;
         height: $header-height;
         padding: 0 $spacing-xl;
+        width: 100%;
 
-                @media (max-width: $breakpoint-lg) {
-        padding: 0 $spacing-xs;
+        @media (max-width: $breakpoint-lg) {
+            padding: 0 $spacing-xs;
         }
 
         @media (max-width: $breakpoint-lmd) {
@@ -34,6 +39,8 @@
             border-radius: 50px;
             margin: 0 $spacing-xl;
             margin-top: $spacing-sm;
+            justify-content: center;
+            width: 100%;
         }
     }
 
@@ -45,8 +52,11 @@
         padding: $spacing-sm;
         border-radius: $border-radius-lg;
 
-        @media (max-width: $breakpoint-lmd) {       
-            margin-left: $spacing-sm;
+
+        @media (max-width: $breakpoint-lmd) {
+            margin-left: $spacing-md;
+                    width: 100%;
+        justify-content: center;
         }
     }
 
@@ -127,7 +137,6 @@
         flex: 1;
         gap: $spacing-md;
         max-width: 400px;
- 
 
         @media (max-width: $breakpoint-xl) {
             flex: 0;
@@ -137,7 +146,7 @@
         }
     }
 
-    &__profileLink{
+    &__profileLink {
         color: $input-text-secondary;
         padding: $spacing-sm;
 
