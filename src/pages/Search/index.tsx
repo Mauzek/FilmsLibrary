@@ -62,7 +62,6 @@ const SearchPage = observer(() => {
       <Section
         title={query ? `Поиск: "${query}"` : "Поиск фильмов"}
         icon={<Icon24Search />}
-        isFiltered={true}
       >
         {error ? (
           <ErrorState
