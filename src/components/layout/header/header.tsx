@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useCallback } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { SearchForm } from "@/components";
 import styles from "./header.module.scss";
@@ -29,68 +29,75 @@ export const Header = observer(() => {
   const { user } = useUserStore();
   const { isMobileOpen } = useSearchStore();
   const containerRef = useRef<HTMLDivElement>(null);
-  const lastScrollRef = useRef<number>(0);
-  const prevWidthRef = useRef<string>("100%");
+  const headerStateRef = useRef<"expanded" | "collapsed" | "mobile-open">("expanded");
+  const gsapRef = useRef<typeof import("gsap").default | null>(null);
 
   const isActiveLink = (path: string) => location.pathname === path;
 
-  useEffect(() => {
-    if (!containerRef.current || window.innerWidth > 850) return;
-
-    const container = containerRef.current;
-
-    const animate = async () => {
+  const loadGsap = useCallback(async () => {
+    if (!gsapRef.current) {
       const { default: gsap } = await import("gsap");
-      if (isMobileOpen) {
-        prevWidthRef.current = container.getBoundingClientRect().width + "px";
-        gsap.to(container, { width: "100%", duration: 0.2, ease: "power2.out" });
-      } else {
-        gsap.to(container, {
-          width: prevWidthRef.current,
-          duration: 0.2,
-          ease: "power2.out",
-        });
-      }
-    };
+      gsapRef.current = gsap;
+    }
+    return gsapRef.current;
+  }, []);
 
-    animate();
-  }, [isMobileOpen]);
+  const updateHeader = useCallback(async () => {
+    const container = containerRef.current;
+    if (!container || window.innerWidth > 850) return;
+
+    const gsap = await loadGsap();
+
+    let targetState: "expanded" | "collapsed" | "mobile-open" = "expanded";
+    if (isMobileOpen) {
+      targetState = "mobile-open";
+    } else if (window.scrollY > 15) {
+      targetState = "collapsed";
+    } else {
+      targetState = "expanded";
+    }
+
+    if (headerStateRef.current === targetState) return;
+    headerStateRef.current = targetState;
+
+    switch (targetState) {
+      case "expanded":
+        gsap.to(container, { width: "100%", duration: 0.3, ease: "power2.out" });
+        break;
+      case "collapsed":
+        gsap.to(container, { width: "40%", duration: 0.3, ease: "power2.out" });
+        break;
+      case "mobile-open":
+        gsap.to(container, { width: "100%", duration: 0.2, ease: "power2.out" });
+        break;
+    }
+  }, [isMobileOpen, loadGsap]);
+
+  useEffect(() => {
+    updateHeader();
+  }, [isMobileOpen, updateHeader]);
 
   useEffect(() => {
     if (window.innerWidth > 850 || isMobileOpen) return;
-    const container = containerRef.current;
-    if (!container) return;
 
-    let gsap: typeof import("gsap").default;
-
-    const loadGsapAndAnimate = async () => {
-      const mod = await import("gsap");
-      gsap = mod.default;
-    };
-
-    const handleScroll = async () => {
-      if (!gsap) {
-        await loadGsapAndAnimate();
-      }
-
-      const scrollTop = window.scrollY;
-
-      if (scrollTop > lastScrollRef.current && scrollTop > 50) {
-        gsap.to(container, { width: "40%", duration: 0.5, ease: "power2.out" });
-      } else {
-        gsap.to(container, {
-          width: "100%",
-          duration: 0.5,
-          ease: "power2.out",
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          updateHeader();
+          ticking = false;
         });
+        ticking = true;
       }
-
-      lastScrollRef.current = scrollTop;
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [isMobileOpen]);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    updateHeader(); 
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [isMobileOpen, updateHeader]);
 
   return (
     <header className={styles.header}>
