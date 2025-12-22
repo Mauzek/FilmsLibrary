@@ -53,7 +53,7 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
               className={`${styles.customSelect__option} ${
                 option.value === value.iframeUrl ? styles.customSelect__option_selected : ''
               }`}
-              onClick={() => handleOptionClick({iframeUrl: option.value, source: option.label})}
+              onClick={() => handleOptionClick({iframeUrl: option.value, type: option.label})}
             >
               {option.label}
             </div>
