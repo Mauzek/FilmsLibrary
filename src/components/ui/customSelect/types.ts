@@ -11,6 +11,6 @@ export interface CustomSelectProps {
 }
 
 export interface PlayerData {
-  source: string;
+  type: string;
   iframeUrl: string;
 }

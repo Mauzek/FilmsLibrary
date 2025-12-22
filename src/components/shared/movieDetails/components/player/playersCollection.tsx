@@ -19,7 +19,7 @@ export const PlayersCollection = observer(({ kinopoiskId }: PlayerProps) => {
 
   const [players, setPlayers] = useState<PlayersCollectionData[]>([]);
   const [selectedPlayer, setSelectedPlayer] = useState<PlayerCollectionData>({
-    source: "",
+    type: "",
     iframeUrl: "",
   });
   const [error, setError] = useState<string | null>(null);
@@ -29,20 +29,26 @@ export const PlayersCollection = observer(({ kinopoiskId }: PlayerProps) => {
   useEffect(() => {
     if (!user) return;
     if (!kinopoiskId) return;
+    
     const fetchPlayers = async () => {
       setLoading(true);
       setError(null);
 
       try {
         const response = await axios.get(`${playersList}=${kinopoiskId}`);
-
+        console.log(response.data);
+        
         if (response.status === 200 && response.data) {
-          setPlayers(response.data);
-          if (response.data.length > 0) {
-            setSelectedPlayer({
-              source: response.data[0].source,
-              iframeUrl: response.data[0].iframeUrl,
-            });
+          const playersData = response.data.data || response.data;
+          if (Array.isArray(playersData)) {
+            setPlayers(playersData);
+            
+            if (playersData.length > 0) {
+              setSelectedPlayer({
+                type: playersData[0].type,
+                iframeUrl: playersData[0].iframeUrl,
+              });
+            }
           }
         }
       } catch (error) {
@@ -54,13 +60,13 @@ export const PlayersCollection = observer(({ kinopoiskId }: PlayerProps) => {
     };
 
     fetchPlayers();
-  }, [kinopoiskId, user]);
+  }, [kinopoiskId, user, playersList]);
 
   const playerOptions = players
-    .filter((player) => player.iframeUrl !== null)
+    .filter((player) => player.iframeUrl !== null && player.iframeUrl !== "")
     .map((player) => ({
       value: player.iframeUrl,
-      label: player.source,
+      label: player.type, 
     }));
 
   if (!user) {
@@ -110,16 +116,18 @@ export const PlayersCollection = observer(({ kinopoiskId }: PlayerProps) => {
         {error && (
           <div className={styles.playerWrapper__error}>Ошибка: {error}</div>
         )}
-        {selectedPlayer && (
+  
+        {!loading && !error && selectedPlayer.iframeUrl && (
           <iframe
             src={selectedPlayer.iframeUrl}
             width="100%"
             height="100%"
             frameBorder="0"
             allowFullScreen
-            title={`Плеер ${selectedPlayer.source || "видео"}`}
+            title={`Плеер ${selectedPlayer.type || "видео"}`}
           />
         )}
+        
         {!loading && !error && players.length === 0 && (
           <div className={styles.playerWrapper__noPlayers}>
             Плееры не найдены для данного фильма

@@ -17,7 +17,7 @@ export interface ApiResponse {
 }
 
 export interface PlayerCollectionData {
-  source: string;
+  type: string;
   iframeUrl: string;
 }
 
