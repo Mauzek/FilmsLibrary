@@ -12,8 +12,13 @@ import { observer } from "mobx-react-lite";
 import styles from "./mainPage.module.scss";
 
 const MainPage = observer(() => {
-  const { loading, popularMovies, popularSlides, loadPopularContent, error } =
-    useMoviesStore();
+  const {
+    popularLoading,
+    popularMovies,
+    popularSlides,
+    loadPopularContent,
+    popularError,
+  } = useMoviesStore();
   const recentStore = useRecentMoviesStore();
   const { user } = useUserStore();
 
@@ -27,7 +32,7 @@ const MainPage = observer(() => {
 
   return (
     <main className={styles.page}>
-      <Carousel loading={loading}>
+      <Carousel loading={popularLoading}>
         {popularSlides.map((movie) => (
           <MovieSlide key={movie.id} movie={movie} />
         ))}
@@ -49,14 +54,14 @@ const MainPage = observer(() => {
       )}
 
       <Section title="Популярные" icon={<Icon24Fire />}>
-        {error ? (
+        {popularError ? (
           <ErrorState
-            error={error}
+            error={popularError}
             title="Не удалось загрузить популярные фильмы"
             description="Попробуйте перезагрузить страницу"
           />
         ) : (
-          <MoviesGrid movies={popularMovies} loading={loading} />
+          <MoviesGrid movies={popularMovies} loading={popularLoading} />
         )}
       </Section>
     </main>

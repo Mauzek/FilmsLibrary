@@ -8,6 +8,7 @@ import { useInfiniteScroll } from "@/hooks";
 
 const MoviesPage = observer(() => {
   const [searchParams] = useSearchParams();
+  const searchParamsString = searchParams.toString();
   const moviesStore = useMoviesStore();
   const filtersStore = useFiltersStore();
 
@@ -15,7 +16,8 @@ const MoviesPage = observer(() => {
     loading,
     movies,
     loadingMore,
-    hasMore,  
+    loadingMoreError,
+    hasMore,
     loadMoreMovies,
     loadMovies,
     searchMovies,
@@ -27,9 +29,10 @@ const MoviesPage = observer(() => {
   }, []);
 
   useEffect(() => {
-    filtersStore.deserializeFilters(searchParams);
+    const currentSearchParams = new URLSearchParams(searchParamsString);
+    filtersStore.deserializeFilters(currentSearchParams);
 
-    const query = searchParams.get("query");
+    const query = currentSearchParams.get("query");
     const apiFilters = filtersStore.getApiFilters();
 
     if (query && query.trim()) {
@@ -37,7 +40,7 @@ const MoviesPage = observer(() => {
     } else {
       loadMovies(apiFilters);
     }
-  }, [searchParams.toString()]);
+  }, [filtersStore, loadMovies, searchMovies, searchParamsString]);
 
   const sentinelRef = useInfiniteScroll({
     hasMore,
@@ -69,6 +72,14 @@ const MoviesPage = observer(() => {
               loading={loading}
               isLoadingMore={loadingMore}
             />
+            {loadingMoreError && (
+              <div role="alert">
+                <span>Не удалось загрузить ещё фильмы.</span>{" "}
+                <button type="button" onClick={loadMoreMovies}>
+                  Повторить
+                </button>
+              </div>
+            )}
             {hasMore && (
               <div
                 ref={sentinelRef}

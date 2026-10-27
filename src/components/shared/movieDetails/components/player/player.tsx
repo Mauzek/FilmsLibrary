@@ -11,8 +11,11 @@ export const Player = ({ kinopoiskId }: PlayerProps) => {
   const playerUrl = env.playerLumexUrl;
 
   useEffect(() => {
+    let cancelled = false;
+
     const fetchData = async () => {
       if (!kinopoiskId) return;
+      setPlayer(null);
       setError(null);
 
       try {
@@ -28,16 +31,19 @@ export const Player = ({ kinopoiskId }: PlayerProps) => {
           throw new Error("Данные не найдены");
         }
 
-        const playerData = response.data.data[0];
-        setPlayer(playerData);
+        if (!cancelled) setPlayer(response.data.data[0]);
       } catch (err) {
+        if (cancelled) return;
         console.error(err);
-        setError("Ошибка загрузки плеера " + error);
+        setError("Ошибка загрузки плеера");
       }
     };
 
     fetchData();
-  }, [kinopoiskId, token, error]);
+    return () => {
+      cancelled = true;
+    };
+  }, [kinopoiskId, playerUrl, token]);
 
   return (
     <section className={styles.playerWrapper} id="player">

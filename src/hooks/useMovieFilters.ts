@@ -11,18 +11,6 @@ export const useMovieFilters = () => {
     filtersStore.deserializeFilters(searchParams);
   }, [searchParams, filtersStore]);
 
-  useEffect(() => {
-    const query = searchParams.get("query");
-    if (query && query.trim()) {
-      return;
-    }
-
-    const apiFilters = filtersStore.getApiFilters();
-    if (filtersStore.hasActiveFilters) {
-      moviesStore.loadMovies(apiFilters);
-    }
-  }, [searchParams, filtersStore, moviesStore]);
-
   const updateURL = useCallback(() => {
     const currentParams = new URLSearchParams(searchParams);
     const filterParams = filtersStore.serializeFilters();
@@ -92,7 +80,7 @@ export const useMovieFilters = () => {
     } else {
       setSearchParams({});
     }
-  }, [filtersStore, searchParams, setSearchParams]);
+  }, [filtersStore, moviesStore, searchParams, setSearchParams]);
 
   return {
     genres: filtersStore.genres,

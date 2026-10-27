@@ -19,19 +19,18 @@ export const buildQuery = (filters: ApiFilters = {}): string => {
     }
   });
 
-  let queryString = params.toString();
-  
-  queryString = decodeURIComponent(queryString);
-  
-  return queryString;
+  return params.toString();
 };
 
 export const api = {
   getMovies: async (
     filters: ApiFilters = {}
   ): Promise<AxiosResponse<ApiResponse<Movie>>> => {
-    const query = buildQuery(filters);
-    return apiClient.get(`/movie${query ? `?${query}` : ""}&notNullFields=poster.url`);
+    const params = new URLSearchParams(buildQuery(filters));
+    if (!params.getAll("notNullFields").includes("poster.url")) {
+      params.append("notNullFields", "poster.url");
+    }
+    return apiClient.get(`/movie?${params.toString()}`);
   },
 
   searchMovies: async (

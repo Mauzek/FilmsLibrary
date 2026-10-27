@@ -22,6 +22,7 @@ const CollectionPage = observer(() => {
     loading,
     movies,
     loadingMore,
+    loadingMoreError,
     hasMore,
     loadMoreMovies,
     loadMovies,
@@ -44,17 +45,9 @@ const CollectionPage = observer(() => {
   );
   const genre = slug ? genresMap[slug] : null;
 
-  if (!collection && !genre) {
-    return (
-      <ErrorState
-        error="Коллекция или жанр не найдены"
-        title="Ничего не найдено"
-        description="Возможно, вы ввели неправильный запрос"
-      />
-    );
-  }
-
   useEffect(() => {
+    if (!collection && !genre) return;
+
     if (slug === "popular-films" || slug === "popular-series") {
       loadMovies({ lists: slug });
     } else if (genre) {
@@ -76,15 +69,24 @@ const CollectionPage = observer(() => {
     document.title = `${title} на KINORA`;
 
     return () => reset();
-  }, [slug]);
+  }, [collection, genre, loadMovies, reset, slug]);
 
-  // useInfiniteScroll с sentinelRef
   const sentinelRef = useInfiniteScroll({
     hasMore,
     loading: loadingMore || loading,
     onLoadMore: loadMoreMovies,
     disabled: !!error,
   });
+
+  if (!collection && !genre) {
+    return (
+      <ErrorState
+        error="Коллекция или жанр не найдены"
+        title="Ничего не найдено"
+        description="Возможно, вы ввели неправильный запрос"
+      />
+    );
+  }
 
   return (
     <main
@@ -110,6 +112,14 @@ const CollectionPage = observer(() => {
               loading={loading}
               isLoadingMore={loadingMore}
             />
+            {loadingMoreError && (
+              <div role="alert">
+                <span>Не удалось загрузить ещё фильмы.</span>{" "}
+                <button type="button" onClick={loadMoreMovies}>
+                  Повторить
+                </button>
+              </div>
+            )}
             {hasMore && (
               <div
                 ref={sentinelRef}

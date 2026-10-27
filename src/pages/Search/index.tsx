@@ -13,6 +13,7 @@ const SearchPage = observer(() => {
     loading,
     movies,
     loadingMore,
+    loadingMoreError,
     hasMore,
     loadMoreMovies,
     searchMovies,
@@ -76,6 +77,14 @@ const SearchPage = observer(() => {
               loading={loading}
               isLoadingMore={loadingMore}
             />
+            {loadingMoreError && (
+              <div role="alert">
+                <span>Не удалось загрузить ещё фильмы.</span>{" "}
+                <button type="button" onClick={loadMoreMovies}>
+                  Повторить
+                </button>
+              </div>
+            )}
             {hasMore && (
               <div
                 ref={sentinelRef}

@@ -10,39 +10,21 @@ export class MoviesStore {
   loading = false;
   loadingMore = false;
   error: string | null = null;
+  loadingMoreError: string | null = null;
+  popularLoading = false;
+  popularError: string | null = null;
   hasMore = true;
 
   currentPage = 1;
   totalPages = 0;
   total = 0;
   limit = 50;
-
   filters: ApiFilters = {};
+  searchQuery = "";
+  private requestId = 0;
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
-  }
-
-  //
-  // ============= UTILITIES =============
-  //
-
-  private resetPagination() {
-    this.movies = [];
-    this.currentPage = 1;
-    this.hasMore = true;
-  }
-
-  private handleFiltersChange(nextFilters: ApiFilters) {
-    const changed =
-      JSON.stringify(this.filters) !== JSON.stringify(nextFilters);
-
-    if (changed) {
-      this.filters = nextFilters;
-      this.resetPagination();
-    }
-
-    return changed;
   }
 
   private applyInitialData(data: ApiResponse<Movie>) {
@@ -53,197 +35,136 @@ export class MoviesStore {
     this.hasMore = this.currentPage < this.totalPages;
   }
 
-  private appendMovies(data: ApiResponse<Movie>) {
-    if (data.docs && data.docs.length > 0) {
-      this.movies.push(...data.docs);
-    }
+  private async loadInitial(filters: ApiFilters, query: string) {
+    if (
+      this.loading && this.searchQuery === query &&
+      JSON.stringify(this.filters) === JSON.stringify(filters)
+    ) return;
 
-    this.currentPage = data.page || this.currentPage + 1;
-    this.hasMore = this.currentPage < (data.pages || this.totalPages);
-  }
-
-  //
-  // ============= LOAD MOVIES (first load) =============
-  //
-
-  async loadMovies(filters: ApiFilters = {}) {
-    this.handleFiltersChange(filters);
-
-    runInAction(() => {
-      this.loading = true;
-      this.error = null;
-    });
+    const requestId = ++this.requestId;
+    this.filters = { ...filters };
+    this.searchQuery = query;
+    this.movies = [];
+    this.currentPage = 1;
+    this.totalPages = 0;
+    this.total = 0;
+    this.hasMore = true;
+    this.loading = true;
+    this.loadingMore = false;
+    this.loadingMoreError = null;
+    this.error = null;
 
     try {
-      const response = await api.getMovies({
-        ...filters,
-        page: 1,
-        limit: filters.limit || this.limit,
-      });
+      const params = { ...filters, page: 1, limit: filters.limit || this.limit };
+      const response = query
+        ? await api.searchMovies(query, params)
+        : await api.getMovies(params);
 
+      if (requestId !== this.requestId) return;
+      runInAction(() => this.applyInitialData(response.data));
+    } catch (error: unknown) {
+      if (requestId !== this.requestId) return;
       runInAction(() => {
-        this.applyInitialData(response.data);
-      });
-    } catch (e: unknown) {
-      runInAction(() => {
-        this.error =
-          e instanceof Error ? e.message : "Ошибка загрузки фильмов";
+        this.error = error instanceof Error ? error.message : "Ошибка загрузки фильмов";
       });
     } finally {
-      runInAction(() => {
-        this.loading = false;
-      });
+      if (requestId === this.requestId) {
+        runInAction(() => { this.loading = false; });
+      }
     }
   }
 
-  //
-  // ============= LOAD MORE (pagination) =============
-  //
+  loadMovies(filters: ApiFilters = {}) {
+    return this.loadInitial(filters, "");
+  }
+
+  searchMovies(query: string, filters: ApiFilters = {}) {
+    return this.loadInitial(filters, query.trim());
+  }
 
   async loadMoreMovies() {
-    if (!this.hasMore || this.loadingMore) return;
+    if (!this.hasMore || this.loading || this.loadingMore || this.error) return;
 
+    const requestId = this.requestId;
     const nextPage = this.currentPage + 1;
-
-    runInAction(() => {
-      this.loadingMore = true;
-    });
-
-    try {
-      const response = await api.getMovies({
-        ...this.filters,
-        page: nextPage,
-        limit: this.limit,
-      });
-
-      runInAction(() => {
-        this.appendMovies(response.data);
-      });
-    } catch {
-      /* ошибки догрузки не критичны */
-    } finally {
-      runInAction(() => {
-        this.loadingMore = false;
-      });
-    }
-  }
-
-  //
-  // ============= SEARCH =============
-  //
-
-  async searchMovies(query: string, filters: ApiFilters = {}) {
-    if (!query.trim()) {
-      return this.loadMovies(filters);
-    }
-
-    const searchFilters = { ...filters, query };
-
-    this.handleFiltersChange(searchFilters);
-
-    runInAction(() => {
-      this.loading = true;
-      this.error = null;
-    });
+    const params = {
+      ...this.filters,
+      page: nextPage,
+      limit: this.filters.limit || this.limit,
+    };
+    this.loadingMore = true;
+    this.loadingMoreError = null;
 
     try {
-      const response = await api.searchMovies(query, {
-        ...filters,
-        page: 1,
-        limit: this.limit,
-      });
+      const response = this.searchQuery
+        ? await api.searchMovies(this.searchQuery, params)
+        : await api.getMovies(params);
 
+      if (requestId !== this.requestId) return;
       runInAction(() => {
-        this.applyInitialData(response.data);
-        this.filters = searchFilters;
+        const ids = new Set(this.movies.map(movie => movie.id));
+        this.movies.push(...(response.data.docs || []).filter(movie => !ids.has(movie.id)));
+        this.currentPage = response.data.page || nextPage;
+        this.totalPages = response.data.pages ?? this.totalPages;
+        this.hasMore = this.currentPage < this.totalPages;
       });
-    } catch (e: unknown) {
+    } catch (error: unknown) {
+      if (requestId !== this.requestId) return;
       runInAction(() => {
-        this.error =
-          e instanceof Error ? e.message : "Ошибка поиска фильмов";
+        this.loadingMoreError = error instanceof Error ? error.message : "Не удалось загрузить ещё фильмы";
       });
     } finally {
-      runInAction(() => {
-        this.loading = false;
-      });
+      if (requestId === this.requestId) {
+        runInAction(() => { this.loadingMore = false; });
+      }
     }
   }
-
-  //
-  // ============= POPULAR CONTENT =============
-  //
 
   async loadPopularContent() {
-    if (this.popularMovies.length > 0 && this.popularSlides.length > 0) {
-      return;
-    }
+    if (this.popularLoading || (this.popularMovies.length && this.popularSlides.length)) return;
 
-    runInAction(() => {
-      this.error = null;
-      this.loading = true;
-    });
+    this.popularError = null;
+    this.popularLoading = true;
 
     try {
-      const popularPreset = {
-        limit: 10,
-        lists: "top10-hd",
-      };
-
-      const slidesPreset = {
-        limit: 10,
-        lists: "popular-films",
-        "rating.kp": "7-10",
-        notNullFields: "backdrop.url",
-      };
-
       const [popularRes, slidesRes] = await Promise.all([
-        api.getMovies(popularPreset),
-        api.getMovies(slidesPreset),
+        api.getMovies({ limit: 10, lists: "top10-hd" }),
+        api.getMovies({
+          limit: 10, lists: "popular-films", "rating.kp": "7-10",
+          notNullFields: "backdrop.url",
+        }),
       ]);
-
       runInAction(() => {
         this.popularMovies = popularRes.data.docs || [];
         this.popularSlides = slidesRes.data.docs || [];
       });
-    } catch (e: unknown) {
+    } catch (error: unknown) {
       runInAction(() => {
-        this.error =
-          e instanceof Error
-            ? e.message
-            : "Ошибка загрузки популярного контента";
+        this.popularError = error instanceof Error ? error.message : "Ошибка загрузки популярного контента";
       });
     } finally {
-      runInAction(() => {
-        this.loading = false;
-      });
+      runInAction(() => { this.popularLoading = false; });
     }
   }
 
-  //
-  // ============= RESET STORE =============
-  //
-
   reset() {
-    runInAction(() => {
-      this.movies = [];
-      this.popularMovies = [];
-      this.popularSlides = [];
-      this.filters = {};
-
-      this.currentPage = 1;
-      this.totalPages = 0;
-      this.total = 0;
-
-      this.hasMore = true;
-      this.loading = false;
-      this.loadingMore = false;
-      this.error = null;
-    });
+    this.requestId++;
+    this.movies = [];
+    this.popularMovies = [];
+    this.popularSlides = [];
+    this.filters = {};
+    this.searchQuery = "";
+    this.currentPage = 1;
+    this.totalPages = 0;
+    this.total = 0;
+    this.hasMore = true;
+    this.loading = false;
+    this.loadingMore = false;
+    this.error = null;
+    this.loadingMoreError = null;
+    this.popularLoading = false;
+    this.popularError = null;
   }
-
-  //
-  // ============= COMPUTED =============
-  //
 
   get isEmpty() {
     return this.movies.length === 0 && !this.loading;

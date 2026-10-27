@@ -29,9 +29,9 @@ const MoviePage = () => {
         if (metaDescription) {
           metaDescription.setAttribute(
             "content",
-            movie
-              ? `"${movie.description}"`
-              : "Поиск фильмов в библиотеке KINORA"
+            res.data.description ??
+              res.data.shortDescription ??
+              "Поиск фильмов в библиотеке KINORA"
           );
         }
       } catch (err) {

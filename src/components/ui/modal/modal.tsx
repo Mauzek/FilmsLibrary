@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Icon24Cancel } from "@vkontakte/icons";
 import styles from "./modal.module.scss";
@@ -15,6 +15,9 @@ export const Modal = ({
 }: ModalProps) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const backdropRef = useRef<HTMLDivElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
+  const closeHandlerRef = useRef<() => void>(() => undefined);
+  const titleId = useId();
   const modalRoot = document.getElementById("modal-root");
   if (!modalRoot) throw new Error("Не найден элемент #modal-root в index.html");
 
@@ -36,7 +39,7 @@ export const Modal = ({
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  const animateOpen = () => {
+  const animateOpen = useCallback(() => {
     if (!modalRef.current || !backdropRef.current || !gsapLib) return;
     const gsap = gsapLib.gsap;
 
@@ -61,10 +64,13 @@ export const Modal = ({
     } else if (currentVariant === "side") {
       gsap.to(modalRef.current, { x: 0, duration: 0.45, ease: "power3.out" });
     }
-  };
+  }, [currentVariant, gsapLib]);
 
-  const animateClose = (callback?: () => void) => {
-    if (!modalRef.current || !backdropRef.current || !gsapLib) return;
+  const animateClose = useCallback((callback?: () => void) => {
+    if (!modalRef.current || !backdropRef.current || !gsapLib) {
+      callback?.();
+      return;
+    }
     const gsap = gsapLib.gsap;
 
     const closeAnim =
@@ -87,12 +93,12 @@ export const Modal = ({
       ease: "power3.inOut",
       pointerEvents: "none",
     });
-  };
+  }, [currentVariant, gsapLib]);
 
   useEffect(() => {
     if (isOpen && gsapLib) animateOpen();
     else if (!isOpen && gsapLib) animateClose();
-  }, [isOpen, currentVariant, gsapLib]);
+  }, [animateClose, animateOpen, gsapLib, isOpen]);
 
   useEffect(() => {
     const body = document.body;
@@ -167,15 +173,78 @@ export const Modal = ({
       modal.removeEventListener("touchmove", onTouchMove);
       modal.removeEventListener("touchend", onTouchEnd);
     };
-  }, [isOpen, currentVariant, onClose, gsapLib]);
+  }, [animateClose, currentVariant, gsapLib, isOpen, onClose]);
 
-  const handleClickOutside = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget && closeOnBackdropClick) {
-      animateClose(onClose);
-    }
-  };
+  const handleCloseModal = useCallback(
+    () => animateClose(onClose),
+    [animateClose, onClose]
+  );
+  closeHandlerRef.current = handleCloseModal;
 
-  const handleCloseModal = () => animateClose(onClose);
+  useEffect(() => {
+    if (!isOpen) return;
+
+    previousFocusRef.current =
+      document.activeElement instanceof HTMLElement
+        ? document.activeElement
+        : null;
+    const modal = modalRef.current;
+    if (!modal) return;
+
+    const focusableSelector =
+      'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    const focusFirstElement = () => {
+      const firstFocusable = modal.querySelector<HTMLElement>(focusableSelector);
+      (firstFocusable ?? modal).focus();
+    };
+    focusFirstElement();
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeHandlerRef.current();
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+      const focusableElements = Array.from(
+        modal.querySelectorAll<HTMLElement>(focusableSelector)
+      );
+      if (focusableElements.length === 0) {
+        event.preventDefault();
+        modal.focus();
+        return;
+      }
+
+      const firstFocusable = focusableElements[0];
+      const lastFocusable = focusableElements[focusableElements.length - 1];
+      if (event.shiftKey && document.activeElement === firstFocusable) {
+        event.preventDefault();
+        lastFocusable.focus();
+      } else if (!event.shiftKey && document.activeElement === lastFocusable) {
+        event.preventDefault();
+        firstFocusable.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      if (previousFocusRef.current && document.contains(previousFocusRef.current)) {
+        previousFocusRef.current.focus();
+      }
+      previousFocusRef.current = null;
+    };
+  }, [isOpen]);
+
+  const handleClickOutside = useCallback(
+    (e: React.MouseEvent) => {
+      if (e.target === e.currentTarget && closeOnBackdropClick) {
+        handleCloseModal();
+      }
+    },
+    [closeOnBackdropClick, handleCloseModal]
+  );
 
   if (!isOpen) return null;
 
@@ -189,12 +258,20 @@ export const Modal = ({
 
   const modalContent = (
     <div ref={backdropRef} className={styles.backdrop} onClick={handleClickOutside}>
-      <div ref={modalRef} className={modalClass}>
+      <div
+        ref={modalRef}
+        className={modalClass}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={title ? titleId : undefined}
+        aria-label={title ? undefined : "Диалог"}
+        tabIndex={-1}
+      >
         <button className={styles.modal__close} onClick={handleCloseModal} aria-label="Закрыть">
           <Icon24Cancel width={24} />
         </button>
         {isMobile && <div className={styles.modal__dragHandle} />}
-        {title && <h2 className={styles.modal__title}>{title}</h2>}
+        {title && <h2 id={titleId} className={styles.modal__title}>{title}</h2>}
         <div className={styles.modal__content}>{children}</div>
       </div>
     </div>

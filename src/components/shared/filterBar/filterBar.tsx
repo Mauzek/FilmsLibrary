@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useId, useState, useRef, useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import { Filter } from "@/components/ui";
 import { useMovieFilters } from "@/hooks";
@@ -20,9 +20,10 @@ export const FilterBar: React.FC = observer(() => {
 
   const [isOpen, setIsOpen] = useState(false);
   const filterBarRef = useRef<HTMLDivElement>(null);
+  const filtersId = useId();
 
   const toggleFilterBar = () => {
-    setIsOpen(!isOpen);
+    setIsOpen((open) => !open);
   };
 
   const closeFilterBar = () => {
@@ -45,20 +46,40 @@ export const FilterBar: React.FC = observer(() => {
     };
   }, [isOpen]);
 
+  useEffect(() => {
+    const filters = document.getElementById(filtersId);
+    if (filters) filters.inert = !isOpen;
+  }, [filtersId, isOpen]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsOpen(false);
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
+
   return (
     <div className={styles.filterBar} ref={filterBarRef}>
       <button
         className={`${styles.filterBar__openButton} ${
           hasActiveFilters ? styles["filterBar__openButton--active"] : ""
         }`}
+        type="button"
         onClick={toggleFilterBar}
+        aria-expanded={isOpen}
+        aria-controls={filtersId}
       >
         <Icon24Filter /> <span>Фильтры</span>
       </button>
       <div
+        id={filtersId}
         className={`${styles.filterBar__filters} ${
           isOpen ? styles["filterBar__filters--open"] : ""
         }`}
+        aria-hidden={!isOpen}
       >
         <Filter
           type="checkbox"
@@ -98,7 +119,7 @@ export const FilterBar: React.FC = observer(() => {
           step={1}
         />
         {hasActiveFilters && (
-          <button className={styles.filterBar__clearBtn} onClick={clearFilters}>
+          <button type="button" className={styles.filterBar__clearBtn} onClick={clearFilters}>
             Очистить все
           </button>
         )}

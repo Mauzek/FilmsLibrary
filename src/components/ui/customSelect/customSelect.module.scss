@@ -16,6 +16,8 @@
     cursor: pointer;
     width: fit-content;
     min-width: 100px;
+    font: inherit;
+    color: $text-primary;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
@@ -67,8 +69,14 @@
   }
 
   &__option {
+    display: block;
+    width: 100%;
     padding: $spacing-sm 20px;
     cursor: pointer;
+    text-align: left;
+    font: inherit;
+    background: transparent;
+    border: 0;
     transition: all 0.2s ease;
     font-size: $font-size-base;
     color: $text-secondary-2;

@@ -27,7 +27,12 @@ export const Rating = ({
   return (
     <div className={`${styles.rating} ${styles[className || ""]}`}>
       {ratings.map((item) => (
-        <a target="_blank" href={item.link} key={item.votes}>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href={item.link}
+          key={item.label}
+        >
           <div className={styles.rating__item}>
             <span className={styles.rating__label}>{item.label}:</span>
             <span className={styles.rating__value}>{item.value?.toFixed(1)}</span>
