@@ -32,6 +32,7 @@ export async function setMovieList(movie: Movie, list: ListType) {
     await setDoc(movieRef, reducedMovie);
   } catch (error) {
     console.error("Ошибка добавления фильма в список:", error);
+    throw error;
   }
 }
 
@@ -42,6 +43,7 @@ export async function removeMovie(movieId: number) {
     await deleteDoc(movieRef);
   } catch (error) {
     console.error("Ошибка удаления фильма:", error);
+    throw error;
   }
 }
 

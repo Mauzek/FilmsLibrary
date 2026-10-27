@@ -9,7 +9,7 @@ import { AppToaster } from "./appToaster";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
-    initAuthListener();
+    return initAuthListener();
   }, []);
   return (
     <>

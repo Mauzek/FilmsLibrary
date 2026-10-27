@@ -28,12 +28,27 @@ export class RecentMoviesStore {
     const historyRef = collection(db, "users", uid, "history");
     const q = query(historyRef, orderBy("addedAt", "desc"), limit(7));
 
-    this.unsubscribe = onSnapshot(q, (snap) => {
-      const movies: SavedMovie[] = snap.docs.map((doc) => doc.data() as Movie);
-      runInAction(() => {
-        this.recent = movies;
-      });
-    });
+    this.unsubscribe = onSnapshot(
+      q,
+      (snap) => {
+        if (this.uid !== uid) return;
+
+        const movies: SavedMovie[] = snap.docs.map(
+          (doc) => doc.data() as SavedMovie
+        );
+        runInAction(() => {
+          this.recent = movies;
+        });
+      },
+      (error) => {
+        if (this.uid !== uid) return;
+
+        console.error("Ошибка загрузки истории просмотров:", error);
+        runInAction(() => {
+          this.recent = [];
+        });
+      }
+    );
   }
 
   unsubscribeHistory() {
@@ -41,6 +56,9 @@ export class RecentMoviesStore {
       this.unsubscribe();
       this.unsubscribe = null;
     }
+
+    this.uid = null;
+    this.recent = [];
   }
 
   async addToRecentMovies(movie: Movie) {

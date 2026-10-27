@@ -22,6 +22,7 @@ export const getUserLists = async (
     });
   } catch (error) {
     console.error("Ошибка получения списков пользователя:", error);
+    throw error;
   }
 
   return result;

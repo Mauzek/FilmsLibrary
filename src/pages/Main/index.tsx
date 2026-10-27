@@ -25,15 +25,6 @@ const MainPage = observer(() => {
     loadPopularContent();
   }, [loadPopularContent]);
 
-  useEffect(() => {
-    if (user?.uid) {
-      recentStore.subscribe(user.uid);
-    }
-    return () => {
-      recentStore.unsubscribeHistory();
-    };
-  }, [user, recentStore]);
-
   return (
     <main className={styles.page}>
       <Carousel loading={loading}>
@@ -42,7 +33,7 @@ const MainPage = observer(() => {
         ))}
       </Carousel>
 
-      {recentStore.recent.length > 0 && (
+      {user && recentStore.recent.length > 0 && (
         <Section
           title="Вы недавно смотрели"
           icon={<Icon24HistoryBackwardOutline />}

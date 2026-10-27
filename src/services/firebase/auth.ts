@@ -54,22 +54,53 @@ export const loginWithGoogle = async () => {
 export const logout = () => signOut(auth);
 
 export const initAuthListener = () => {
-  const { userStore } = rootStore;
+  const { userStore, recentMoviesStore } = rootStore;
   const defaultLists = ["dropped", "planned", "watched", "favorites"];
-  onAuthStateChanged(auth, async (firebaseUser: FirebaseUser | null) => {
+  let authRequestId = 0;
+
+  const unsubscribe = onAuthStateChanged(auth, async (firebaseUser: FirebaseUser | null) => {
+    const requestId = ++authRequestId;
+    recentMoviesStore.unsubscribeHistory();
+
     if (!firebaseUser) {
       userStore.clearUser();
       return;
     }
 
-    const appUser = await getUserProfile(firebaseUser.uid);
+    userStore.clearUser();
+    userStore.setLoading(true);
 
-    if (appUser) {
-      userStore.setUser(appUser);
+    const isCurrentRequest = () =>
+      requestId === authRequestId && auth.currentUser?.uid === firebaseUser.uid;
+
+    try {
+      const appUser = await getUserProfile(firebaseUser.uid);
+
+      if (!isCurrentRequest()) return;
+
+      if (!appUser) {
+        userStore.clearUser();
+        return;
+      }
+
       const userLists = await getUserLists(appUser.uid, defaultLists);
+
+      if (!isCurrentRequest()) return;
+
+      userStore.setUser(appUser);
       userStore.setLists(userLists);
-    } else {
+      recentMoviesStore.subscribe(appUser.uid);
+    } catch (error) {
+      if (!isCurrentRequest()) return;
+
+      console.error("Ошибка загрузки данных пользователя:", error);
       userStore.clearUser();
     }
   });
+
+  return () => {
+    authRequestId++;
+    unsubscribe();
+    recentMoviesStore.unsubscribeHistory();
+  };
 };
